@@ -17,6 +17,6 @@ public class TimerConter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        text.text = string.Format("{0:N2}", Time.time);
     }
 }
