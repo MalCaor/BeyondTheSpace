@@ -14,6 +14,6 @@ public class ClickBox : MonoBehaviour
     // when the mouse click the object
     void OnMouseDown()
     {
-        Libel.GetComponent<TextMeshProUGUI>().text = "cube";
+        Libel.GetComponent<TextMeshProUGUI>().text = this.name;
     }
 }
