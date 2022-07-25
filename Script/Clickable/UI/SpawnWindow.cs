@@ -16,6 +16,6 @@ public class SpawnWindow : MonoBehaviour
         // spawn object pref from name
         GameObject pref = Instantiate(Resources.Load<GameObject>(name)) as GameObject;
         // make it invisible
-        pref.SetActive(false);
+        //pref.SetActive(false);
     }
 }
