@@ -16,8 +16,13 @@ public class BuildingSpawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // set Layer (3 = Buildable)
+        int layerMask = 3;
+        // invert (ingore everything except 3)
+        layerMask = ~layerMask;
+        // raycast to put object
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if(Physics.Raycast(ray, out hit, Mathf.Infinity))
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             transform.position = hit.point;
         }
