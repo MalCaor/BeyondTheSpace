@@ -9,4 +9,13 @@ public class SpawnWindow : MonoBehaviour
     {
         gameObject.SetActive(!gameObject.activeSelf);
     }
+
+    // Spawn Prefab Object
+    public void SpawnPrefabObject(string name)
+    {
+        // spawn object pref from name
+        GameObject pref = Instantiate(Resources.Load<GameObject>(name)) as GameObject;
+        // make it invisible
+        pref.SetActive(false);
+    }
 }
