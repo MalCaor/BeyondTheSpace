@@ -26,5 +26,12 @@ public class BuildingSpawn : MonoBehaviour
         {
             transform.position = hit.point;
         }
+        // Build or not
+        // rotation
+        if(Input.GetMouseButton(0))
+        {
+            // the building is set up
+            gameObject.GetComponent<BuildingSpawn>().enabled = false;
+        }
     }
 }
