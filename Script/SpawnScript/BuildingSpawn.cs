@@ -24,7 +24,7 @@ public class BuildingSpawn : MonoBehaviour
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
-            transform.position = hit.point;
+            transform.position = hit.point + GetComponent<Renderer>().bounds.extents;
         }
         // Build or not
         // rotation
