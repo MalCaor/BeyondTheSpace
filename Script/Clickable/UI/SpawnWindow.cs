@@ -4,12 +4,6 @@ using UnityEngine;
 
 public class SpawnWindow : MonoBehaviour
 {
-    // switch visiblility
-    public void ActivateDeactivate()
-    {
-        gameObject.SetActive(!gameObject.activeSelf);
-    }
-
     // Spawn Prefab Object
     public void SpawnPrefabObject(string name)
     {
