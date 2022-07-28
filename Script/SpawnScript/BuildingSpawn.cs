@@ -24,7 +24,14 @@ public class BuildingSpawn : MonoBehaviour
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
+            // move to point
             transform.position = hit.point + GetComponent<Renderer>().bounds.extents;
+            // find vector to center of mass
+            Vector3 vectDirection = (transform.position - hit.transform.position).normalized;
+            // quat rotation to allign with vect
+            Quaternion quatRot = Quaternion.LookRotation(vectDirection);
+            // apply rot
+            transform.rotation = Quaternion.Slerp(transform.rotation, quatRot, 1);
         }
         // Build or not
         // rotation
