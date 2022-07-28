@@ -9,7 +9,7 @@ public class InspectWindow : MonoBehaviour
 
     void Start()
     {
-        ObjectName = GetComponent<TextMeshProUGUI>();
+        ObjectName = gameObject.transform.Find("TextNameObj").GetComponent<TextMeshProUGUI>();
     }
 
     // Load the info of an object in the inspect window
