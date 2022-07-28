@@ -15,6 +15,13 @@ public class InspectWindow : MonoBehaviour
     // Load the info of an object in the inspect window
     public void InspectObject(string name)
     {
+        if(gameObject.activeSelf == false)
+        {
+            // if inspect window is closed
+            gameObject.SetActive(true);
+            Start();
+        }
+        
         ObjectName.text = name;
     }
 }
