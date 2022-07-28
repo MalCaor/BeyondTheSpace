@@ -56,4 +56,15 @@ public class TimeMana : MonoBehaviour
             Time.timeScale = this.DicLevelTimeScale[this.CurrentSpeedLevel];
         }
     }
+
+    public void Pause()
+    {
+        if(Time.timeScale == 0f)
+        {
+            // Unpause
+            Time.timeScale = this.DicLevelTimeScale[this.CurrentSpeedLevel];
+        } else {
+            Time.timeScale = 0f;
+        }
+    }
 }

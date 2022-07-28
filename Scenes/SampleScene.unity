@@ -470,6 +470,22 @@ PrefabInstance:
       propertyPath: m_AnchorMin.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5137042279104379905, guid: 6f663d7966ff2ad3e8ae18569f5959c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 528431138}
+    - target: {fileID: 5137042279104379905, guid: 6f663d7966ff2ad3e8ae18569f5959c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Pause
+      objectReference: {fileID: 0}
+    - target: {fileID: 5137042279104379905, guid: 6f663d7966ff2ad3e8ae18569f5959c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TimeMana, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5137042279104379905, guid: 6f663d7966ff2ad3e8ae18569f5959c6, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6109198240421985538, guid: 6f663d7966ff2ad3e8ae18569f5959c6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
