@@ -11,8 +11,8 @@ public class GridPlanetGeneration : MonoBehaviour
     public float resolution = 1f;
 
     // vars Priv
-    // List Points grid
-    List<Vector3> listPointGrid;
+    // List cube ?
+    List<GameObject> listCubeGrid;
 
     // Start is called before the first frame update
     void Start()
@@ -24,18 +24,6 @@ public class GridPlanetGeneration : MonoBehaviour
     void generateGrid()
     {
         // init
-        listPointGrid = new List<Vector3>();
-        // parcour
-        for (float x = transform.localPosition.x - rayonOrbite; x < transform.localPosition.x + rayonOrbite; x+=resolution)
-        {
-            for (float y = transform.localPosition.y - rayonOrbite; y < transform.localPosition.y + rayonOrbite; y+=resolution)
-            {
-                for (float z = transform.localPosition.z - rayonOrbite; z < transform.localPosition.z + rayonOrbite; z+=resolution)
-                {
-                    // add the point to the list
-                    listPointGrid.Add(new Vector3(x, y, z));
-                }
-            }
-        }
+        listCubeGrid = new List<GameObject>();
     }
 }
