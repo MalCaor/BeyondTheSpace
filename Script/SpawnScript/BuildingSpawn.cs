@@ -6,6 +6,7 @@ public class BuildingSpawn : MonoBehaviour
 {
     RaycastHit hit;
     Ray ray;
+    public int sensitivityRotationPlacement = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +35,6 @@ public class BuildingSpawn : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, quatRot, 1);
         }
         // Build or not
-        // rotation
         if(Input.GetMouseButton(0))
         {
             // the building is set up
