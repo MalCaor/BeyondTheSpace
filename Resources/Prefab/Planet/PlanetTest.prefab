@@ -45,5 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rayonVoid: 50
-  rayonOrbite: 50
+  rayonOrbite: 100
   resolution: 1
