@@ -49,7 +49,6 @@ public class GridPlanetGeneration : MonoBehaviour
                 meshFilters[i] = meshObj.AddComponent<MeshFilter>();
                 meshFilters[i].sharedMesh = new Mesh();
             }
-
             grifFaces[i] = new GridFace(meshFilters[i].sharedMesh, resolution, directions[i]);
             
         }

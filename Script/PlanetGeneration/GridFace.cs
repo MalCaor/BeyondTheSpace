@@ -17,6 +17,7 @@ public class GridFace
     // constructor
     public GridFace(Mesh m, int r, Vector3 lUp)
     {
+        
         // set local var from para
         this.mesh = m;
         this.resolution = r;
