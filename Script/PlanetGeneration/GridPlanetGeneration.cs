@@ -20,7 +20,7 @@ public class GridPlanetGeneration : MonoBehaviour
     /// Called when the script is loaded or a value is changed in the
     /// inspector (Called in the editor only).
     /// </summary>
-    void OnValidate()
+    public void Init()
     {
         InitGrid();
         GenerateMesh();
@@ -40,14 +40,18 @@ public class GridPlanetGeneration : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
         {
-            GameObject meshObj = new GameObject("mesh");
-            meshObj.transform.parent = transform;
+            if(meshFilters[i] != null)
+            {
+                GameObject meshObj = new GameObject("mesh");
+                meshObj.transform.SetParent(transform);
 
-            meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
-            meshFilters[i] = meshObj.AddComponent<MeshFilter>();
-            meshFilters[i].sharedMesh = new Mesh();
+                meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
+                meshFilters[i] = meshObj.AddComponent<MeshFilter>();
+                meshFilters[i].sharedMesh = new Mesh();
+            }
 
             grifFaces[i] = new GridFace(meshFilters[i].sharedMesh, resolution, directions[i]);
+            
         }
     }
 
