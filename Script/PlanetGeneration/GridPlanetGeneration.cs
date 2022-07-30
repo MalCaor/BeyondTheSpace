@@ -40,7 +40,7 @@ public class GridPlanetGeneration : MonoBehaviour
 
         for (int i = 0; i < 6; i++)
         {
-            if(meshFilters[i] != null)
+            if(meshFilters[i] == null)
             {
                 GameObject meshObj = new GameObject("mesh");
                 meshObj.transform.SetParent(transform);

@@ -17,4 +17,8 @@ public class GridPlanetGenerationEditor : Editor
             grid.Init();
         }
     }
+    private void OnEnable()
+	{
+        grid = (GridPlanetGeneration)target;
+	}
 }
