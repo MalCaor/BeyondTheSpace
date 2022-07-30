@@ -10,9 +10,6 @@ public class GridPlanetGeneration : MonoBehaviour
     public int resolution = 10;
 
     // vars Priv
-    // List MeshFilters
-    [SerializeField, HideInInspector]
-    MeshFilter[] meshFilters;
     // List Faces
     GridFace[] grifFaces;
 
@@ -23,38 +20,24 @@ public class GridPlanetGeneration : MonoBehaviour
     public void Init()
     {
         InitGrid();
-        GenerateMesh();
+        ConstructFace();
     }
 
     // init 6 faces of the planet
     void InitGrid()
     {
-        if(meshFilters == null || meshFilters.Length == 0)
-        {
-            // the 6 faces of a cube
-            meshFilters = new MeshFilter[6];
-        }
         grifFaces = new GridFace[6];
 
         Vector3[] directions = {Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back};
 
         for (int i = 0; i < 6; i++)
         {
-            if(meshFilters[i] == null)
-            {
-                GameObject meshObj = new GameObject("mesh");
-                meshObj.transform.SetParent(transform);
-
-                meshObj.AddComponent<MeshRenderer>().sharedMaterial = new Material(Shader.Find("Standard"));
-                meshFilters[i] = meshObj.AddComponent<MeshFilter>();
-                meshFilters[i].sharedMesh = new Mesh();
-            }
-            grifFaces[i] = new GridFace(meshFilters[i].sharedMesh, resolution, directions[i]);
-            
+            grifFaces[i] = gameObject.AddComponent(typeof(GridFace)) as GridFace;
+            grifFaces[i].ConstructGrid(transform, resolution, directions[i]);
         }
     }
 
-    void GenerateMesh()
+    void ConstructFace()
     {
         foreach (GridFace grid in grifFaces)
         {
