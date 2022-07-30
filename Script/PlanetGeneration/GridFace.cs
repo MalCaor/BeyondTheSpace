@@ -42,7 +42,8 @@ public class GridFace
                 int i = x + y * resolution;
                 Vector2 percent = new Vector2(x, y) / (resolution -1);
                 Vector3 pointOnUnitCube = localUp + (percent.x - 0.5f) * 2 * axisX + (percent.y - 0.5f) * 2 * axisZ;
-                vertices[i] = pointOnUnitCube;
+                Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
+                vertices[i] = pointOnUnitSphere;
 
                 // create triangle
                 if(x != resolution -1 && y != resolution -1)
