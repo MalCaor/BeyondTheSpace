@@ -6,7 +6,7 @@ public class GridPlanetGeneration : MonoBehaviour
 {
     // vars Pub
     // resolution
-    [Range(2, 256)]
+    [Range(2, 100)]
     public int resolution = 10;
 
     // vars Priv
