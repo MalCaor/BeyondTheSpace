@@ -10,7 +10,8 @@ public class GridPlanetGeneration : MonoBehaviour
     public int resolution = 10;
 
     // vars Priv
-    // List Faces
+    // List point
+    [SerializeField, HideInInspector]
     GameObject[,] points;
 
    /// <summary>
@@ -18,6 +19,16 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     public void Init()
     {
+        if(points != null)
+        {
+            for(int i = 0; i < 6; i++)
+            {
+                for (int y = 0; y < points.GetLength(1); y++)
+                {
+                    DestroyImmediate(points[i, y].gameObject);
+                }
+            }
+        }
         points = new GameObject[6, resolution * resolution];
         InitGrid();
     }
