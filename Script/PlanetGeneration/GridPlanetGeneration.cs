@@ -59,7 +59,7 @@ public class GridPlanetGeneration : MonoBehaviour
                 Vector2 percent = new Vector2(x, y) / (resolution -1);
                 Vector3 pointOnUnitCube = localUp + (percent.x - 0.5f) * 2 * axisX + (percent.y - 0.5f) * 2 * axisZ;
                 Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                Instantiate(points[numFace, i], pointOnUnitSphere, Quaternion.identity);
+                points[numFace, i].transform.position = pointOnUnitSphere;
             }
         }
     }
