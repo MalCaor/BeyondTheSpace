@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class PlanetGenerationSettings : ScriptableObject
 {
-    public int radius = 1;
+    public float radius = 1;
 }
