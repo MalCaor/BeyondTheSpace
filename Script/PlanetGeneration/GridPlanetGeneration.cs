@@ -8,6 +8,7 @@ public class GridPlanetGeneration : MonoBehaviour
     // resolution
     [Range(2, 100)]
     public int resolution = 10;
+    public PlanetGenerationSettings planetSettings;
 
     // vars Priv
     // List point
@@ -68,9 +69,14 @@ public class GridPlanetGeneration : MonoBehaviour
                 // create point
                 int i = x + y * resolution;
                 Vector2 percent = new Vector2(x, y) / (resolution -1);
+                // get point on cube
                 Vector3 pointOnUnitCube = localUp + (percent.x - 0.5f) * 2 * axisX + (percent.y - 0.5f) * 2 * axisZ;
+                // get on shphere
                 Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                points[numFace, i].transform.position = pointOnUnitSphere;
+                // multiply with radius
+                Vector3 finalpoint = pointOnUnitSphere * planetSettings.radius;
+                // transform the point to it's final location
+                points[numFace, i].transform.position = finalpoint;
             }
         }
     }
