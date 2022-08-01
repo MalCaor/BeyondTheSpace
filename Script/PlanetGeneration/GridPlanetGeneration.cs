@@ -20,7 +20,7 @@ public class GridPlanetGeneration : MonoBehaviour
     public void Init()
     {
         DestroyChild();
-        points = new GameObject[6, (planetSettings.resolution -1), (planetSettings.resolution -1)];
+        points = new GameObject[6, (planetSettings.resolution), (planetSettings.resolution)];
         InitGrid();
     }
 
@@ -40,9 +40,9 @@ public class GridPlanetGeneration : MonoBehaviour
     void InitGrid()
     {
         ConstructFace(0, Vector3.down);
-        ConstructFace(1, Vector3.forward);
+        ConstructFace(1, Vector3.back);
         ConstructFace(2, Vector3.up);
-        ConstructFace(3, Vector3.back);
+        ConstructFace(3, Vector3.forward);
         ConstructFace(4, Vector3.left);
         ConstructFace(5, Vector3.right);
     }
@@ -55,10 +55,63 @@ public class GridPlanetGeneration : MonoBehaviour
         // init the other 2 vec
         Vector3 axisX = new Vector3(localUp.y, localUp.z, localUp.x);
         Vector3 axisZ = Vector3.Cross(localUp, axisX);
-
-        for (int x = 0; x < (planetSettings.resolution -1); x++)
+        int minx = 0;
+        int minz = 0;
+        int maxX = planetSettings.resolution -1;
+        int maxZ = planetSettings.resolution -1;
+        // evite des cube de se superposer
+        switch (numFace)
         {
-            for (int z = 0; z < (planetSettings.resolution -1); z++)
+            case 0:
+                // down
+                minx = 0;
+                minz = 1;
+                maxX = planetSettings.resolution;
+                maxZ = planetSettings.resolution;
+                break;
+            case 1:
+                // back
+                minx = 0;
+                minz = 0;
+                maxX = planetSettings.resolution-1;
+                maxZ = planetSettings.resolution;
+                break;
+            case 2:
+                // up
+                minx = 0;
+                minz = 0;
+                maxX = planetSettings.resolution;
+                maxZ = planetSettings.resolution-1;
+                break;
+            case 3:
+                // forward
+                minx = 0;
+                minz = 0;
+                maxX = planetSettings.resolution-1;
+                maxZ = planetSettings.resolution;
+                break;
+            case 4:
+                // left
+                minx = 1;
+                minz = 1;
+                maxX = planetSettings.resolution-1;
+                maxZ = planetSettings.resolution-1;
+                break;
+            case 5:
+                // right
+                minx = 1;
+                minz = 1;
+                maxX = planetSettings.resolution-1;
+                maxZ = planetSettings.resolution-1;
+                break;
+            
+            default:
+                break;
+        }
+
+        for (int x = minx; x < maxX; x++)
+        {
+            for (int z = minz; z < maxZ; z++)
             {
                 // test prefab Prefab/Test/CubePointTest
                 points[numFace, x, z] = Instantiate(Resources.Load<GameObject>("Prefab/Test/CubePointTest")) as GameObject;
