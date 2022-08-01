@@ -56,7 +56,8 @@ public class GridPlanetGeneration : MonoBehaviour
 
         for (int i = 0; i < planetSettings.resolution * planetSettings.resolution; i++)
         {
-            points[numFace, i] = new GameObject();
+            // test prefab Prefab/Test/CubePointTest
+            points[numFace, i] = Instantiate(Resources.Load<GameObject>("Prefab/Test/CubePointTest")) as GameObject;
             points[numFace, i].transform.SetParent(gameObject.transform);
         }
 
