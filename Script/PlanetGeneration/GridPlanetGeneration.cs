@@ -11,22 +11,23 @@ public class GridPlanetGeneration : MonoBehaviour
     // vars Priv
     // List point
     [SerializeField, HideInInspector]
-    GameObject[,] points;
+    // points[CubeFace, x, z]
+    GameObject[,,] points;
 
    /// <summary>
     /// Init The Grid
     /// </summary>
     public void Init()
     {
-        destroyChild();
-        points = new GameObject[6, planetSettings.resolution * planetSettings.resolution];
+        DestroyChild();
+        points = new GameObject[6, (planetSettings.resolution -1), (planetSettings.resolution -1)];
         InitGrid();
     }
 
     /// <summary>
     /// Destroy all point
     /// </summary>
-    void destroyChild()
+    void DestroyChild()
     {
         int childs = transform.childCount;
         for (int i = childs - 1; i >= 0; i--) 
@@ -57,20 +58,21 @@ public class GridPlanetGeneration : MonoBehaviour
         Vector3 axisX = new Vector3(localUp.y, localUp.z, localUp.x);
         Vector3 axisZ = Vector3.Cross(localUp, axisX);
 
-        for (int i = 0; i < planetSettings.resolution * planetSettings.resolution; i++)
+        for (int x = 0; x < (planetSettings.resolution -1); x++)
         {
-            // test prefab Prefab/Test/CubePointTest
-            points[numFace, i] = Instantiate(Resources.Load<GameObject>("Prefab/Test/CubePointTest")) as GameObject;
-            points[numFace, i].transform.SetParent(gameObject.transform);
+            for (int z = 0; z < (planetSettings.resolution -1); z++)
+            {
+                // test prefab Prefab/Test/CubePointTest
+                points[numFace, x, z] = Instantiate(Resources.Load<GameObject>("Prefab/Test/CubePointTest")) as GameObject;
+                points[numFace, x, z].transform.SetParent(gameObject.transform);
+            }
         }
 
-        for (int y = 0; y < planetSettings.resolution; y++)
+        for (int x = 0; x < planetSettings.resolution -1; x++)
         {
-            for (int x = 0; x < planetSettings.resolution; x++)
+            for (int z = 0; z < planetSettings.resolution -1; z++)
             {
-                // create point
-                int i = x + y * planetSettings.resolution;
-                Vector2 percent = new Vector2(x, y) / (planetSettings.resolution -1);
+                Vector2 percent = new Vector2(x, z) / (planetSettings.resolution -1);
                 // get point on cube
                 Vector3 pointOnUnitCube = localUp + (percent.x - 0.5f) * 2 * axisX + (percent.y - 0.5f) * 2 * axisZ;
                 // get on shphere
@@ -78,7 +80,9 @@ public class GridPlanetGeneration : MonoBehaviour
                 // multiply with radius
                 Vector3 finalpoint = pointOnUnitSphere * planetSettings.radius;
                 // transform the point to it's final location
-                points[numFace, i].transform.position = finalpoint;
+                points[numFace, x, z].transform.position = finalpoint;
+                //name it
+                points[numFace, x, z].name = "Point Face " + (numFace +1) + " : " + x + ", " + z;
             }
         }
     }
