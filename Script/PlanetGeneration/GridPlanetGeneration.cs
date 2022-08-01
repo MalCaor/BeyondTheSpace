@@ -18,18 +18,21 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     public void Init()
     {
-        if(points != null)
-        {
-            for(int i = 0; i < 6; i++)
-            {
-                for (int y = 0; y < points.GetLength(1); y++)
-                {
-                    DestroyImmediate(points[i, y].gameObject);
-                }
-            }
-        }
+        destroyChild();
         points = new GameObject[6, planetSettings.resolution * planetSettings.resolution];
         InitGrid();
+    }
+
+    /// <summary>
+    /// Destroy all point
+    /// </summary>
+    void destroyChild()
+    {
+        int childs = transform.childCount;
+        for (int i = childs - 1; i >= 0; i--) 
+        {
+            GameObject.DestroyImmediate(transform.GetChild( i ).gameObject);
+        }
     }
 
     // init 6 faces of the planet
