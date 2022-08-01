@@ -39,14 +39,12 @@ public class GridPlanetGeneration : MonoBehaviour
     // init 6 faces of the planet
     void InitGrid()
     {
-        // direction
-        Vector3[] directions = {Vector3.up, Vector3.down, Vector3.left, Vector3.right, Vector3.forward, Vector3.back};
-
-        for (int i = 0; i < 6; i++)
-        {
-            // construct face of grid
-            ConstructFace(i, directions[i]);
-        }
+        ConstructFace(0, Vector3.down);
+        ConstructFace(1, Vector3.forward);
+        ConstructFace(2, Vector3.up);
+        ConstructFace(3, Vector3.back);
+        ConstructFace(4, Vector3.left);
+        ConstructFace(5, Vector3.right);
     }
 
     // construct the face
@@ -65,13 +63,6 @@ public class GridPlanetGeneration : MonoBehaviour
                 // test prefab Prefab/Test/CubePointTest
                 points[numFace, x, z] = Instantiate(Resources.Load<GameObject>("Prefab/Test/CubePointTest")) as GameObject;
                 points[numFace, x, z].transform.SetParent(gameObject.transform);
-            }
-        }
-
-        for (int x = 0; x < planetSettings.resolution -1; x++)
-        {
-            for (int z = 0; z < planetSettings.resolution -1; z++)
-            {
                 Vector2 percent = new Vector2(x, z) / (planetSettings.resolution -1);
                 // get point on cube
                 Vector3 pointOnUnitCube = localUp + (percent.x - 0.5f) * 2 * axisX + (percent.y - 0.5f) * 2 * axisZ;
