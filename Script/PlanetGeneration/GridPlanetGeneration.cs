@@ -5,9 +5,7 @@ using UnityEngine;
 public class GridPlanetGeneration : MonoBehaviour
 {
     // vars Pub
-    // resolution
-    [Range(2, 100)]
-    public int resolution = 10;
+    
     public PlanetGenerationSettings planetSettings;
 
     // vars Priv
@@ -30,7 +28,7 @@ public class GridPlanetGeneration : MonoBehaviour
                 }
             }
         }
-        points = new GameObject[6, resolution * resolution];
+        points = new GameObject[6, planetSettings.resolution * planetSettings.resolution];
         InitGrid();
     }
 
@@ -56,19 +54,19 @@ public class GridPlanetGeneration : MonoBehaviour
         Vector3 axisX = new Vector3(localUp.y, localUp.z, localUp.x);
         Vector3 axisZ = Vector3.Cross(localUp, axisX);
 
-        for (int i = 0; i < resolution * resolution; i++)
+        for (int i = 0; i < planetSettings.resolution * planetSettings.resolution; i++)
         {
             points[numFace, i] = new GameObject();
             points[numFace, i].transform.SetParent(gameObject.transform);
         }
 
-        for (int y = 0; y < resolution; y++)
+        for (int y = 0; y < planetSettings.resolution; y++)
         {
-            for (int x = 0; x < resolution; x++)
+            for (int x = 0; x < planetSettings.resolution; x++)
             {
                 // create point
-                int i = x + y * resolution;
-                Vector2 percent = new Vector2(x, y) / (resolution -1);
+                int i = x + y * planetSettings.resolution;
+                Vector2 percent = new Vector2(x, y) / (planetSettings.resolution -1);
                 // get point on cube
                 Vector3 pointOnUnitCube = localUp + (percent.x - 0.5f) * 2 * axisX + (percent.y - 0.5f) * 2 * axisZ;
                 // get on shphere

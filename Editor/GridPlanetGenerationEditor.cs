@@ -11,6 +11,7 @@ public class GridPlanetGenerationEditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
+        DrawSettingsEditor(grid.planetSettings);
 
         if (GUILayout.Button("Generate Grid"))
         {
@@ -21,4 +22,9 @@ public class GridPlanetGenerationEditor : Editor
 	{
         grid = (GridPlanetGeneration)target;
 	}
+    void DrawSettingsEditor(Object settings)
+    {
+        Editor editor = CreateEditor(settings);
+        editor.OnInspectorGUI();
+    }
 }
