@@ -13,6 +13,8 @@ public class GridPlanetGeneration : MonoBehaviour
     [SerializeField, HideInInspector]
     // points[CubeFace, x, z]
     GameObject[,,] points;
+    // num of corou ConstructFace
+    int numCorouConstructFace = 0;
 
    /// <summary>
     /// Init The Grid
@@ -22,6 +24,7 @@ public class GridPlanetGeneration : MonoBehaviour
         DestroyChild();
         points = new GameObject[6, (planetSettings.resolution), (planetSettings.resolution)];
         StartCoroutine(InitGrid());
+        // insert wait for Init To finish before continues
     }
 
     /// <summary>
@@ -39,14 +42,17 @@ public class GridPlanetGeneration : MonoBehaviour
     // init 6 faces of the planet
     IEnumerator InitGrid()
     {
+        numCorouConstructFace = 6;
         StartCoroutine(ConstructFace(0, Vector3.down));
         StartCoroutine(ConstructFace(1, Vector3.back));
         StartCoroutine(ConstructFace(2, Vector3.up));
         StartCoroutine(ConstructFace(3, Vector3.forward));
         StartCoroutine(ConstructFace(4, Vector3.left));
         StartCoroutine(ConstructFace(5, Vector3.right));
-        Debug.Log("Grid Init");
-        yield return null;
+        while (numCorouConstructFace != 0){
+            yield return null;
+        }
+        Debug.Log("All Grid Initialized");
     }
 
     // construct the face
@@ -132,5 +138,7 @@ public class GridPlanetGeneration : MonoBehaviour
                 yield return null;
             }
         }
+        Debug.Log("Grid " + numFace +" Initiated");
+        numCorouConstructFace -= 1;
     }
 }
