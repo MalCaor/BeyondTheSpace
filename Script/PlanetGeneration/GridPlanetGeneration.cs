@@ -21,7 +21,7 @@ public class GridPlanetGeneration : MonoBehaviour
     {
         DestroyChild();
         points = new GameObject[6, (planetSettings.resolution), (planetSettings.resolution)];
-        InitGrid();
+        StartCoroutine(InitGrid());
     }
 
     /// <summary>
@@ -37,18 +37,20 @@ public class GridPlanetGeneration : MonoBehaviour
     }
 
     // init 6 faces of the planet
-    void InitGrid()
+    IEnumerator InitGrid()
     {
-        ConstructFace(0, Vector3.down);
-        ConstructFace(1, Vector3.back);
-        ConstructFace(2, Vector3.up);
-        ConstructFace(3, Vector3.forward);
-        ConstructFace(4, Vector3.left);
-        ConstructFace(5, Vector3.right);
+        StartCoroutine(ConstructFace(0, Vector3.down));
+        StartCoroutine(ConstructFace(1, Vector3.back));
+        StartCoroutine(ConstructFace(2, Vector3.up));
+        StartCoroutine(ConstructFace(3, Vector3.forward));
+        StartCoroutine(ConstructFace(4, Vector3.left));
+        StartCoroutine(ConstructFace(5, Vector3.right));
+        Debug.Log("Grid Init");
+        yield return null;
     }
 
     // construct the face
-    public void ConstructFace(int numFace, Vector3 dir)
+    IEnumerator ConstructFace(int numFace, Vector3 dir)
     {
         // init direction
         Vector3 localUp = dir;
@@ -127,6 +129,7 @@ public class GridPlanetGeneration : MonoBehaviour
                 points[numFace, x, z].transform.position = finalpoint;
                 //name it
                 points[numFace, x, z].name = "Point Face " + (numFace +1) + " : " + x + ", " + z;
+                yield return null;
             }
         }
     }
