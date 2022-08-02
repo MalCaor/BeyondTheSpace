@@ -9,4 +9,7 @@ public class PlanetGenerationSettings : ScriptableObject
     // resolution
     [Range(2, 100)]
     public int resolution = 10;
+    // height of the "croute terrestre"
+    [Range(1, 10)]
+    public int height = 1;
 }

@@ -12,7 +12,7 @@ public class GridPlanetGeneration : MonoBehaviour
     // List point
     [SerializeField, HideInInspector]
     // points[CubeFace, x, z]
-    GameObject[,,] points;
+    GameObject[,,,] points;
     // num of corou ConstructFace
     int numCorouConstructFace = 0;
 
@@ -22,7 +22,7 @@ public class GridPlanetGeneration : MonoBehaviour
     public void Init()
     {
         DestroyChild();
-        points = new GameObject[6, (planetSettings.resolution), (planetSettings.resolution)];
+        points = new GameObject[6, (planetSettings.resolution), (planetSettings.resolution), planetSettings.height];
         StartCoroutine(InitGrid());
         // insert wait for Init To finish before continues
     }
@@ -121,21 +121,25 @@ public class GridPlanetGeneration : MonoBehaviour
         {
             for (int z = minz; z < maxZ; z++)
             {
-                // test prefab Prefab/Test/CubePointTest
-                points[numFace, x, z] = Instantiate(Resources.Load<GameObject>("Prefab/Test/CubePointTest")) as GameObject;
-                points[numFace, x, z].transform.SetParent(gameObject.transform);
-                Vector2 percent = new Vector2(x, z) / (planetSettings.resolution -1);
-                // get point on cube
-                Vector3 pointOnUnitCube = localUp + (percent.x - 0.5f) * 2 * axisX + (percent.y - 0.5f) * 2 * axisZ;
-                // get on shphere
-                Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
-                // multiply with radius
-                Vector3 finalpoint = pointOnUnitSphere * planetSettings.radius;
-                // transform the point to it's final location
-                points[numFace, x, z].transform.position = finalpoint;
-                //name it
-                points[numFace, x, z].name = "Point Face " + (numFace +1) + " : " + x + ", " + z;
-                yield return null;
+                for (int h = 0; h < planetSettings.height; h++)
+                {
+                    // test prefab Prefab/Test/CubePointTest
+                    points[numFace, x, z, h] = Instantiate(Resources.Load<GameObject>("Prefab/Test/CubePointTest")) as GameObject;
+                    points[numFace, x, z, h].transform.SetParent(gameObject.transform);
+                    Vector2 percent = new Vector2(x, z) / (planetSettings.resolution -1);
+                    Vector2 percentHeight = new Vector2(h, h) / (planetSettings.height -1);
+                    // get point on cube
+                    Vector3 pointOnUnitCube = localUp + (percent.x - 0.5f) * 2 * axisX + (percent.y - 0.5f) * 2 * axisZ;
+                    // get on shphere
+                    Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
+                    // multiply with radius
+                    Vector3 finalpoint = pointOnUnitSphere * (planetSettings.radius + ((float)h / (float)planetSettings.height));
+                    // transform the point to it's final location
+                    points[numFace, x, z, h].transform.position = finalpoint;
+                    //name it
+                    points[numFace, x, z, h].name = "Point Face " + (numFace +1) + " : " + x + ", " + z + ", " + h;
+                    yield return null;
+                }
             }
         }
         Debug.Log("Grid " + numFace +" Initiated");
