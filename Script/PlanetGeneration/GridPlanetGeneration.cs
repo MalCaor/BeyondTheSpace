@@ -42,13 +42,31 @@ public class GridPlanetGeneration : MonoBehaviour
     // init 6 faces of the planet
     IEnumerator InitGrid()
     {
-        numCorouConstructFace = 6;
-        StartCoroutine(ConstructFace(0, Vector3.down));
-        StartCoroutine(ConstructFace(1, Vector3.back));
-        StartCoroutine(ConstructFace(2, Vector3.up));
-        StartCoroutine(ConstructFace(3, Vector3.forward));
-        StartCoroutine(ConstructFace(4, Vector3.left));
-        StartCoroutine(ConstructFace(5, Vector3.right));
+        numCorouConstructFace = 0;
+        if(planetSettings.faceDown){
+            StartCoroutine(ConstructFace(0, Vector3.down));
+            numCorouConstructFace += 1;
+        }
+        if(planetSettings.faceBack){
+            StartCoroutine(ConstructFace(1, Vector3.back));
+            numCorouConstructFace += 1;
+        }
+        if(planetSettings.faceUp){
+            StartCoroutine(ConstructFace(2, Vector3.up));
+            numCorouConstructFace += 1;
+        }
+        if(planetSettings.faceForward){
+            StartCoroutine(ConstructFace(3, Vector3.forward));
+            numCorouConstructFace += 1;
+        }
+        if(planetSettings.faceLeft){
+            StartCoroutine(ConstructFace(4, Vector3.left));
+            numCorouConstructFace += 1;
+        }
+        if(planetSettings.faceRight){
+            StartCoroutine(ConstructFace(5, Vector3.right));
+            numCorouConstructFace += 1;
+        }
         while (numCorouConstructFace != 0){
             yield return null;
         }
@@ -124,7 +142,15 @@ public class GridPlanetGeneration : MonoBehaviour
                 for (int h = 0; h < planetSettings.height; h++)
                 {
                     // test prefab Prefab/Test/CubePointTest
-                    points[numFace, x, z, h] = Instantiate(Resources.Load<GameObject>("Prefab/Grid/GridPoint")) as GameObject;
+                    if(planetSettings.PointTest)
+                    {
+                        // load test prefab
+                        points[numFace, x, z, h] = Instantiate(Resources.Load<GameObject>("Prefab/Test/CubePointTest")) as GameObject;
+                    }else{
+                        // load real point
+                        points[numFace, x, z, h] = Instantiate(Resources.Load<GameObject>("Prefab/Grid/GridPoint")) as GameObject;
+                    }
+                    
                     points[numFace, x, z, h].transform.SetParent(gameObject.transform);
                     Vector2 percent = new Vector2(x, z) / (planetSettings.resolution -1);
                     Vector2 percentHeight = new Vector2(h, h) / (planetSettings.height -1);
