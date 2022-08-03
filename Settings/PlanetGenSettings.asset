@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ce4ef20729ed5fb9bbe0c63c327b3f, type: 3}
   m_Name: PlanetGenSettings
   m_EditorClassIdentifier: 
-  radius: 10
-  resolution: 10
+  radius: 5
+  resolution: 5
   height: 3

@@ -10,7 +10,7 @@ public class GridPlanetGeneration : MonoBehaviour
 
     // vars Priv
     // List point
-    [SerializeField, HideInInspector]
+    [SerializeField]
     // points[CubeFace, x, z]
     GameObject[,,,] points;
     // num of corou ConstructFace
@@ -124,7 +124,7 @@ public class GridPlanetGeneration : MonoBehaviour
                 for (int h = 0; h < planetSettings.height; h++)
                 {
                     // test prefab Prefab/Test/CubePointTest
-                    points[numFace, x, z, h] = Instantiate(Resources.Load<GameObject>("Prefab/Test/CubePointTest")) as GameObject;
+                    points[numFace, x, z, h] = Instantiate(Resources.Load<GameObject>("Prefab/Grid/GridPoint")) as GameObject;
                     points[numFace, x, z, h].transform.SetParent(gameObject.transform);
                     Vector2 percent = new Vector2(x, z) / (planetSettings.resolution -1);
                     Vector2 percentHeight = new Vector2(h, h) / (planetSettings.height -1);
