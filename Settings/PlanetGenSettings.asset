@@ -12,6 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6ce4ef20729ed5fb9bbe0c63c327b3f, type: 3}
   m_Name: PlanetGenSettings
   m_EditorClassIdentifier: 
-  radius: 5
-  resolution: 5
-  height: 3
+  PointTest: 1
+  radius: 50
+  resolution: 50
+  height: 10
+  faceDown: 1
+  faceBack: 0
+  faceUp: 0
+  faceForward: 0
+  faceLeft: 0
+  faceRight: 0

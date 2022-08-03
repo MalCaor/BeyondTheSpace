@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu()]
 public class PlanetGenerationSettings : ScriptableObject
 {
+    // instan the test point or the real one
     public bool PointTest = false;
     // size of the planet
     public float radius = 1;

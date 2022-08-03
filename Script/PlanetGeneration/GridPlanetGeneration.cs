@@ -164,8 +164,9 @@ public class GridPlanetGeneration : MonoBehaviour
                     points[numFace, x, z, h].transform.position = finalpoint;
                     //name it
                     points[numFace, x, z, h].name = "Point Face " + (numFace +1) + " : " + x + ", " + z + ", " + h;
-                    yield return null;
+                    
                 }
+                yield return null;
             }
         }
         Debug.Log("Grid " + numFace +" Initiated");
