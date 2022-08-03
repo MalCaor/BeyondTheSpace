@@ -133,7 +133,7 @@ public class GridPlanetGeneration : MonoBehaviour
                     // get on shphere
                     Vector3 pointOnUnitSphere = pointOnUnitCube.normalized;
                     // multiply with radius
-                    Vector3 finalpoint = pointOnUnitSphere * (planetSettings.radius + ((float)h / (float)planetSettings.height));
+                    Vector3 finalpoint = pointOnUnitSphere * (planetSettings.radius + ((float)h / 1.5f));
                     // transform the point to it's final location
                     points[numFace, x, z, h].transform.position = finalpoint;
                     //name it

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 10
   resolution: 10
+  height: 3
