@@ -39,7 +39,9 @@ public class GridPlanetGeneration : MonoBehaviour
         }
     }
 
-    // init 6 faces of the planet
+    /// <summary>
+    /// init 6 faces of the planet
+    /// </summary>
     IEnumerator InitGrid()
     {
         numCorouConstructFace = 0;
@@ -71,9 +73,13 @@ public class GridPlanetGeneration : MonoBehaviour
             yield return null;
         }
         Debug.Log("All Grid Initialized");
+        Debug.Log("Start ConnectPoints");
+        StartCoroutine(ConnectPoints());
     }
 
-    // construct the face
+    /// <summary>
+    /// construct the face
+    /// </summary>
     IEnumerator ConstructFace(int numFace, Vector3 dir)
     {
         // init direction
@@ -171,5 +177,27 @@ public class GridPlanetGeneration : MonoBehaviour
         }
         Debug.Log("Grid " + numFace +" Initiated");
         numCorouConstructFace -= 1;
+    }
+
+    /// <summary>
+    /// connect point bettween each other
+    /// </summary>
+    IEnumerator ConnectPoints()
+    {
+        for (int numFace = 0; numFace < 6; numFace++)
+        {
+            for (int x = 0; x < points.GetLength(1); x++)
+            {
+                for (int z = 0; z < points.GetLength(2); z++)
+                {
+                    for (int h = 0; h < points.GetLength(3); h++)
+                    {
+                        GridPoint point = points[numFace, x, z, h].GetComponent<GridPoint>();
+                    }
+                    yield return null;
+                }
+            }
+        }
+        Debug.Log("Finish ConnectPoints");
     }
 }
