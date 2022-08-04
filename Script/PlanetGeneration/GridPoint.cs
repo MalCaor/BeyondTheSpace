@@ -5,7 +5,7 @@ using UnityEngine;
 public class GridPoint : MonoBehaviour
 {
     // public var
-    public GameObject[,,] matricePoint = new GameObject[2,2,2];
+    public GameObject[,,] matricePoint = new GameObject[3,3,3];
 
     // private var
 }
