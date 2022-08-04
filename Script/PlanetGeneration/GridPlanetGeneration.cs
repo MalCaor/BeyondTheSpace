@@ -202,11 +202,12 @@ public class GridPlanetGeneration : MonoBehaviour
                             Debug.Log("point " + numFace + ", " + x + ", " + z + ", " + h + " OK");
                             // set the center of the matrix with itself
                             point.matricePoint[1,1,1] = gameObject;
+                            // get all other points
                             if(x>0 && z>0 && h>0)
                             {
                                 if(x<points.GetLength(1)-1 && z<points.GetLength(2)-1 && h<points.GetLength(3)-1)
                                 {
-                                    // center of the face so no jumping around
+                                    // center of the cube face so no jumping around
 
                                     // ### x = 0 so back grid ###
                                     //  h ^   - - 0
@@ -222,15 +223,61 @@ public class GridPlanetGeneration : MonoBehaviour
                                     // - 0 -
                                     // - 0 -
                                     // - 0 -
-                                    point.matricePoint[0,0,0] = points[numFace, x-1, z, h-1];
-                                    point.matricePoint[0,0,1] = points[numFace, x-1, z, h];
-                                    point.matricePoint[0,0,2] = points[numFace, x-1, z, h+1];
+                                    point.matricePoint[0,1,0] = points[numFace, x-1, z, h-1];
+                                    point.matricePoint[0,1,1] = points[numFace, x-1, z, h];
+                                    point.matricePoint[0,1,2] = points[numFace, x-1, z, h+1];
                                     // - - 0
                                     // - - 0
                                     // - - 0
-                                    point.matricePoint[0,0,0] = points[numFace, x-1, z+1, h-1];
-                                    point.matricePoint[0,0,1] = points[numFace, x-1, z+1, h];
-                                    point.matricePoint[0,0,2] = points[numFace, x-1, z+1, h+1];
+                                    point.matricePoint[0,2,0] = points[numFace, x-1, z+1, h-1];
+                                    point.matricePoint[0,2,1] = points[numFace, x-1, z+1, h];
+                                    point.matricePoint[0,2,2] = points[numFace, x-1, z+1, h+1];
+                                    // ### x = 1 so Center grid ###
+                                    //  h ^   - 0 -
+                                    //  X <-  - 0 -
+                                    //        - 0 -
+                                    // ############################
+                                    // 0 - -
+                                    // 0 - -
+                                    // 0 - -
+                                    point.matricePoint[1,0,0] = points[numFace, x, z-1, h-1];
+                                    point.matricePoint[1,0,1] = points[numFace, x, z-1, h];
+                                    point.matricePoint[1,0,2] = points[numFace, x, z-1, h+1];
+                                    // - 0 -
+                                    // - 0 -
+                                    // - 0 -
+                                    point.matricePoint[1,1,0] = points[numFace, x, z, h-1];
+                                    // Already done [1,1,1]
+                                    point.matricePoint[1,1,2] = points[numFace, x, z, h+1];
+                                    // - - 0
+                                    // - - 0
+                                    // - - 0
+                                    point.matricePoint[1,2,0] = points[numFace, x, z+1, h-1];
+                                    point.matricePoint[1,2,1] = points[numFace, x, z+1, h];
+                                    point.matricePoint[1,2,2] = points[numFace, x, z+1, h+1];
+                                    // ### x = 2 so front grid ###
+                                    //  h ^   0 - -
+                                    //  X <-  0 - -
+                                    //        0 - -
+                                    // ############################
+                                    // 0 - -
+                                    // 0 - -
+                                    // 0 - -
+                                    point.matricePoint[2,0,0] = points[numFace, x+1, z-1, h-1];
+                                    point.matricePoint[2,0,1] = points[numFace, x+1, z-1, h];
+                                    point.matricePoint[2,0,2] = points[numFace, x+1, z-1, h+1];
+                                    // - 0 -
+                                    // - 0 -
+                                    // - 0 -
+                                    point.matricePoint[2,1,0] = points[numFace, x+1, z, h-1];
+                                    point.matricePoint[2,1,1] = points[numFace, x+1, z, h];
+                                    point.matricePoint[1,1,2] = points[numFace, x+1, z, h+1];
+                                    // - - 0
+                                    // - - 0
+                                    // - - 0
+                                    point.matricePoint[1,2,0] = points[numFace, x+1, z+1, h-1];
+                                    point.matricePoint[1,2,1] = points[numFace, x+1, z+1, h];
+                                    point.matricePoint[1,2,2] = points[numFace, x+1, z+1, h+1];
                                 }
                             }
                         }
