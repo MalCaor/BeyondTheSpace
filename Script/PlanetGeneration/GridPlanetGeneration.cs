@@ -74,7 +74,8 @@ public class GridPlanetGeneration : MonoBehaviour
         }
         Debug.Log("All Grid Initialized");
         Debug.Log("Start ConnectPoints");
-        StartCoroutine(ConnectPoints());
+        yield return StartCoroutine(ConnectPoints());
+        Debug.Log("Finish ConnectPoints");
     }
 
     /// <summary>
@@ -192,12 +193,23 @@ public class GridPlanetGeneration : MonoBehaviour
                 {
                     for (int h = 0; h < points.GetLength(3); h++)
                     {
-                        GridPoint point = points[numFace, x, z, h].GetComponent<GridPoint>();
+                        if(points[numFace, x, z, h] == null)
+                        {
+                            Debug.Log("point " + numFace + ", " + x + ", " + z + ", " + h + " NULL");
+                        } else {
+                            GridPoint point = points[numFace, x, z, h].GetComponent<GridPoint>();
+                            Debug.Log("point " + numFace + ", " + x + ", " + z + ", " + h + " OK");
+                            point.matricePoint[1,1,1] = gameObject;
+                            if(x>0 && z>0 && h>0)
+                            {
+                                
+                            }
+                        }
                     }
-                    yield return null;
+                    
                 }
             }
         }
-        Debug.Log("Finish ConnectPoints");
+        yield return null;
     }
 }
