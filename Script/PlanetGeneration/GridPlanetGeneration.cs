@@ -201,7 +201,7 @@ public class GridPlanetGeneration : MonoBehaviour
                             GridPoint point = points[numFace, x, z, h].GetComponent<GridPoint>();
                             Debug.Log("point " + numFace + ", " + x + ", " + z + ", " + h + " OK");
                             // set the center of the matrix with itself
-                            point.matricePoint[1,1,1] = gameObject;
+                            point.matricePoint[1,1,1] = points[numFace, x, z, h];
                             // get all other points
                             if(x>0 && z>0 && h>0)
                             {
