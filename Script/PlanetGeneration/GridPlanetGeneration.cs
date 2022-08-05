@@ -196,11 +196,9 @@ public class GridPlanetGeneration : MonoBehaviour
                     {
                         if(gridMatrice.points[numFace, x, z, h] == null)
                         {
-                            Debug.Log("point " + numFace + ", " + x + ", " + z + ", " + h + " NULL");
                         } else {
                             // get the grid script
                             GridPoint point = gridMatrice.points[numFace, x, z, h].GetComponent<GridPoint>();
-                            Debug.Log("point " + numFace + ", " + x + ", " + z + ", " + h + " OK");
                             point.gridPointProxyMatrice = new GridPointProxyMatrice();
                             // set the center of the matrix with itself
                             point.gridPointProxyMatrice.matricePoint[1,1,1] = gridMatrice.points[numFace, x, z, h];
