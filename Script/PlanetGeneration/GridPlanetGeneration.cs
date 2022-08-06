@@ -271,13 +271,13 @@ public class GridPlanetGeneration : MonoBehaviour
                                     // - 0 -
                                     point.gridPointProxyMatrice.matricePoint[2,1,0] = gridMatrice.points[numFace, x+1, z, h-1];
                                     point.gridPointProxyMatrice.matricePoint[2,1,1] = gridMatrice.points[numFace, x+1, z, h];
-                                    point.gridPointProxyMatrice.matricePoint[1,1,2] = gridMatrice.points[numFace, x+1, z, h+1];
+                                    point.gridPointProxyMatrice.matricePoint[2,1,2] = gridMatrice.points[numFace, x+1, z, h+1];
                                     // - - 0
                                     // - - 0
                                     // - - 0
-                                    point.gridPointProxyMatrice.matricePoint[1,2,0] = gridMatrice.points[numFace, x+1, z+1, h-1];
-                                    point.gridPointProxyMatrice.matricePoint[1,2,1] = gridMatrice.points[numFace, x+1, z+1, h];
-                                    point.gridPointProxyMatrice.matricePoint[1,2,2] = gridMatrice.points[numFace, x+1, z+1, h+1];
+                                    point.gridPointProxyMatrice.matricePoint[2,2,0] = gridMatrice.points[numFace, x+1, z+1, h-1];
+                                    point.gridPointProxyMatrice.matricePoint[2,2,1] = gridMatrice.points[numFace, x+1, z+1, h];
+                                    point.gridPointProxyMatrice.matricePoint[2,2,2] = gridMatrice.points[numFace, x+1, z+1, h+1];
                                 }
                             }
                         }
