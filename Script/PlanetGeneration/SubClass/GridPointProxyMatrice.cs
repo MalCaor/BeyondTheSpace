@@ -6,6 +6,7 @@ using UnityEngine;
 public class GridPointProxyMatrice : ISerializationCallbackReceiver
 {
     [SerializeField]
+    // list of point in proxymity shorted by x, z, y
     public GameObject[,,] matricePoint = new GameObject[3,3,3];
 
     // serialisation
