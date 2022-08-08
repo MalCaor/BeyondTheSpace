@@ -294,29 +294,6 @@ public class GridPlanetGeneration : MonoBehaviour
                                 point.gridPointProxyMatrice.matricePoint[2,2,1] = gridMatrice.points[numFace, x+1, z+1, h];
                                 if(h<gridMatrice.points.GetLength(3)-1)
                                     point.gridPointProxyMatrice.matricePoint[2,2,2] = gridMatrice.points[numFace, x+1, z+1, h+1];
-                            } else {
-                                // Point on the edge of the "face"
-                                int numFaceedge = 0;
-                                int Xedge = 0;
-                                int Zedge = 0;
-                                switch (numFace)
-                                {
-                                    case 0:
-                                        break;
-                                    case 1:
-                                        break;
-                                    case 2:
-                                        break;
-                                    case 3:
-                                        break;
-                                    case 4:
-                                        break;
-                                    case 5:
-                                        break;
-                                    
-                                    default:
-                                        break;
-                                }
                             }
                         }
                     }
