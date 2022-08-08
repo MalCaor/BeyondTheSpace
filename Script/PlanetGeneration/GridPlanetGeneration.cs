@@ -203,7 +203,7 @@ public class GridPlanetGeneration : MonoBehaviour
                             // set the center of the matrix with itself
                             point.gridPointProxyMatrice.matricePoint[1,1,1] = gridMatrice.points[numFace, x, z, h];
                             // get all other points
-                            if((x>0 && z>0 && h>0) && (x<gridMatrice.points.GetLength(1)-1 && z<gridMatrice.points.GetLength(2)-1 && h<gridMatrice.points.GetLength(3)-1))
+                            if((x>0 && z>0) && (x<gridMatrice.points.GetLength(1)-1 && z<gridMatrice.points.GetLength(2)-1))
                             {
                                 // center of the cube face so no jumping around
 
@@ -215,21 +215,27 @@ public class GridPlanetGeneration : MonoBehaviour
                                 // 0 - -
                                 // 0 - -
                                 // 0 - -
-                                point.gridPointProxyMatrice.matricePoint[0,0,0] = gridMatrice.points[numFace, x-1, z-1, h-1];
+                                if(h>0)
+                                    point.gridPointProxyMatrice.matricePoint[0,0,0] = gridMatrice.points[numFace, x-1, z-1, h-1];
                                 point.gridPointProxyMatrice.matricePoint[0,0,1] = gridMatrice.points[numFace, x-1, z-1, h];
-                                point.gridPointProxyMatrice.matricePoint[0,0,2] = gridMatrice.points[numFace, x-1, z-1, h+1];
+                                if(h<gridMatrice.points.GetLength(3)-1)
+                                    point.gridPointProxyMatrice.matricePoint[0,0,2] = gridMatrice.points[numFace, x-1, z-1, h+1];
                                 // - 0 -
                                 // - 0 -
                                 // - 0 -
-                                point.gridPointProxyMatrice.matricePoint[0,1,0] = gridMatrice.points[numFace, x-1, z, h-1];
+                                if(h>0)
+                                    point.gridPointProxyMatrice.matricePoint[0,1,0] = gridMatrice.points[numFace, x-1, z, h-1];
                                 point.gridPointProxyMatrice.matricePoint[0,1,1] = gridMatrice.points[numFace, x-1, z, h];
-                                point.gridPointProxyMatrice.matricePoint[0,1,2] = gridMatrice.points[numFace, x-1, z, h+1];
+                                if(h<gridMatrice.points.GetLength(3)-1)
+                                    point.gridPointProxyMatrice.matricePoint[0,1,2] = gridMatrice.points[numFace, x-1, z, h+1];
                                 // - - 0
                                 // - - 0
                                 // - - 0
-                                point.gridPointProxyMatrice.matricePoint[0,2,0] = gridMatrice.points[numFace, x-1, z+1, h-1];
+                                if(h>0)
+                                    point.gridPointProxyMatrice.matricePoint[0,2,0] = gridMatrice.points[numFace, x-1, z+1, h-1];
                                 point.gridPointProxyMatrice.matricePoint[0,2,1] = gridMatrice.points[numFace, x-1, z+1, h];
-                                point.gridPointProxyMatrice.matricePoint[0,2,2] = gridMatrice.points[numFace, x-1, z+1, h+1];
+                                if(h<gridMatrice.points.GetLength(3)-1)
+                                    point.gridPointProxyMatrice.matricePoint[0,2,2] = gridMatrice.points[numFace, x-1, z+1, h+1];
                                 // ### x = 1 so Center grid ###
                                 //  h ^   - 0 -
                                 //  X <-  - 0 -
@@ -238,21 +244,27 @@ public class GridPlanetGeneration : MonoBehaviour
                                 // 0 - -
                                 // 0 - -
                                 // 0 - -
-                                point.gridPointProxyMatrice.matricePoint[1,0,0] = gridMatrice.points[numFace, x, z-1, h-1];
+                                if(h>0)
+                                    point.gridPointProxyMatrice.matricePoint[1,0,0] = gridMatrice.points[numFace, x, z-1, h-1];
                                 point.gridPointProxyMatrice.matricePoint[1,0,1] = gridMatrice.points[numFace, x, z-1, h];
-                                point.gridPointProxyMatrice.matricePoint[1,0,2] = gridMatrice.points[numFace, x, z-1, h+1];
+                                if(h<gridMatrice.points.GetLength(3)-1)
+                                    point.gridPointProxyMatrice.matricePoint[1,0,2] = gridMatrice.points[numFace, x, z-1, h+1];
                                 // - 0 -
                                 // - 0 -
                                 // - 0 -
-                                point.gridPointProxyMatrice.matricePoint[1,1,0] = gridMatrice.points[numFace, x, z, h-1];
+                                if(h>0)
+                                    point.gridPointProxyMatrice.matricePoint[1,1,0] = gridMatrice.points[numFace, x, z, h-1];
                                 // Already done [1,1,1]
-                                point.gridPointProxyMatrice.matricePoint[1,1,2] = gridMatrice.points[numFace, x, z, h+1];
+                                if(h<gridMatrice.points.GetLength(3)-1)
+                                    point.gridPointProxyMatrice.matricePoint[1,1,2] = gridMatrice.points[numFace, x, z, h+1];
                                 // - - 0
                                 // - - 0
                                 // - - 0
-                                point.gridPointProxyMatrice.matricePoint[1,2,0] = gridMatrice.points[numFace, x, z+1, h-1];
+                                if(h>0)
+                                    point.gridPointProxyMatrice.matricePoint[1,2,0] = gridMatrice.points[numFace, x, z+1, h-1];
                                 point.gridPointProxyMatrice.matricePoint[1,2,1] = gridMatrice.points[numFace, x, z+1, h];
-                                point.gridPointProxyMatrice.matricePoint[1,2,2] = gridMatrice.points[numFace, x, z+1, h+1];
+                                if(h<gridMatrice.points.GetLength(3)-1)
+                                    point.gridPointProxyMatrice.matricePoint[1,2,2] = gridMatrice.points[numFace, x, z+1, h+1];
                                 // ### x = 2 so front grid ###
                                 //  h ^   0 - -
                                 //  X <-  0 - -
@@ -261,22 +273,28 @@ public class GridPlanetGeneration : MonoBehaviour
                                 // 0 - -
                                 // 0 - -
                                 // 0 - -
-                                point.gridPointProxyMatrice.matricePoint[2,0,0] = gridMatrice.points[numFace, x+1, z-1, h-1];
+                                if(h>0)
+                                    point.gridPointProxyMatrice.matricePoint[2,0,0] = gridMatrice.points[numFace, x+1, z-1, h-1];
                                 point.gridPointProxyMatrice.matricePoint[2,0,1] = gridMatrice.points[numFace, x+1, z-1, h];
-                                point.gridPointProxyMatrice.matricePoint[2,0,2] = gridMatrice.points[numFace, x+1, z-1, h+1];
+                                if(h<gridMatrice.points.GetLength(3)-1)
+                                    point.gridPointProxyMatrice.matricePoint[2,0,2] = gridMatrice.points[numFace, x+1, z-1, h+1];
                                 // - 0 -
                                 // - 0 -
                                 // - 0 -
-                                point.gridPointProxyMatrice.matricePoint[2,1,0] = gridMatrice.points[numFace, x+1, z, h-1];
+                                if(h>0)
+                                    point.gridPointProxyMatrice.matricePoint[2,1,0] = gridMatrice.points[numFace, x+1, z, h-1];
                                 point.gridPointProxyMatrice.matricePoint[2,1,1] = gridMatrice.points[numFace, x+1, z, h];
-                                point.gridPointProxyMatrice.matricePoint[2,1,2] = gridMatrice.points[numFace, x+1, z, h+1];
+                                if(h<gridMatrice.points.GetLength(3)-1)
+                                    point.gridPointProxyMatrice.matricePoint[2,1,2] = gridMatrice.points[numFace, x+1, z, h+1];
                                 // - - 0
                                 // - - 0
                                 // - - 0
-                                point.gridPointProxyMatrice.matricePoint[2,2,0] = gridMatrice.points[numFace, x+1, z+1, h-1];
+                                if(h>0)
+                                    point.gridPointProxyMatrice.matricePoint[2,2,0] = gridMatrice.points[numFace, x+1, z+1, h-1];
                                 point.gridPointProxyMatrice.matricePoint[2,2,1] = gridMatrice.points[numFace, x+1, z+1, h];
-                                point.gridPointProxyMatrice.matricePoint[2,2,2] = gridMatrice.points[numFace, x+1, z+1, h+1];
-                            } else if(h>0 && h<gridMatrice.points.GetLength(3)-1) {
+                                if(h<gridMatrice.points.GetLength(3)-1)
+                                    point.gridPointProxyMatrice.matricePoint[2,2,2] = gridMatrice.points[numFace, x+1, z+1, h+1];
+                            } else {
                                 // Point on the edge of the "face"
                                 int numFaceedge = 0;
                                 int Xedge = 0;
