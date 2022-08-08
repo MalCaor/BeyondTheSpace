@@ -47,27 +47,27 @@ public class GridPlanetGeneration : MonoBehaviour
     {
         numCorouConstructFace = 0;
         if(planetSettings.faceDown){
-            StartCoroutine(ConstructFace(0, Vector3.down));
+            StartCoroutine(ConstructFace(0, Quaternion.Euler(0, 0, 0) * Vector3.down, Quaternion.Euler(90, 0, 0) * Vector3.down));
             numCorouConstructFace += 1;
         }
         if(planetSettings.faceBack){
-            StartCoroutine(ConstructFace(1, Vector3.back));
+            StartCoroutine(ConstructFace(1, Quaternion.Euler(90, 0, 0) * Vector3.down, Quaternion.Euler(180, 0, 0) * Vector3.down));
             numCorouConstructFace += 1;
         }
         if(planetSettings.faceUp){
-            StartCoroutine(ConstructFace(2, Vector3.up));
+            StartCoroutine(ConstructFace(2, Quaternion.Euler(180, 0, 0) * Vector3.down, Quaternion.Euler(270, 0, 0) * Vector3.down));
             numCorouConstructFace += 1;
         }
         if(planetSettings.faceForward){
-            StartCoroutine(ConstructFace(3, Vector3.forward));
+            StartCoroutine(ConstructFace(3, Quaternion.Euler(270, 0, 0) * Vector3.down, Quaternion.Euler(0, 0, 0) * Vector3.down));
             numCorouConstructFace += 1;
         }
         if(planetSettings.faceLeft){
-            StartCoroutine(ConstructFace(4, Vector3.left));
+            StartCoroutine(ConstructFace(4, Quaternion.Euler(90, 0, 270) * Vector3.down, Quaternion.Euler(180, 0, 0) * Vector3.down));
             numCorouConstructFace += 1;
         }
         if(planetSettings.faceRight){
-            StartCoroutine(ConstructFace(5, Vector3.right));
+            StartCoroutine(ConstructFace(5, Quaternion.Euler(90, 0, 90) * Vector3.down, Quaternion.Euler(180, 0, 0) * Vector3.down));
             numCorouConstructFace += 1;
         }
         while (numCorouConstructFace != 0){
@@ -82,12 +82,12 @@ public class GridPlanetGeneration : MonoBehaviour
     /// <summary>
     /// construct the face
     /// </summary>
-    IEnumerator ConstructFace(int numFace, Vector3 dir)
+    IEnumerator ConstructFace(int numFace, Vector3 dirFace, Vector3 dirConstruct)
     {
         // init direction
-        Vector3 localUp = dir;
+        Vector3 localUp = dirFace;
         // init the other 2 vec
-        Vector3 axisX = new Vector3(localUp.y, localUp.z, localUp.x);
+        Vector3 axisX = dirConstruct;
         Vector3 axisZ = Vector3.Cross(localUp, axisX);
         int minx = 0;
         int minz = 0;
@@ -99,8 +99,8 @@ public class GridPlanetGeneration : MonoBehaviour
             case 0:
                 // down
                 minx = 0;
-                minz = 1;
-                maxX = planetSettings.resolution;
+                minz = 0;
+                maxX = planetSettings.resolution-1;
                 maxZ = planetSettings.resolution;
                 break;
             case 1:
@@ -114,8 +114,8 @@ public class GridPlanetGeneration : MonoBehaviour
                 // up
                 minx = 0;
                 minz = 0;
-                maxX = planetSettings.resolution;
-                maxZ = planetSettings.resolution-1;
+                maxX = planetSettings.resolution-1;
+                maxZ = planetSettings.resolution;
                 break;
             case 3:
                 // forward
