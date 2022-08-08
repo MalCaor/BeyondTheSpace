@@ -18,7 +18,7 @@ MonoBehaviour:
   height: 5
   faceDown: 1
   faceBack: 1
-  faceUp: 1
-  faceForward: 1
-  faceLeft: 1
-  faceRight: 1
+  faceUp: 0
+  faceForward: 0
+  faceLeft: 0
+  faceRight: 0
