@@ -222,6 +222,14 @@ public class GridPlanetGeneration : MonoBehaviour
                                 // normal case
                                 TrueX = x-1;
                                 TrueZ = z-1;
+                            } else if(x==0 && z==0){
+                                // coin
+                            } else if(x==0){
+                                // arret bas x
+                                TrueZ = z-1;
+                            } else if(z==0){
+                                // arret bas z
+                                TrueX = x-1;
                             }
                             if(h>0){
                                 point.gridPointProxyMatrice.matricePoint[0,0,0] = gridMatrice.points[TrueFace, TrueX, TrueZ, h-1];
