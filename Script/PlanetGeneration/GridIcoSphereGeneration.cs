@@ -47,8 +47,8 @@ public class GridIcoSphereGeneration : MonoBehaviour
             prefabName = "Prefab/Grid/GridPoint";
         }
 
-        float min = -1 * (planetSettings.radius);
-        float max = 1 * (planetSettings.radius);
+        float min = (layerLevel+1) * -1 * (planetSettings.radius);
+        float max = (layerLevel+1) * 1 * (planetSettings.radius);
 
         layer.layerGrid = new List<GameObject>();
 

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: PlanetGenSettings
   m_EditorClassIdentifier: 
   PointTest: 1
-  radius: 1
+  radius: 2
   resolution: 0
-  height: 1
+  height: 3
   faceDown: 1
   faceBack: 1
   faceUp: 1
