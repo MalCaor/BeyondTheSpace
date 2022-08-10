@@ -10,7 +10,7 @@ public class PlanetGenerationSettings : ScriptableObject
     // size of the planet
     public float radius = 1;
     // resolution
-    [Range(2, 100)]
+    [Range(0, 100)]
     public int resolution = 10;
     // height of the "croute terrestre"
     [Range(1, 10)]

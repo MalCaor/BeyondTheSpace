@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4914182928032066930}
-  - component: {fileID: 4256953958340543687}
+  - component: {fileID: 7135727676572804251}
   m_Layer: 0
   m_Name: GridPoint
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4256953958340543687
+--- !u!114 &7135727676572804251
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,6 +41,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8549797472970662868}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7200fc788cacf078f85a2ebfaab9fb57, type: 3}
+  m_Script: {fileID: 11500000, guid: 635f4122e80240f7b9b2a234d9db8aaa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
