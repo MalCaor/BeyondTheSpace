@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointTest: 1
   radius: 10
-  resolution: 3
+  resolution: 5
   height: 1
   faceDown: 1
   faceBack: 1
