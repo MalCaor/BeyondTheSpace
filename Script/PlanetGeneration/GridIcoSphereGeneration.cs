@@ -5,5 +5,10 @@ using UnityEngine;
 public class GridIcoSphereGeneration : MonoBehaviour
 {
     public PlanetGenerationSettings planetSettings;
-    
+    public List<GridPointIco> grid;
+
+    public void InitGrid()
+    {
+        
+    }
 }
