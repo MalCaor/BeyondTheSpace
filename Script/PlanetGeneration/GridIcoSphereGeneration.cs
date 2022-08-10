@@ -6,8 +6,16 @@ using System;
 
 public class GridIcoSphereGeneration : MonoBehaviour
 {
+    // struct
+    [System.Serializable]
+    public struct LayerGrid<GameObject>
+    {
+        [SerializeField]
+        public List<GameObject> layerGrid;
+    }
+
     public PlanetGenerationSettings planetSettings;
-    public List<GameObject> grid;
+    public List<LayerGrid<GameObject>> grid;
 
     public void InitGrid()
     {
@@ -15,8 +23,17 @@ public class GridIcoSphereGeneration : MonoBehaviour
         DestroyChild();
 
         // init the list
-        grid = new List<GameObject>();
+        grid = new List<LayerGrid<GameObject>>();
 
+        for (int h = 0; h < planetSettings.height; h++)
+        {
+            grid.Add(new LayerGrid<GameObject>());
+            GenerateGridLayer(grid[h], h);
+        }
+    }
+
+    public void GenerateGridLayer(LayerGrid<GameObject> layer, int layerLevel)
+    {
         // create 12 vertices of a icosahedron
         float t = (float)((1.0 + Math.Sqrt(5.0)) / 2.0);
         // test prefab Prefab/Test/CubePointTest
@@ -33,44 +50,46 @@ public class GridIcoSphereGeneration : MonoBehaviour
         float min = -1 * (planetSettings.radius);
         float max = 1 * (planetSettings.radius);
 
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(min,  t,  0));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( max,  t,  0));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(min, -t,  0));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( max, -t,  0));
+        layer.layerGrid = new List<GameObject>();
 
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, min,  t));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  max,  t));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, min, -t));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  max, -t));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(min,  t,  0));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( max,  t,  0));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(min, -t,  0));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( max, -t,  0));
 
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0, min));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0,  max));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0, min));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0,  max));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, min,  t));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  max,  t));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, min, -t));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  max, -t));
+
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0, min));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0,  max));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0, min));
+        layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        layer.layerGrid.LastOrDefault().transform.parent = transform;
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0,  max));
     }
 
     /// <summary>
