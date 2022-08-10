@@ -7,5 +7,6 @@ public class GridPointIco : MonoBehaviour
     public void InitPoint(Vector3 position)
     {
         transform.position = position;
+        gameObject.name = "Point : " + position.x + ", " + position.y + ", " + position.z;
     }
 }

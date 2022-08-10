@@ -47,49 +47,49 @@ public class GridIcoSphereGeneration : MonoBehaviour
             prefabName = "Prefab/Grid/GridPoint";
         }
 
-        float min = (layerLevel+1) * -1 * (planetSettings.radius);
-        float max = (layerLevel+1) * 1 * (planetSettings.radius);
+        float min = -1;
+        float max = 1;
 
         layer.layerGrid = new List<GameObject>();
 
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(min,  t,  0));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3(min,  t,  0)) * (layerLevel+planetSettings.radius));
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( max,  t,  0));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3( max,  t,  0)) * (layerLevel+planetSettings.radius));
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(min, -t,  0));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3(min, -t,  0)) * (layerLevel+planetSettings.radius));
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( max, -t,  0));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3( max, -t,  0)) * (layerLevel+planetSettings.radius));
 
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, min,  t));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3( 0, min,  t)) * (layerLevel+planetSettings.radius));
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  max,  t));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3( 0,  max,  t)) * (layerLevel+planetSettings.radius));
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, min, -t));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3( 0, min, -t)) * (layerLevel+planetSettings.radius));
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  max, -t));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3( 0,  max, -t)) * (layerLevel+planetSettings.radius));
 
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0, min));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3( t,  0, min)) * (layerLevel+planetSettings.radius));
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0,  max));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3( t,  0,  max)) * (layerLevel+planetSettings.radius));
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0, min));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3(-t,  0, min)) * (layerLevel+planetSettings.radius));
         layer.layerGrid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         layer.layerGrid.LastOrDefault().transform.parent = transform;
-        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0,  max));
+        layer.layerGrid.LastOrDefault().GetComponent<GridPointIco>().InitPoint((new Vector3(-t,  0,  max)) * (layerLevel+planetSettings.radius));
     }
 
     /// <summary>
