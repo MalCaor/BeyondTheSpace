@@ -30,44 +30,47 @@ public class GridIcoSphereGeneration : MonoBehaviour
             prefabName = "Prefab/Grid/GridPoint";
         }
 
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-1,  t,  0));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 1,  t,  0));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-1, -t,  0));
-        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
-        grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 1, -t,  0));
+        float min = -1 * (planetSettings.radius);
+        float max = 1 * (planetSettings.radius);
 
         grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, -1,  t));
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(min,  t,  0));
         grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  1,  t));
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( max,  t,  0));
         grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, -1, -t));
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(min, -t,  0));
         grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  1, -t));
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( max, -t,  0));
 
         grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0, -1));
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, min,  t));
         grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0,  1));
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  max,  t));
         grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0, -1));
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0, min, -t));
         grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
         grid.LastOrDefault().transform.parent = transform;
-        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0,  1));
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( 0,  max, -t));
+
+        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        grid.LastOrDefault().transform.parent = transform;
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0, min));
+        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        grid.LastOrDefault().transform.parent = transform;
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3( t,  0,  max));
+        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        grid.LastOrDefault().transform.parent = transform;
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0, min));
+        grid.Add(Instantiate(Resources.Load<GameObject>(prefabName)) as GameObject);
+        grid.LastOrDefault().transform.parent = transform;
+        grid.LastOrDefault().GetComponent<GridPointIco>().InitPoint(new Vector3(-t,  0,  max));
     }
 
     /// <summary>
