@@ -142,41 +142,28 @@ public class GridPlanetGeneration : MonoBehaviour
 
     void InitFaceGrid(int numFace, Vector3 NOGlobal, Vector3 NEGlobal, Vector3 SOGlobal, Vector3 SEGlobal, List<GridTile> face)
     {
-        int numTiles = planetSettings.resolution * planetSettings.resolution;
-        int N = 0;
-        int O = 0;
-        int S = (planetSettings.resolution-1); // num start at 0 so -1
-        int E = (planetSettings.resolution-1); // num start at 0 so -1
-
         Vector3 NO;
         Vector3 NE;
         Vector3 SO;
         Vector3 SE;
 
-        for (int nTile = 0; nTile < numTiles; nTile++)
+        for (int O = 0; O < planetSettings.resolution; O++)
         {
-            // get coor
-            NO = Vector3.Lerp(NOGlobal, NEGlobal, (float)O/(float)planetSettings.resolution);
-            NE = Vector3.Lerp(NOGlobal, NEGlobal, (float)(O+1)/(float)planetSettings.resolution);
-            SO = Vector3.Lerp(NOGlobal, SOGlobal, (float)(N+1)/(float)planetSettings.resolution);
-            SE = Vector3.Reflect(NO, Vector3.Cross(SO, NE).normalized);
-
-            // set tile
-            GridTile t = new GridTile(numFace, N, O, E, S);
-            t.InitSquare(NO, NE, SO, SE);
-            t.tile.transform.parent = gameObject.transform;
-            
-            // go to the Est
-            E--;
-            O++;
-            // check if change line
-            if(E<0)
+            for (int N = 0; N < planetSettings.resolution; N++)
             {
-                O = 0;
-                E = (planetSettings.resolution-1);
-                N++;
-                S--;
+                // set point
+                NO = Vector3.Lerp(NOGlobal, NEGlobal, (float)O/(float)planetSettings.resolution) + Vector3.Lerp(NOGlobal, SOGlobal, (float)N/(float)planetSettings.resolution);
+                NE = Vector3.Lerp(NOGlobal, NEGlobal, (float)(O+1)/(float)planetSettings.resolution) + Vector3.Lerp(NOGlobal, SOGlobal, (float)N/(float)planetSettings.resolution);
+                SO = Vector3.Lerp(NOGlobal, NEGlobal, (float)O/(float)planetSettings.resolution) + Vector3.Lerp(NOGlobal, SOGlobal, (float)(N+1)/(float)planetSettings.resolution);
+                SE = Vector3.Lerp(NOGlobal, NEGlobal, (float)(O+1)/(float)planetSettings.resolution) + Vector3.Lerp(NOGlobal, SOGlobal, (float)(N+1)/(float)planetSettings.resolution);
+
+                // set tile
+                GridTile t = new GridTile(numFace, N, O, planetSettings.resolution-O, planetSettings.resolution-N);
+                t.InitSquare(NO, NE, SO, SE);
+                t.tile.transform.parent = gameObject.transform;
             }
         }
+        
+            
     }
 }
