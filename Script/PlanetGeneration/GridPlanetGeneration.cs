@@ -156,10 +156,10 @@ public class GridPlanetGeneration : MonoBehaviour
         for (int nTile = 0; nTile < numTiles; nTile++)
         {
             // get coor
-            NO = Vector3.LerpUnclamped(NOGlobal, NEGlobal, O/planetSettings.resolution);
-            NE = Vector3.LerpUnclamped(NOGlobal, NEGlobal, (O+1)/planetSettings.resolution);
-            SO = Vector3.LerpUnclamped(NOGlobal, SOGlobal, (N+1)/planetSettings.resolution);
-            SE = Vector3.Reflect(SEGlobal, Vector3.Normalize(NO + NE));
+            NO = Vector3.Lerp(NOGlobal, NEGlobal, (float)O/(float)planetSettings.resolution);
+            NE = Vector3.Lerp(NOGlobal, NEGlobal, (float)(O+1)/(float)planetSettings.resolution);
+            SO = Vector3.Lerp(NOGlobal, SOGlobal, (float)(N+1)/(float)planetSettings.resolution);
+            SE = Vector3.Reflect(NO, Vector3.Cross(SO, NE).normalized);
 
             // set tile
             GridTile t = new GridTile(numFace, N, O, E, S);
