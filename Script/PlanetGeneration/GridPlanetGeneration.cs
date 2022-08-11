@@ -42,12 +42,26 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     void InitGrid()
     {
+        // set up the list Faces
         FaceNord = new List<GridTile>();
         FaceEst = new List<GridTile>();
         FaceOuest = new List<GridTile>();
         FaceFront = new List<GridTile>();
         FaceBack = new List<GridTile>();
         FaceSud = new List<GridTile>();
+
+        Vector3 pos = gameObject.transform.position;
+
+        // create the base cube points
+        // each point is named after the 3 face it's composed of
+        Vector3 PointNordOuestBack = new Vector3(pos.x, pos.y, pos.z);
+        Vector3 PointNordOuestFront = new Vector3(pos.x, pos.y, pos.z);
+        Vector3 PointNordEstBack = new Vector3(pos.x, pos.y, pos.z);
+        Vector3 PointNordEstFront = new Vector3(pos.x, pos.y, pos.z);
+        Vector3 PointSudOuestBack = new Vector3(pos.x, pos.y, pos.z);
+        Vector3 PointSudOuestFront = new Vector3(pos.x, pos.y, pos.z);
+        Vector3 PointSudEstBack = new Vector3(pos.x, pos.y, pos.z);
+        Vector3 PointSudEstFront = new Vector3(pos.x, pos.y, pos.z);
     }
 
     
