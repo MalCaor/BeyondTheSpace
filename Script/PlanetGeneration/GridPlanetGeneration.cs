@@ -15,6 +15,16 @@ public class GridPlanetGeneration : MonoBehaviour
     public List<GridTile> FaceBack;
     public List<GridTile> FaceSud;
 
+    // vars priv
+    Vector3 _pointNordOuestBack;
+    Vector3 _pointNordOuestFront;
+    Vector3 _pointNordEstBack;
+    Vector3 _pointNordEstFront;
+    Vector3 _pointSudOuestBack;
+    Vector3 _pointSudOuestFront;
+    Vector3 _pointSudEstBack;
+    Vector3 _pointSudEstFront;
+
     /// <summary>
     /// Init The Grid
     /// </summary>
@@ -30,6 +40,14 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     void DestroyChild()
     {
+        // remove line
+        foreach (var comp in gameObject.GetComponents<Component>())
+        {
+            if (comp is LineRenderer)
+            {
+                DestroyImmediate(comp);
+            }
+        }
         int childs = transform.childCount;
         for (int i = childs - 1; i >= 0; i--) 
         {
@@ -50,18 +68,30 @@ public class GridPlanetGeneration : MonoBehaviour
         FaceBack = new List<GridTile>();
         FaceSud = new List<GridTile>();
 
+        // get pos planet for convinience
         Vector3 pos = gameObject.transform.position;
 
         // create the base cube points
         // each point is named after the 3 face it's composed of
-        Vector3 PointNordOuestBack = new Vector3(pos.x, pos.y, pos.z);
-        Vector3 PointNordOuestFront = new Vector3(pos.x, pos.y, pos.z);
-        Vector3 PointNordEstBack = new Vector3(pos.x, pos.y, pos.z);
-        Vector3 PointNordEstFront = new Vector3(pos.x, pos.y, pos.z);
-        Vector3 PointSudOuestBack = new Vector3(pos.x, pos.y, pos.z);
-        Vector3 PointSudOuestFront = new Vector3(pos.x, pos.y, pos.z);
-        Vector3 PointSudEstBack = new Vector3(pos.x, pos.y, pos.z);
-        Vector3 PointSudEstFront = new Vector3(pos.x, pos.y, pos.z);
+        _pointNordOuestBack = new Vector3(pos.x, pos.y, pos.z);
+        _pointNordOuestFront = new Vector3(pos.x, pos.y, pos.z);
+        _pointNordEstBack = new Vector3(pos.x, pos.y, pos.z);
+        _pointNordEstFront = new Vector3(pos.x, pos.y, pos.z);
+        _pointSudOuestBack = new Vector3(pos.x, pos.y, pos.z);
+        _pointSudOuestFront = new Vector3(pos.x, pos.y, pos.z);
+        _pointSudEstBack = new Vector3(pos.x, pos.y, pos.z);
+        _pointSudEstFront = new Vector3(pos.x, pos.y, pos.z);
+
+        // for test visualize the point
+        if(planetSettings.PointTest)
+        {
+            LineRenderer l = gameObject.AddComponent<LineRenderer>();
+            l.startColor = Color.black;
+            l.endColor = Color.black;
+            l.startWidth = 0.01f;
+            l.endWidth = 0.01f;
+            l.SetPosition(0, _pointNordOuestBack);
+        }
     }
 
     

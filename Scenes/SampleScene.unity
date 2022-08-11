@@ -197,6 +197,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   planetSettings: {fileID: 11400000, guid: d44587d1fafc4d49e9e71343f5195839, type: 2}
+  FaceNord: []
+  FaceEst: []
+  FaceOuest: []
+  FaceFront: []
+  FaceBack: []
+  FaceSud: []
 --- !u!4 &586684712
 Transform:
   m_ObjectHideFlags: 0
