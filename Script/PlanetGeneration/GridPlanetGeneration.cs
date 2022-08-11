@@ -142,21 +142,29 @@ public class GridPlanetGeneration : MonoBehaviour
 
     void InitFaceGrid(int numFace, Vector3 NO, Vector3 NE, Vector3 SO, Vector3 SE, List<GridTile> face)
     {
-        if(planetSettings.PointTest)
+        int numTiles = planetSettings.resolution * planetSettings.resolution;
+        int N = 0;
+        int O = 0;
+        int S = (planetSettings.resolution-1); // num start at 0 so -1
+        int E = (planetSettings.resolution-1); // num start at 0 so -1
+
+        for (int nTile = 0; nTile < numTiles; nTile++)
         {
-            GameObject gLineDown = new GameObject("Face " + numFace);
-            gLineDown.transform.parent = gameObject.transform;
-            LineRenderer lDown = gLineDown.AddComponent<LineRenderer>();
-            lDown.startColor = Color.black;
-            lDown.endColor = Color.black;
-            lDown.startWidth = 0.01f;
-            lDown.endWidth = 0.01f;
-            lDown.positionCount = 5;
-            lDown.SetPosition(0, NO);
-            lDown.SetPosition(1, NE);
-            lDown.SetPosition(2, SE);
-            lDown.SetPosition(3, SO);
-            lDown.SetPosition(4, NO);
+            // set tile
+            GridTile t = new GridTile(N, O, E, S);
+            // go to the Est
+            E--;
+            O++;
+            // check if change line
+            if(E<0)
+            {
+                O = 0;
+                E = (planetSettings.resolution-1);
+                N++;
+                S--;
+            }
+            t.InitSquare(NO, NE, SO, SE);
+            t.tile.transform.parent = gameObject.transform;
         }
     }
 }
