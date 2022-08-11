@@ -17,10 +17,6 @@ public class GridPlanetGenerationEditor : Editor
         {
             grid.Init();
         }
-        if (GUILayout.Button("Reload Proxy"))
-        {
-            grid.StartCoroutine(grid.ConnectPoints());
-        }
     }
     private void OnEnable()
 	{
