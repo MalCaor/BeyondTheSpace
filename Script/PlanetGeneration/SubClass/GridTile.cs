@@ -35,13 +35,17 @@ public class GridTile
     Vector3 pointUpSE;
 
     // constructor
-    public GridTile(int N, int O, int E, int S)
+    public GridTile(int numFace, int N, int O, int E, int S)
     {
+        // set num Face ( Nord 0 / Est 1 / Ouest 2 / Front 3 / Back 4 / Sud 5 )
+        this.face = numFace;
         // set pos in grid
         this.Npos = N;
         this.Opos = O;
         this.Epos = E;
         this.Spos = S;
+
+        this.name = "Tile Face " + face + " : " + Npos + ", " + Opos + ", " + Epos + ", " + Spos;
     }
 
     // set square
@@ -54,6 +58,7 @@ public class GridTile
 
         // set the grid
         tile = new GameObject();
+        tile.name = this.name;
         LineRenderer lDown = tile.AddComponent<LineRenderer>();
         lDown.startColor = Color.black;
         lDown.endColor = Color.black;

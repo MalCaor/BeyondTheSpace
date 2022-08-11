@@ -151,7 +151,7 @@ public class GridPlanetGeneration : MonoBehaviour
         for (int nTile = 0; nTile < numTiles; nTile++)
         {
             // set tile
-            GridTile t = new GridTile(N, O, E, S);
+            GridTile t = new GridTile(numFace, N, O, E, S);
             // go to the Est
             E--;
             O++;
