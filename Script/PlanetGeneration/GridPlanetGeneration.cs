@@ -5,10 +5,17 @@ using UnityEngine;
 public class GridPlanetGeneration : MonoBehaviour
 {
     // vars Pub
-    
+    // setting planet
     public PlanetGenerationSettings planetSettings;
+    // the 6 faces of a planet
+    public List<GridTile> FaceNord;
+    public List<GridTile> FaceEst;
+    public List<GridTile> FaceOuest;
+    public List<GridTile> FaceFront;
+    public List<GridTile> FaceBack;
+    public List<GridTile> FaceSud;
 
-   /// <summary>
+    /// <summary>
     /// Init The Grid
     /// </summary>
     public void Init()
@@ -35,7 +42,12 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     void InitGrid()
     {
-        
+        FaceNord = new List<GridTile>();
+        FaceEst = new List<GridTile>();
+        FaceOuest = new List<GridTile>();
+        FaceFront = new List<GridTile>();
+        FaceBack = new List<GridTile>();
+        FaceSud = new List<GridTile>();
     }
 
     
