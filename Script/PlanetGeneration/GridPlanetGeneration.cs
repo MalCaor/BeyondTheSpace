@@ -78,25 +78,85 @@ public class GridPlanetGeneration : MonoBehaviour
         _pointNordOuestFront = new Vector3(pos.x+rad, pos.y+rad, pos.z+rad);
         _pointNordEstBack = new Vector3(pos.x-rad, pos.y+rad, pos.z-rad);
         _pointNordEstFront = new Vector3(pos.x-rad, pos.y+rad, pos.z+rad);
-        _pointSudOuestBack = new Vector3(pos.x, pos.y, pos.z);
-        _pointSudOuestFront = new Vector3(pos.x, pos.y, pos.z);
-        _pointSudEstBack = new Vector3(pos.x, pos.y, pos.z);
-        _pointSudEstFront = new Vector3(pos.x, pos.y, pos.z);
+        _pointSudOuestBack = new Vector3(pos.x+rad, pos.y-rad, pos.z-rad);
+        _pointSudOuestFront = new Vector3(pos.x+rad, pos.y-rad, pos.z+rad);
+        _pointSudEstBack = new Vector3(pos.x-rad, pos.y-rad, pos.z-rad);
+        _pointSudEstFront = new Vector3(pos.x-rad, pos.y-rad, pos.z+rad);
 
         // for test visualize the point
         if(planetSettings.PointTest)
         {
-            LineRenderer l = gameObject.AddComponent<LineRenderer>();
-            l.startColor = Color.black;
-            l.endColor = Color.black;
-            l.startWidth = 0.01f;
-            l.endWidth = 0.01f;
-            l.positionCount = 5;
-            l.SetPosition(0, _pointNordOuestBack);
-            l.SetPosition(1, _pointNordOuestFront);
-            l.SetPosition(2, _pointNordEstFront);
-            l.SetPosition(3, _pointNordEstBack);
-            l.SetPosition(4, _pointNordOuestBack);
+            GameObject gLineUp = new GameObject("Line Up");
+            gLineUp.transform.parent = gameObject.transform;
+            LineRenderer lUp = gLineUp.AddComponent<LineRenderer>();
+            lUp.startColor = Color.black;
+            lUp.endColor = Color.black;
+            lUp.startWidth = 0.01f;
+            lUp.endWidth = 0.01f;
+            lUp.positionCount = 5;
+            lUp.SetPosition(0, _pointNordOuestBack);
+            lUp.SetPosition(1, _pointNordOuestFront);
+            lUp.SetPosition(2, _pointNordEstFront);
+            lUp.SetPosition(3, _pointNordEstBack);
+            lUp.SetPosition(4, _pointNordOuestBack);
+
+            GameObject gLineDown = new GameObject("Line Down");
+            gLineDown.transform.parent = gameObject.transform;
+            LineRenderer lDown = gLineDown.AddComponent<LineRenderer>();
+            lDown.startColor = Color.black;
+            lDown.endColor = Color.black;
+            lDown.startWidth = 0.01f;
+            lDown.endWidth = 0.01f;
+            lDown.positionCount = 5;
+            lDown.SetPosition(0, _pointSudOuestBack);
+            lDown.SetPosition(1, _pointSudOuestFront);
+            lDown.SetPosition(2, _pointSudEstFront);
+            lDown.SetPosition(3, _pointSudEstBack);
+            lDown.SetPosition(4, _pointSudOuestBack);
+
+            GameObject gLineOB = new GameObject("Line Ouest Back");
+            gLineOB.transform.parent = gameObject.transform;
+            LineRenderer lOB = gLineOB.AddComponent<LineRenderer>();
+            lOB.startColor = Color.black;
+            lOB.endColor = Color.black;
+            lOB.startWidth = 0.01f;
+            lOB.endWidth = 0.01f;
+            lOB.positionCount = 2;
+            lOB.SetPosition(0, _pointNordOuestBack);
+            lOB.SetPosition(1, _pointSudOuestBack);
+
+            GameObject gLineOF = new GameObject("Line Ouest Front");
+            gLineOF.transform.parent = gameObject.transform;
+            LineRenderer lOF = gLineOF.AddComponent<LineRenderer>();
+            lOF.startColor = Color.black;
+            lOF.endColor = Color.black;
+            lOF.startWidth = 0.01f;
+            lOF.endWidth = 0.01f;
+            lOF.positionCount = 2;
+            lOF.SetPosition(0, _pointNordOuestFront);
+            lOF.SetPosition(1, _pointSudOuestFront);
+
+            GameObject gLineEB = new GameObject("Line Est Back");
+            gLineEB.transform.parent = gameObject.transform;
+            LineRenderer lEB = gLineEB.AddComponent<LineRenderer>();
+            lEB.startColor = Color.black;
+            lEB.endColor = Color.black;
+            lEB.startWidth = 0.01f;
+            lEB.endWidth = 0.01f;
+            lEB.positionCount = 2;
+            lEB.SetPosition(0, _pointNordEstBack);
+            lEB.SetPosition(1, _pointSudEstBack);
+
+            GameObject gLineEF = new GameObject("Line Est Front");
+            gLineEF.transform.parent = gameObject.transform;
+            LineRenderer lEF = gLineEF.AddComponent<LineRenderer>();
+            lEF.startColor = Color.black;
+            lEF.endColor = Color.black;
+            lEF.startWidth = 0.01f;
+            lEF.endWidth = 0.01f;
+            lEF.positionCount = 2;
+            lEF.SetPosition(0, _pointNordEstFront);
+            lEF.SetPosition(1, _pointSudEstFront);
         }
     }
 
