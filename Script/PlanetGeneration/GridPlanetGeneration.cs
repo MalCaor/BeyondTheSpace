@@ -140,7 +140,7 @@ public class GridPlanetGeneration : MonoBehaviour
         }
     }
 
-    void InitFaceGrid(int numFace, Vector3 NO, Vector3 NE, Vector3 SO, Vector3 SE, List<GridTile> face)
+    void InitFaceGrid(int numFace, Vector3 NOGlobal, Vector3 NEGlobal, Vector3 SOGlobal, Vector3 SEGlobal, List<GridTile> face)
     {
         int numTiles = planetSettings.resolution * planetSettings.resolution;
         int N = 0;
@@ -148,10 +148,23 @@ public class GridPlanetGeneration : MonoBehaviour
         int S = (planetSettings.resolution-1); // num start at 0 so -1
         int E = (planetSettings.resolution-1); // num start at 0 so -1
 
+        Vector3 NO;
+        Vector3 NE;
+        Vector3 SO;
+        Vector3 SE;
+
+        NO = Vector3.LerpUnclamped(NOGlobal, NEGlobal, N/planetSettings.resolution);
+        NE = Vector3.LerpUnclamped(NOGlobal, NEGlobal, (N+1)/planetSettings.resolution);
+        SO = Vector3.LerpUnclamped(NOGlobal, SOGlobal, 1/planetSettings.resolution);
+        SE = Vector3.Reflect(SEGlobal, Vector3.Normalize(NO + NE));
+
         for (int nTile = 0; nTile < numTiles; nTile++)
         {
             // set tile
             GridTile t = new GridTile(numFace, N, O, E, S);
+            t.InitSquare(NO, NE, SO, SE);
+            t.tile.transform.parent = gameObject.transform;
+            
             // go to the Est
             E--;
             O++;
@@ -163,8 +176,6 @@ public class GridPlanetGeneration : MonoBehaviour
                 N++;
                 S--;
             }
-            t.InitSquare(NO, NE, SO, SE);
-            t.tile.transform.parent = gameObject.transform;
         }
     }
 }
