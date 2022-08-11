@@ -68,15 +68,16 @@ public class GridPlanetGeneration : MonoBehaviour
         FaceBack = new List<GridTile>();
         FaceSud = new List<GridTile>();
 
-        // get pos planet for convinience
+        // get pos and rad planet for convinience
         Vector3 pos = gameObject.transform.position;
+        float rad =  planetSettings.radius;
 
         // create the base cube points
         // each point is named after the 3 face it's composed of
-        _pointNordOuestBack = new Vector3(pos.x, pos.y, pos.z);
-        _pointNordOuestFront = new Vector3(pos.x, pos.y, pos.z);
-        _pointNordEstBack = new Vector3(pos.x, pos.y, pos.z);
-        _pointNordEstFront = new Vector3(pos.x, pos.y, pos.z);
+        _pointNordOuestBack = new Vector3(pos.x+rad, pos.y+rad, pos.z-rad);
+        _pointNordOuestFront = new Vector3(pos.x+rad, pos.y+rad, pos.z+rad);
+        _pointNordEstBack = new Vector3(pos.x-rad, pos.y+rad, pos.z-rad);
+        _pointNordEstFront = new Vector3(pos.x-rad, pos.y+rad, pos.z+rad);
         _pointSudOuestBack = new Vector3(pos.x, pos.y, pos.z);
         _pointSudOuestFront = new Vector3(pos.x, pos.y, pos.z);
         _pointSudEstBack = new Vector3(pos.x, pos.y, pos.z);
@@ -90,7 +91,12 @@ public class GridPlanetGeneration : MonoBehaviour
             l.endColor = Color.black;
             l.startWidth = 0.01f;
             l.endWidth = 0.01f;
+            l.positionCount = 5;
             l.SetPosition(0, _pointNordOuestBack);
+            l.SetPosition(1, _pointNordOuestFront);
+            l.SetPosition(2, _pointNordEstFront);
+            l.SetPosition(3, _pointNordEstBack);
+            l.SetPosition(4, _pointNordOuestBack);
         }
     }
 
