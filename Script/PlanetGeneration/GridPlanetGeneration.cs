@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GridPlanetGeneration : MonoBehaviour
 {
+    // var planet static
+    public static GridPlanetGeneration grid;
+
     // vars Pub
     // setting planet
     public PlanetGenerationSettings planetSettings;
@@ -24,6 +27,20 @@ public class GridPlanetGeneration : MonoBehaviour
     Vector3 _pointSudOuestFront;
     Vector3 _pointSudEstBack;
     Vector3 _pointSudEstFront;
+
+    /// <summary>
+    /// Awake is called when the script instance is being loaded.
+    /// </summary>
+    void Awake()
+    {
+        if(grid == null)
+        {
+            grid = this;
+        } else if(grid != this)
+        {
+            DestroyImmediate(gameObject);
+        }
+    }
 
     /// <summary>
     /// Init The Grid
@@ -200,13 +217,38 @@ public class GridPlanetGeneration : MonoBehaviour
                     GridTile t = new GridTile(numFace, N, O, planetSettings.resolution-O, planetSettings.resolution-N);
                     t.InitSquare(NO, NE, SO, SE, NOH, NEH, SOH, SEH);
                     t.tile.transform.parent = gameObject.transform;
+                    switch (numFace)
+                    {
+                        case 0:
+                        FaceNord.Add(t);
+                        break;
+                        
+                        case 1:
+                        FaceEst.Add(t);
+                        break;
+
+                        case 2:
+                        FaceOuest.Add(t);
+                        break;
+
+                        case 3:
+                        FaceFront.Add(t);
+                        break;
+
+                        case 4:
+                        FaceBack.Add(t);
+                        break;
+
+                        case 5:
+                        FaceSud.Add(t);
+                        break;
+
+                        default:
+                        break;
+                    }
                 }
             }
             heightTileMulti = heightTileMulti + planetSettings.tileHeight;
         }
-
-        
-        
-            
     }
 }

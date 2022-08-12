@@ -15,9 +15,9 @@ MonoBehaviour:
   PointTest: 1
   Sphere: 1
   radius: 1
-  resolution: 10
+  resolution: 5
   height: 3
-  tileHeight: 0.2
+  tileHeight: 0.25
   faceDown: 1
   faceBack: 1
   faceUp: 1
