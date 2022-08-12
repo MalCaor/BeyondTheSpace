@@ -11,6 +11,14 @@ public class GridTile
     // GameObject in world
     public GameObject tile;
 
+    // Proxy GridTile
+    public GridTile ProxyTileNord;
+    public GridTile ProxyTileSud;
+    public GridTile ProxyTileOuest;
+    public GridTile ProxyTileEst;
+    public GridTile ProxyTileUp;
+    public GridTile ProxyTileDown;
+
     // Nord 0 / Est 1 / Ouest 2 / Front 3 / Back 4 / Sud 5
     int face;
 
@@ -81,5 +89,10 @@ public class GridTile
         lDown.SetPosition(7, pointUpSE);
         lDown.SetPosition(8, pointUpSO);
         lDown.SetPosition(9, pointUpNO);
+    }
+
+    public void SetProxyTileGrid()
+    {
+        
     }
 }

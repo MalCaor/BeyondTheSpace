@@ -29,27 +29,13 @@ public class GridPlanetGeneration : MonoBehaviour
     Vector3 _pointSudEstFront;
 
     /// <summary>
-    /// Awake is called when the script instance is being loaded.
-    /// </summary>
-    void Awake()
-    {
-        if(grid == null)
-        {
-            grid = this;
-        } else if(grid != this)
-        {
-            DestroyImmediate(gameObject);
-        }
-    }
-
-    /// <summary>
     /// Init The Grid
     /// </summary>
     public void Init()
     {
         DestroyChild();
         InitGrid();
-        // insert wait for Init To finish before continues
+        InitProxyTile();
     }
 
     /// <summary>
@@ -157,6 +143,9 @@ public class GridPlanetGeneration : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// init all Tile of A face
+    /// </summary>
     void InitFaceGrid(int numFace, Vector3 NOGlobal, Vector3 NEGlobal, Vector3 SOGlobal, Vector3 SEGlobal, List<GridTile> face)
     {
         // low Point
@@ -249,6 +238,43 @@ public class GridPlanetGeneration : MonoBehaviour
                 }
             }
             heightTileMulti = heightTileMulti + planetSettings.tileHeight;
+        }
+    }
+
+    /// <summary>
+    /// Call Every Tile to set their proxy
+    /// </summary>
+    void InitProxyTile()
+    {
+        // Nord
+        foreach (GridTile tile in FaceNord)
+        {
+            tile.SetProxyTileGrid();
+        }
+        // Est
+        foreach (GridTile tile in FaceEst)
+        {
+            tile.SetProxyTileGrid();
+        }
+        // Ouest
+        foreach (GridTile tile in FaceOuest)
+        {
+            tile.SetProxyTileGrid();
+        }
+        // Front
+        foreach (GridTile tile in FaceFront)
+        {
+            tile.SetProxyTileGrid();
+        }
+        // Back
+        foreach (GridTile tile in FaceBack)
+        {
+            tile.SetProxyTileGrid();
+        }
+        // Sud
+        foreach (GridTile tile in FaceSud)
+        {
+            tile.SetProxyTileGrid();
         }
     }
 }
