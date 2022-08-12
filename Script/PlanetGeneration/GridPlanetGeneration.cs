@@ -169,10 +169,10 @@ public class GridPlanetGeneration : MonoBehaviour
 
                 if(planetSettings.Sphere)
                 {
-                    NO = NO.normalized;
-                    NE = NE.normalized;
-                    SO = SO.normalized;
-                    SE = SE.normalized;
+                    NO = NO.normalized * planetSettings.radius;
+                    NE = NE.normalized * planetSettings.radius;
+                    SO = SO.normalized * planetSettings.radius;
+                    SE = SE.normalized * planetSettings.radius;
                 }
 
                 // set tile
