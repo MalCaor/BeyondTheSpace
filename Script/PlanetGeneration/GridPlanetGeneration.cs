@@ -147,15 +147,25 @@ public class GridPlanetGeneration : MonoBehaviour
         Vector3 SO;
         Vector3 SE;
 
+        Vector3 IntermedNord0;
+        Vector3 IntermedNord1;
+        Vector3 IntermedSud0;
+        Vector3 IntermedSud1;
+
         for (int O = 0; O < planetSettings.resolution; O++)
         {
             for (int N = 0; N < planetSettings.resolution; N++)
             {
+                // set intermed
+                IntermedNord0 = Vector3.Lerp(NOGlobal, NEGlobal, (float)O/(float)planetSettings.resolution); 
+                IntermedNord1 = Vector3.Lerp(NOGlobal, NEGlobal, (float)(O+1)/(float)planetSettings.resolution); 
+                IntermedSud0 = Vector3.Lerp(SOGlobal, SEGlobal, (float)O/(float)planetSettings.resolution); 
+                IntermedSud1 = Vector3.Lerp(SOGlobal, SEGlobal, (float)(O+1)/(float)planetSettings.resolution); 
                 // set point
-                NO = Vector3.Lerp(NOGlobal, NEGlobal, (float)O/(float)planetSettings.resolution) + Vector3.Lerp(NOGlobal, SOGlobal, (float)N/(float)planetSettings.resolution);
-                NE = Vector3.Lerp(NOGlobal, NEGlobal, (float)(O+1)/(float)planetSettings.resolution) + Vector3.Lerp(NOGlobal, SOGlobal, (float)N/(float)planetSettings.resolution);
-                SO = Vector3.Lerp(NOGlobal, NEGlobal, (float)O/(float)planetSettings.resolution) + Vector3.Lerp(NOGlobal, SOGlobal, (float)(N+1)/(float)planetSettings.resolution);
-                SE = Vector3.Lerp(NOGlobal, NEGlobal, (float)(O+1)/(float)planetSettings.resolution) + Vector3.Lerp(NOGlobal, SOGlobal, (float)(N+1)/(float)planetSettings.resolution);
+                NO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)N/(float)planetSettings.resolution);
+                NE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)N/(float)planetSettings.resolution);
+                SO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)(N+1)/(float)planetSettings.resolution);
+                SE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)(N+1)/(float)planetSettings.resolution);
 
                 // set tile
                 GridTile t = new GridTile(numFace, N, O, planetSettings.resolution-O, planetSettings.resolution-N);
