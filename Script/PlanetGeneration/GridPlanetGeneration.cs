@@ -203,7 +203,7 @@ public class GridPlanetGeneration : MonoBehaviour
                     }
 
                     // set tile
-                    GridTile t = new GridTile(numFace, N, O, planetSettings.resolution-O, planetSettings.resolution-N);
+                    GridTile t = new GridTile(numFace, N, O, planetSettings.resolution-O, planetSettings.resolution-N, h, planetSettings.height-1-h);
                     t.InitSquare(NO, NE, SO, SE, NOH, NEH, SOH, SEH);
                     t.tile.transform.parent = gameObject.transform;
                     switch (numFace)
@@ -249,32 +249,32 @@ public class GridPlanetGeneration : MonoBehaviour
         // Nord
         foreach (GridTile tile in FaceNord)
         {
-            tile.SetProxyTileGrid();
+            tile.SetProxyTileGrid(this);
         }
         // Est
         foreach (GridTile tile in FaceEst)
         {
-            tile.SetProxyTileGrid();
+            tile.SetProxyTileGrid(this);
         }
         // Ouest
         foreach (GridTile tile in FaceOuest)
         {
-            tile.SetProxyTileGrid();
+            tile.SetProxyTileGrid(this);
         }
         // Front
         foreach (GridTile tile in FaceFront)
         {
-            tile.SetProxyTileGrid();
+            tile.SetProxyTileGrid(this);
         }
         // Back
         foreach (GridTile tile in FaceBack)
         {
-            tile.SetProxyTileGrid();
+            tile.SetProxyTileGrid(this);
         }
         // Sud
         foreach (GridTile tile in FaceSud)
         {
-            tile.SetProxyTileGrid();
+            tile.SetProxyTileGrid(this);
         }
     }
 }

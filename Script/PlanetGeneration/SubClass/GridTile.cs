@@ -28,6 +28,8 @@ public class GridTile
     int Opos;
     int Epos;
     int Spos;
+    int Upos;
+    int Dpos;
 
     // point that delimite the tile in a 3d space
     // points down
@@ -43,7 +45,7 @@ public class GridTile
     Vector3 pointUpSE;
 
     // constructor
-    public GridTile(int numFace, int N, int O, int E, int S)
+    public GridTile(int numFace, int N, int O, int E, int S, int U, int D)
     {
         // set num Face ( Nord 0 / Est 1 / Ouest 2 / Front 3 / Back 4 / Sud 5 )
         this.face = numFace;
@@ -52,8 +54,10 @@ public class GridTile
         this.Opos = O;
         this.Epos = E;
         this.Spos = S;
+        this.Upos = U;
+        this.Dpos = D;
 
-        this.name = "Tile Face " + face + " : " + Npos + ", " + Opos + ", " + Epos + ", " + Spos;
+        this.name = "Tile Face " + face + " : " + Npos + ", " + Opos + ", " + Epos + ", " + Spos + ", " + Dpos;
     }
 
     // set square
@@ -91,8 +95,11 @@ public class GridTile
         lDown.SetPosition(9, pointUpNO);
     }
 
-    public void SetProxyTileGrid()
+    public void SetProxyTileGrid(GridPlanetGeneration gridGlob)
     {
-        
+        if(Npos!=0 && Opos!=0 && Epos!=0 && Spos!=0)
+        {
+
+        }
     }
 }
