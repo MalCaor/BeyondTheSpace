@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: PlanetGenSettings
   m_EditorClassIdentifier: 
   PointTest: 1
+  Sphere: 1
   radius: 1
-  resolution: 2
-  height: 1
+  resolution: 10
+  height: 3
+  tileHeight: 0.2
   faceDown: 1
   faceBack: 1
   faceUp: 1

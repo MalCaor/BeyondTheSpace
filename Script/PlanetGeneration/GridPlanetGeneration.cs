@@ -173,15 +173,15 @@ public class GridPlanetGeneration : MonoBehaviour
                     IntermedSud0 = Vector3.Lerp(SOGlobal, SEGlobal, (float)O/(float)planetSettings.resolution); 
                     IntermedSud1 = Vector3.Lerp(SOGlobal, SEGlobal, (float)(O+1)/(float)planetSettings.resolution); 
                     // set point
-                    NO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)N/(float)planetSettings.resolution) * (h+1);
-                    NE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)N/(float)planetSettings.resolution) * (h+1);
-                    SO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)(N+1)/(float)planetSettings.resolution) * (h+1);
-                    SE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)(N+1)/(float)planetSettings.resolution) * (h+1);
+                    NO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)N/(float)planetSettings.resolution) * (float)(heightTileMulti);
+                    NE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)N/(float)planetSettings.resolution) * (float)(heightTileMulti);
+                    SO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)(N+1)/(float)planetSettings.resolution) * (float)(heightTileMulti);
+                    SE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)(N+1)/(float)planetSettings.resolution) * (float)(heightTileMulti);
 
-                    NOH = NO * (h+2);
-                    NEH = NE * (h+2);
-                    SOH = SO * (h+2);
-                    SEH = SE * (h+2);
+                    NOH = NO * (float)(heightTileMulti + planetSettings.tileHeight);
+                    NEH = NE * (float)(heightTileMulti + planetSettings.tileHeight);
+                    SOH = SO * (float)(heightTileMulti + planetSettings.tileHeight);
+                    SEH = SE * (float)(heightTileMulti + planetSettings.tileHeight);
 
                     if(planetSettings.Sphere)
                     {
