@@ -95,11 +95,17 @@ public class GridTile
         lDown.SetPosition(9, pointUpNO);
     }
 
-    public void SetProxyTileGrid(GridPlanetGeneration gridGlob)
+    public void SetProxyTileGrid(List<List<GridTile>> gridGlob)
     {
-        if(Npos!=0 && Opos!=0 && Epos!=0 && Spos!=0)
+        if(Npos!=0 && Opos!=0 && Epos!=0 && Spos!=0 && Upos!=0 && Dpos!=0)
         {
-
+            //gridGlob[face]
+            ProxyTileNord = gridGlob[face].Find((x) => x.Npos==Npos-1 && x.Opos==Opos && x.Dpos==Dpos);
+            ProxyTileSud = gridGlob[face].Find((x) => x.Npos==Npos+1 && x.Opos==Opos && x.Dpos==Dpos);
+            ProxyTileOuest = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos-1 && x.Dpos==Dpos);
+            ProxyTileEst = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos+1 && x.Dpos==Dpos);
+            ProxyTileUp = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos && x.Dpos==Dpos-1);
+            ProxyTileDown = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos && x.Dpos==Dpos+1);
         }
     }
 }

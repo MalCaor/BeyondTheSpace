@@ -18,6 +18,9 @@ public class GridPlanetGeneration : MonoBehaviour
     public List<GridTile> FaceBack;
     public List<GridTile> FaceSud;
 
+    // here for easy acces
+    List<List<GridTile>> listGridFaces;
+
     // vars priv
     Vector3 _pointNordOuestBack;
     Vector3 _pointNordOuestFront;
@@ -33,6 +36,13 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     public void Init()
     {
+        listGridFaces = new List<List<GridTile>>();
+        listGridFaces.Add(FaceNord);
+        listGridFaces.Add(FaceEst);
+        listGridFaces.Add(FaceOuest);
+        listGridFaces.Add(FaceFront);
+        listGridFaces.Add(FaceBack);
+        listGridFaces.Add(FaceSud);
         DestroyChild();
         InitGrid();
         InitProxyTile();
@@ -249,32 +259,32 @@ public class GridPlanetGeneration : MonoBehaviour
         // Nord
         foreach (GridTile tile in FaceNord)
         {
-            tile.SetProxyTileGrid(this);
+            tile.SetProxyTileGrid(listGridFaces);
         }
         // Est
         foreach (GridTile tile in FaceEst)
         {
-            tile.SetProxyTileGrid(this);
+            tile.SetProxyTileGrid(listGridFaces);
         }
         // Ouest
         foreach (GridTile tile in FaceOuest)
         {
-            tile.SetProxyTileGrid(this);
+            tile.SetProxyTileGrid(listGridFaces);
         }
         // Front
         foreach (GridTile tile in FaceFront)
         {
-            tile.SetProxyTileGrid(this);
+            tile.SetProxyTileGrid(listGridFaces);
         }
         // Back
         foreach (GridTile tile in FaceBack)
         {
-            tile.SetProxyTileGrid(this);
+            tile.SetProxyTileGrid(listGridFaces);
         }
         // Sud
         foreach (GridTile tile in FaceSud)
         {
-            tile.SetProxyTileGrid(this);
+            tile.SetProxyTileGrid(listGridFaces);
         }
     }
 }
