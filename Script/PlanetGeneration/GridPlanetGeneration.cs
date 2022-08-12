@@ -142,45 +142,70 @@ public class GridPlanetGeneration : MonoBehaviour
 
     void InitFaceGrid(int numFace, Vector3 NOGlobal, Vector3 NEGlobal, Vector3 SOGlobal, Vector3 SEGlobal, List<GridTile> face)
     {
+        // low Point
         Vector3 NO;
         Vector3 NE;
         Vector3 SO;
         Vector3 SE;
 
+        // hight Point
+        Vector3 NOH;
+        Vector3 NEH;
+        Vector3 SOH;
+        Vector3 SEH;
+
+        // inter point for calculation
         Vector3 IntermedNord0;
         Vector3 IntermedNord1;
         Vector3 IntermedSud0;
         Vector3 IntermedSud1;
 
-        for (int O = 0; O < planetSettings.resolution; O++)
+        float heightTileMulti = 1;
+        for (int h = 0; h < planetSettings.height; h++)
         {
-            for (int N = 0; N < planetSettings.resolution; N++)
+            for (int O = 0; O < planetSettings.resolution; O++)
             {
-                // set intermed
-                IntermedNord0 = Vector3.Lerp(NOGlobal, NEGlobal, (float)O/(float)planetSettings.resolution); 
-                IntermedNord1 = Vector3.Lerp(NOGlobal, NEGlobal, (float)(O+1)/(float)planetSettings.resolution); 
-                IntermedSud0 = Vector3.Lerp(SOGlobal, SEGlobal, (float)O/(float)planetSettings.resolution); 
-                IntermedSud1 = Vector3.Lerp(SOGlobal, SEGlobal, (float)(O+1)/(float)planetSettings.resolution); 
-                // set point
-                NO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)N/(float)planetSettings.resolution);
-                NE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)N/(float)planetSettings.resolution);
-                SO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)(N+1)/(float)planetSettings.resolution);
-                SE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)(N+1)/(float)planetSettings.resolution);
-
-                if(planetSettings.Sphere)
+                for (int N = 0; N < planetSettings.resolution; N++)
                 {
-                    NO = NO.normalized * planetSettings.radius;
-                    NE = NE.normalized * planetSettings.radius;
-                    SO = SO.normalized * planetSettings.radius;
-                    SE = SE.normalized * planetSettings.radius;
-                }
+                    // set intermed
+                    IntermedNord0 = Vector3.Lerp(NOGlobal, NEGlobal, (float)O/(float)planetSettings.resolution); 
+                    IntermedNord1 = Vector3.Lerp(NOGlobal, NEGlobal, (float)(O+1)/(float)planetSettings.resolution); 
+                    IntermedSud0 = Vector3.Lerp(SOGlobal, SEGlobal, (float)O/(float)planetSettings.resolution); 
+                    IntermedSud1 = Vector3.Lerp(SOGlobal, SEGlobal, (float)(O+1)/(float)planetSettings.resolution); 
+                    // set point
+                    NO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)N/(float)planetSettings.resolution) * (h+1);
+                    NE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)N/(float)planetSettings.resolution) * (h+1);
+                    SO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)(N+1)/(float)planetSettings.resolution) * (h+1);
+                    SE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)(N+1)/(float)planetSettings.resolution) * (h+1);
 
-                // set tile
-                GridTile t = new GridTile(numFace, N, O, planetSettings.resolution-O, planetSettings.resolution-N);
-                t.InitSquare(NO, NE, SO, SE);
-                t.tile.transform.parent = gameObject.transform;
+                    NOH = NO * (h+2);
+                    NEH = NE * (h+2);
+                    SOH = SO * (h+2);
+                    SEH = SE * (h+2);
+
+                    if(planetSettings.Sphere)
+                    {
+                        NO = NO.normalized * planetSettings.radius * (float)(heightTileMulti);
+                        NE = NE.normalized * planetSettings.radius * (float)(heightTileMulti);
+                        SO = SO.normalized * planetSettings.radius * (float)(heightTileMulti);
+                        SE = SE.normalized * planetSettings.radius * (float)(heightTileMulti);
+
+                        NOH = NOH.normalized * planetSettings.radius * (float)(heightTileMulti + planetSettings.tileHeight);
+                        NEH = NEH.normalized * planetSettings.radius * (float)(heightTileMulti + planetSettings.tileHeight);
+                        SOH = SOH.normalized * planetSettings.radius * (float)(heightTileMulti + planetSettings.tileHeight);
+                        SEH = SEH.normalized * planetSettings.radius * (float)(heightTileMulti + planetSettings.tileHeight);
+                    }
+
+                    // set tile
+                    GridTile t = new GridTile(numFace, N, O, planetSettings.resolution-O, planetSettings.resolution-N);
+                    t.InitSquare(NO, NE, SO, SE, NOH, NEH, SOH, SEH);
+                    t.tile.transform.parent = gameObject.transform;
+                }
             }
+            heightTileMulti = heightTileMulti + planetSettings.tileHeight;
         }
+
+        
         
             
     }

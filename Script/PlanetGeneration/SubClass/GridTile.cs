@@ -49,12 +49,17 @@ public class GridTile
     }
 
     // set square
-    public void InitSquare(Vector3 NO, Vector3 NE, Vector3 SO, Vector3 SE)
+    public void InitSquare(Vector3 NO, Vector3 NE, Vector3 SO, Vector3 SE, Vector3 NOH, Vector3 NEH, Vector3 SOH, Vector3 SEH)
     {
         pointDownNO = NO;
         pointDownNE = NE;
         pointDownSO = SO;
         pointDownSE = SE;
+
+        pointUpNO = NOH;
+        pointUpNE = NEH;
+        pointUpSO = SOH;
+        pointUpSE = SEH;
 
         // set the grid
         tile = new GameObject();
@@ -64,11 +69,17 @@ public class GridTile
         lDown.endColor = Color.black;
         lDown.startWidth = 0.01f;
         lDown.endWidth = 0.01f;
-        lDown.positionCount = 5;
+        lDown.positionCount = 10;
         lDown.SetPosition(0, pointDownNO);
         lDown.SetPosition(1, pointDownNE);
         lDown.SetPosition(2, pointDownSE);
         lDown.SetPosition(3, pointDownSO);
         lDown.SetPosition(4, pointDownNO);
+        // up
+        lDown.SetPosition(5, pointUpNO);
+        lDown.SetPosition(6, pointUpNE);
+        lDown.SetPosition(7, pointUpSE);
+        lDown.SetPosition(8, pointUpSO);
+        lDown.SetPosition(9, pointUpNO);
     }
 }

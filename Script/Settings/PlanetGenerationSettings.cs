@@ -17,6 +17,9 @@ public class PlanetGenerationSettings : ScriptableObject
     // height of the "croute terrestre"
     [Range(1, 10)]
     public int height = 1;
+    // height of a Tile
+    [Range(0.01f, 1f)]
+    public float tileHeight = 0.1f;
     // draw or not face
     public bool faceDown = true;
     public bool faceBack = true;
