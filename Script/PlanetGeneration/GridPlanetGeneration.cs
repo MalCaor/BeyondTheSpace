@@ -167,6 +167,14 @@ public class GridPlanetGeneration : MonoBehaviour
                 SO = Vector3.Lerp(IntermedNord0, IntermedSud0, (float)(N+1)/(float)planetSettings.resolution);
                 SE = Vector3.Lerp(IntermedNord1, IntermedSud1, (float)(N+1)/(float)planetSettings.resolution);
 
+                if(planetSettings.Sphere)
+                {
+                    NO = NO.normalized;
+                    NE = NE.normalized;
+                    SO = SO.normalized;
+                    SE = SE.normalized;
+                }
+
                 // set tile
                 GridTile t = new GridTile(numFace, N, O, planetSettings.resolution-O, planetSettings.resolution-N);
                 t.InitSquare(NO, NE, SO, SE);

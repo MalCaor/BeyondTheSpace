@@ -7,6 +7,8 @@ public class PlanetGenerationSettings : ScriptableObject
 {
     // instan the test point or the real one
     public bool PointTest = false;
+    // public bool sphere or not
+    public bool Sphere = true;
     // size of the planet
     public float radius = 1;
     // resolution
