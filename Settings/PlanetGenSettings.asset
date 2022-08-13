@@ -16,7 +16,7 @@ MonoBehaviour:
   Sphere: 1
   radius: 1
   resolution: 5
-  height: 3
+  height: 1
   tileHeight: 0.25
   faceDown: 1
   faceBack: 1
