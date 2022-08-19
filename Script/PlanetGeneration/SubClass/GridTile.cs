@@ -97,105 +97,136 @@ public class GridTile
 
     public void SetProxyTileGrid(List<List<GridTile>> gridGlob)
     {
-        if(Npos!=0 && Opos!=0 && Epos!=0 && Spos!=0)
-        {
-            //gridGlob[face]
-            ProxyTileNord = gridGlob[face].Find((x) => x.Npos==Npos-1 && x.Opos==Opos && x.Dpos==Dpos);
-            ProxyTileSud = gridGlob[face].Find((x) => x.Npos==Npos+1 && x.Opos==Opos && x.Dpos==Dpos);
-            ProxyTileOuest = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos-1 && x.Dpos==Dpos);
-            ProxyTileEst = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos+1 && x.Dpos==Dpos);
-            ProxyTileUp = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos && x.Dpos==Dpos-1);
-            ProxyTileDown = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos && x.Dpos==Dpos+1);
-        } else {
-            // need to go on other face 
-            // first num is facenum ( Nord 0 / Est 1 / Ouest 2 / Front 3 / Back 4 / Sud 5 )
-            //second is direction 0 = Up / 1 = Right / 2 = Down / 3 = Left
-            int[,] linkFaceToFace = new int[6,4];
-            // face Nord
-            //       ^ Back
-            //     +---+
-            //Est< |   | > Ouest
-            //     +---+
-            //      \/ Front
-            linkFaceToFace[0, 0] = 4;
-            linkFaceToFace[0, 1] = 2;
-            linkFaceToFace[0, 2] = 3;
-            linkFaceToFace[0, 3] = 1;
-            // face Est
-            //        ^ Nord
-            //      +---+
-            //Back< |   | > Front
-            //      +---+
-            //       \/ Sud
-            linkFaceToFace[1, 0] = 0;
-            linkFaceToFace[1, 1] = 3;
-            linkFaceToFace[1, 2] = 5;
-            linkFaceToFace[1, 3] = 4;
-            // face Ouest
-            //         ^ Nord
-            //       +---+
-            //Front< |   | > Back
-            //       +---+
-            //        \/ Sud
-            linkFaceToFace[2, 0] = 0;
-            linkFaceToFace[2, 1] = 4;
-            linkFaceToFace[2, 2] = 5;
-            linkFaceToFace[2, 3] = 3;
-            // face Front
-            //         ^ Nord
-            //       +---+
-            //Ouest< |   | > Est
-            //       +---+
-            //        \/ Sud
-            linkFaceToFace[3, 0] = 0;
-            linkFaceToFace[3, 1] = 1;
-            linkFaceToFace[3, 2] = 5;
-            linkFaceToFace[3, 3] = 2;
-            // face Back
-            //       ^ Nord
-            //     +---+
-            //Est< |   | > Ouest
-            //     +---+
-            //      \/ Sud
-            linkFaceToFace[4, 0] = 0;
-            linkFaceToFace[4, 1] = 2;
-            linkFaceToFace[4, 2] = 5;
-            linkFaceToFace[4, 3] = 1;
-            // face Sud
-            //       ^ Back
-            //     +---+
-            //Est< |   | > Ouest
-            //     +---+
-            //      \/ Front
-            linkFaceToFace[5, 0] = 4;
-            linkFaceToFace[5, 1] = 2;
-            linkFaceToFace[5, 2] = 3;
-            linkFaceToFace[5, 3] = 1;
+        // call findTileOtherFace for each Proxy
+        ProxyTileNord = findTileOtherFace(gridGlob, 0);
+        ProxyTileSud = findTileOtherFace(gridGlob, 1);
+        ProxyTileOuest = findTileOtherFace(gridGlob, 2);
+        ProxyTileEst = findTileOtherFace(gridGlob, 3);
+        ProxyTileUp = findTileOtherFace(gridGlob, 4);
+        ProxyTileDown = findTileOtherFace(gridGlob, 5);
+    }
 
-            // now find proxy
+    /// <summary>
+    /// Find a Tile even on the other Face
+    /// dirTile = direction ( Nord 0 / Est 1 / Ouest 2 / Sud 3 / Up 4 / Down 5 )
+    /// </summary>
+    GridTile findTileOtherFace(List<List<GridTile>> gridGlob, int dirTile)
+    {
+        // up and down like normal (will retrun null if can't find)
+        if(dirTile == 4)
+        {
+            // Up (4)
+            return gridGlob[this.face].Find((x) => x.Npos==this.Npos && x.Opos==this.Opos && x.Dpos==this.Dpos+1);
+        }
+        if(dirTile == 5)
+        {
+            // Down (5)
+            return gridGlob[this.face].Find((x) => x.Npos==this.Npos && x.Opos==this.Opos && x.Dpos==this.Dpos-1);
+        }
+        
+        // Will need to find Tile on other "column"
+
+        // first num is facenum ( Nord 0 / Est 1 / Ouest 2 / Front 3 / Back 4 / Sud 5 )
+        // second is direction 0 = Up / 1 = Right / 2 = Down / 3 = Left
+        int[,] linkFaceToFace = new int[6,4];
+        // face Nord
+        //       ^ Back
+        //     +---+
+        //Est< |   | > Ouest
+        //     +---+
+        //      \/ Front
+        linkFaceToFace[0, 0] = 4;
+        linkFaceToFace[0, 1] = 2;
+        linkFaceToFace[0, 2] = 3;
+        linkFaceToFace[0, 3] = 1;
+        // face Est
+        //        ^ Nord
+        //      +---+
+        //Back< |   | > Front
+        //      +---+
+        //       \/ Sud
+        linkFaceToFace[1, 0] = 0;
+        linkFaceToFace[1, 1] = 3;
+        linkFaceToFace[1, 2] = 5;
+        linkFaceToFace[1, 3] = 4;
+        // face Ouest
+        //         ^ Nord
+        //       +---+
+        //Front< |   | > Back
+        //       +---+
+        //        \/ Sud
+        linkFaceToFace[2, 0] = 0;
+        linkFaceToFace[2, 1] = 4;
+        linkFaceToFace[2, 2] = 5;
+        linkFaceToFace[2, 3] = 3;
+        // face Front
+        //         ^ Nord
+        //       +---+
+        //Ouest< |   | > Est
+        //       +---+
+        //        \/ Sud
+        linkFaceToFace[3, 0] = 0;
+        linkFaceToFace[3, 1] = 1;
+        linkFaceToFace[3, 2] = 5;
+        linkFaceToFace[3, 3] = 2;
+        // face Back
+        //       ^ Nord
+        //     +---+
+        //Est< |   | > Ouest
+        //     +---+
+        //      \/ Sud
+        linkFaceToFace[4, 0] = 0;
+        linkFaceToFace[4, 1] = 2;
+        linkFaceToFace[4, 2] = 5;
+        linkFaceToFace[4, 3] = 1;
+        // face Sud
+        //       ^ Back
+        //     +---+
+        //Est< |   | > Ouest
+        //     +---+
+        //      \/ Front
+        linkFaceToFace[5, 0] = 4;
+        linkFaceToFace[5, 1] = 2;
+        linkFaceToFace[5, 2] = 3;
+        linkFaceToFace[5, 3] = 1;
+        
+        // now find proxy
+        if(dirTile == 0){
             if(Npos == 0){
+                // get the grid where the face is
+                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
                 
             } else {
-                ProxyTileNord = gridGlob[face].Find((x) => x.Npos==Npos-1 && x.Opos==Opos && x.Dpos==Dpos);
+                return gridGlob[face].Find((x) => x.Npos==Npos-1 && x.Opos==Opos && x.Dpos==Dpos);
             }
-            if(Spos == 0){
-
-            } else {
-                ProxyTileSud = gridGlob[face].Find((x) => x.Npos==Npos+1 && x.Opos==Opos && x.Dpos==Dpos);
-            }
-            if(Opos == 0){
-
-            } else {
-                ProxyTileOuest = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos-1 && x.Dpos==Dpos);
-            }
-            if(Epos == 0){
-
-            } else {
-                ProxyTileEst = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos+1 && x.Dpos==Dpos);
-            }
-            // up and down like normal (will retrun null if can't find)
-            ProxyTileUp = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos && x.Dpos==Dpos-1);
-            ProxyTileDown = gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos && x.Dpos==Dpos+1);
         }
+        if(dirTile == 3){
+            if(Spos == 0){
+                // get the grid where the face is
+                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
+            } else {
+                return gridGlob[face].Find((x) => x.Npos==Npos+1 && x.Opos==Opos && x.Dpos==Dpos);
+            }
+        }
+        if(dirTile == 2){
+            if(Opos == 0){
+                // get the grid where the face is
+                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
+            } else {
+                return gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos-1 && x.Dpos==Dpos);
+            }
+        }
+        if(dirTile == 1){
+            if(Epos == 0){
+                // get the grid where the face is
+                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
+            } else {
+                return gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos+1 && x.Dpos==Dpos);
+            }
+        }
+
+        // Error
+        Debug.Log("Error Proxy Tile Atribution :  Tile " + this.name);
+        return null;
     }
 }
