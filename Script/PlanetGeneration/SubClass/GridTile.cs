@@ -202,7 +202,7 @@ public class GridTile
             if(Npos == 0){
                 // get the grid where the face is
                 List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
-                
+                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, 0]);
             } else {
                 return gridGlob[face].Find((x) => x.Npos==Npos-1 && x.Opos==Opos && x.Dpos==Dpos);
             }
@@ -211,6 +211,7 @@ public class GridTile
             if(Spos == 0){
                 // get the grid where the face is
                 List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
+                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, 0]);
             } else {
                 return gridGlob[face].Find((x) => x.Npos==Npos+1 && x.Opos==Opos && x.Dpos==Dpos);
             }
@@ -219,6 +220,7 @@ public class GridTile
             if(Opos == 0){
                 // get the grid where the face is
                 List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
+                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, 0]);
             } else {
                 return gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos-1 && x.Dpos==Dpos);
             }
@@ -227,6 +229,7 @@ public class GridTile
             if(Epos == 0){
                 // get the grid where the face is
                 List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
+                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, 0]);
             } else {
                 return gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos+1 && x.Dpos==Dpos);
             }
@@ -235,5 +238,220 @@ public class GridTile
         // Error
         Debug.Log("Error Proxy Tile Atribution :  Tile " + this.name);
         return null;
+    }
+
+    GridTile foreignTileCoor(List<GridTile> grid, int faceA, int faceB)
+    {
+        int SearchNpos = this.Npos;
+        int SearchOpos = this.Opos;
+        int SearchEpos = this.Epos;
+        int SearchSpos = this.Spos;
+        // switch for numface ( Nord 0 / Est 1 / Ouest 2 / Front 3 / Back 4 / Sud 5 )
+        switch (faceA)
+        {
+            case 0:
+            // NORD
+            switch (faceB)
+            {
+                case 0:
+                // NORD
+                break;
+                
+                case 1:
+                // EST
+                break;
+                
+                case 2:
+                // OUEST
+                break;
+                
+                case 3:
+                // FRONT
+                break;
+                
+                case 4:
+                // BACK
+                break;
+                
+                case 5:
+                // SUD
+                break;
+                
+                default:
+                break;
+            }
+            break;
+
+            case 1:
+            // EST
+            switch (faceB)
+            {
+                case 0:
+                // NORD
+                break;
+                
+                case 1:
+                // EST
+                break;
+                
+                case 2:
+                // OUEST
+                break;
+                
+                case 3:
+                // FRONT
+                break;
+                
+                case 4:
+                // BACK
+                break;
+                
+                case 5:
+                // SUD
+                break;
+                
+                default:
+                break;
+            }
+            break;
+
+            case 2:
+            // OUEST
+            switch (faceB)
+            {
+                case 0:
+                // NORD
+                break;
+                
+                case 1:
+                // EST
+                break;
+                
+                case 2:
+                // OUEST
+                break;
+                
+                case 3:
+                // FRONT
+                break;
+                
+                case 4:
+                // BACK
+                break;
+                
+                case 5:
+                // SUD
+                break;
+                
+                default:
+                break;
+            }
+            break;
+
+            case 3:
+            // FRONT
+            switch (faceB)
+            {
+                case 0:
+                // NORD
+                break;
+                
+                case 1:
+                // EST
+                break;
+                
+                case 2:
+                // OUEST
+                break;
+                
+                case 3:
+                // FRONT
+                break;
+                
+                case 4:
+                // BACK
+                break;
+                
+                case 5:
+                // SUD
+                break;
+                
+                default:
+                break;
+            }
+            break;
+
+            case 4:
+            // BACK
+            switch (faceB)
+            {
+                case 0:
+                // NORD
+                break;
+                
+                case 1:
+                // EST
+                break;
+                
+                case 2:
+                // OUEST
+                break;
+                
+                case 3:
+                // FRONT
+                break;
+                
+                case 4:
+                // BACK
+                break;
+                
+                case 5:
+                // SUD
+                break;
+                
+                default:
+                break;
+            }
+            break;
+
+            case 5:
+            // SUD
+            switch (faceB)
+            {
+                case 0:
+                // NORD
+                break;
+                
+                case 1:
+                // EST
+                break;
+                
+                case 2:
+                // OUEST
+                break;
+                
+                case 3:
+                // FRONT
+                break;
+                
+                case 4:
+                // BACK
+                break;
+                
+                case 5:
+                // SUD
+                break;
+                
+                default:
+                break;
+            }
+            break;
+
+            default:
+            break;
+        }
+
+        // return find
+        return grid.Find((x) => x.Npos==SearchNpos && x.Opos==SearchOpos && x.Epos==SearchEpos && x.Spos==SearchSpos && x.Dpos==this.Dpos);
     }
 }
