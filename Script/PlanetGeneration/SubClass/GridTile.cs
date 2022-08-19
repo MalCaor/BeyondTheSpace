@@ -108,6 +108,9 @@ public class GridTile
         ProxyTileEst = findTileOtherFace(gridGlob, 3);
         ProxyTileUp = findTileOtherFace(gridGlob, 4);
         ProxyTileDown = findTileOtherFace(gridGlob, 5);
+
+        // Update the proxy for GameObject
+        tile.GetComponent<GridTileGameObject>().UpdateProxy();
     }
 
     /// <summary>
