@@ -93,6 +93,10 @@ public class GridTile
         lDown.SetPosition(7, pointUpSE);
         lDown.SetPosition(8, pointUpSO);
         lDown.SetPosition(9, pointUpNO);
+
+        // set Link to object in GameObject
+        GridTileGameObject linkToThis = tile.AddComponent<GridTileGameObject>();
+        linkToThis.gridTile = this;
     }
 
     public void SetProxyTileGrid(List<List<GridTile>> gridGlob)
