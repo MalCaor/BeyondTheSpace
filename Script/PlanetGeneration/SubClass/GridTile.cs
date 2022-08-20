@@ -57,7 +57,7 @@ public class GridTile
         this.Upos = U;
         this.Dpos = D;
 
-        this.name = "Tile Face " + face + " : " + Npos + ", " + Opos + ", " + Epos + ", " + Spos + ", " + Dpos;
+        this.name = "Tile Face " + face + " : N " + Npos + ", O " + Opos + ", E " + Epos + ", S " + Spos + ", D " + Dpos;
     }
 
     // set square
@@ -255,26 +255,54 @@ public class GridTile
             {
                 case 0:
                 // NORD
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 1:
                 // EST
+                // face Nord               face Est
+                //       ^ Back              ^ Nord
+                //     +---+                +---+
+                //Est< |   | > Ouest  Back< |   | > Front
+                //     +---+                +---+
+                //      \/ Front             \/ Sud
                 break;
                 
                 case 2:
                 // OUEST
+                // face Nord               face OUEST
+                //       ^ Back              ^ Nord
+                //     +---+                +---+
+                //Est< |   | > Ouest Front< |   | > Back
+                //     +---+                +---+
+                //      \/ Front             \/ Sud
                 break;
                 
                 case 3:
                 // FRONT
+                // face Nord               face FRONT
+                //       ^ Back              ^ Nord
+                //     +---+                +---+
+                //Est< |   | > Ouest Ouest< |   | > Est
+                //     +---+                +---+
+                //      \/ Front             \/ Sud
                 break;
                 
                 case 4:
                 // BACK
+                // face Nord               face BACK
+                //       ^ Back              ^ Nord
+                //     +---+                +---+
+                //Est< |   | > Ouest   Est< |   | > Ouest
+                //     +---+                +---+
+                //      \/ Front             \/ Sud
                 break;
                 
                 case 5:
                 // SUD
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 default:
@@ -292,10 +320,14 @@ public class GridTile
                 
                 case 1:
                 // EST
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 2:
                 // OUEST
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 3:
@@ -325,10 +357,14 @@ public class GridTile
                 
                 case 1:
                 // EST
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 2:
                 // OUEST
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 3:
@@ -366,10 +402,14 @@ public class GridTile
                 
                 case 3:
                 // FRONT
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 4:
                 // BACK
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 5:
@@ -399,10 +439,14 @@ public class GridTile
                 
                 case 3:
                 // FRONT
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 4:
                 // BACK
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 5:
@@ -420,6 +464,8 @@ public class GridTile
             {
                 case 0:
                 // NORD
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 case 1:
@@ -440,6 +486,8 @@ public class GridTile
                 
                 case 5:
                 // SUD
+                // imposible
+                Debug.LogError("Wrong foreignTileCoor at tile : " + this.name);
                 break;
                 
                 default:
