@@ -292,6 +292,10 @@ public class GridTile
                 //Est< |   | > Ouest  Back< |   | > Front
                 //     +---+                +---+
                 //      \/ Front             \/ Sud
+                SearchNpos = this.Opos;
+                SearchOpos = this.Npos;
+                SearchEpos = this.Spos;
+                SearchSpos = this.Epos;
                 break;
                 
                 case 2:
@@ -302,6 +306,10 @@ public class GridTile
                 //Est< |   | > Ouest Front< |   | > Back
                 //     +---+                +---+
                 //      \/ Front             \/ Sud
+                SearchNpos = this.Epos;
+                SearchOpos = this.Spos;
+                SearchEpos = this.Npos;
+                SearchSpos = this.Opos;
                 break;
                 
                 case 3:
@@ -312,6 +320,10 @@ public class GridTile
                 //Est< |   | > Ouest Ouest< |   | > Est
                 //     +---+                +---+
                 //      \/ Front             \/ Sud
+                SearchNpos = this.Spos;
+                SearchOpos = this.Epos;
+                SearchEpos = this.Opos;
+                SearchSpos = this.Npos;
                 break;
                 
                 case 4:
@@ -322,6 +334,10 @@ public class GridTile
                 //Est< |   | > Ouest   Est< |   | > Ouest
                 //     +---+                +---+
                 //      \/ Front             \/ Sud
+                SearchNpos = this.Npos;
+                SearchOpos = this.Opos;
+                SearchEpos = this.Epos;
+                SearchSpos = this.Spos;
                 break;
                 
                 case 5:
