@@ -57,7 +57,32 @@ public class GridTile
         this.Upos = U;
         this.Dpos = D;
 
-        this.name = "Tile Face " + face + " : N " + Npos + ", O " + Opos + ", E " + Epos + ", S " + Spos + ", D " + Dpos;
+        string faceName = "";
+        switch (face)
+        {
+            case 0:
+            faceName = "Nord";
+            break;
+            case 1:
+            faceName = "Est";
+            break;
+            case 2:
+            faceName = "Ouest";
+            break;
+            case 3:
+            faceName = "Front";
+            break;
+            case 4:
+            faceName = "Back";
+            break;
+            case 5:
+            faceName = "Sud";
+            break;
+            default:
+            break;
+        }
+
+        this.name = "Tile Face " + faceName + " : N " + Npos + ", O " + Opos + ", E " + Epos + ", S " + Spos + ", D " + Dpos;
     }
 
     // set square
