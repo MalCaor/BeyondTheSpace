@@ -551,18 +551,34 @@ public class GridTile
                 
                 case 1:
                 // EST
+                SearchNpos = this.Epos;
+                SearchOpos = this.Spos;
+                SearchEpos = this.Npos;
+                SearchSpos = this.Opos;
                 break;
                 
                 case 2:
                 // OUEST
+                SearchNpos = this.Opos;
+                SearchOpos = this.Npos;
+                SearchEpos = this.Spos;
+                SearchSpos = this.Epos;
                 break;
                 
                 case 3:
                 // FRONT
+                SearchNpos = this.Npos;
+                SearchOpos = this.Epos;
+                SearchEpos = this.Opos;
+                SearchSpos = this.Spos;
                 break;
                 
                 case 4:
                 // BACK
+                SearchNpos = this.Spos;
+                SearchOpos = this.Opos;
+                SearchEpos = this.Epos;
+                SearchSpos = this.Npos;
                 break;
                 
                 case 5:
