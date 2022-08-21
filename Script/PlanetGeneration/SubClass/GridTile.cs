@@ -492,14 +492,26 @@ public class GridTile
             {
                 case 0:
                 // NORD
+                SearchNpos = this.Npos;
+                SearchOpos = this.Opos;
+                SearchEpos = this.Epos;
+                SearchSpos = this.Spos;
                 break;
                 
                 case 1:
                 // EST
+                SearchNpos = this.Npos;
+                SearchOpos = this.Epos;
+                SearchEpos = this.Opos;
+                SearchSpos = this.Spos;
                 break;
                 
                 case 2:
                 // OUEST
+                SearchNpos = this.Npos;
+                SearchOpos = this.Epos;
+                SearchEpos = this.Opos;
+                SearchSpos = this.Spos;
                 break;
                 
                 case 3:
@@ -516,6 +528,10 @@ public class GridTile
                 
                 case 5:
                 // SUD
+                SearchNpos = this.Spos;
+                SearchOpos = this.Opos;
+                SearchEpos = this.Epos;
+                SearchSpos = this.Npos;
                 break;
                 
                 default:
