@@ -597,6 +597,11 @@ public class GridTile
         }
 
         // return find
-        return grid.Find((x) => x.Npos==SearchNpos && x.Opos==SearchOpos && x.Epos==SearchEpos && x.Spos==SearchSpos && x.Dpos==this.Dpos);
+        GridTile g = grid.Find((x) => x.Npos==SearchNpos && x.Opos==SearchOpos && x.Epos==SearchEpos && x.Spos==SearchSpos && x.Dpos==this.Dpos);
+        if(g == null && planetSettings.PointTest)
+        {
+            Debug.LogError("Error foreignTileCoor Tile is NULL at tile : " + this.name);
+        }
+        return g;
     }
 }
