@@ -108,21 +108,21 @@ public class GridPlanetGeneration : MonoBehaviour
         }
         if(planetSettings.faceRight){
             // face Est
-            //        ^ Nord
-            //      +---+
-            //Back< |   | > Front
-            //      +---+
-            //       \/ Sud
-            InitFaceGrid(1, _pointNordEstBack, _pointNordEstFront, _pointSudEstBack, _pointSudEstFront, FaceEst);
-        }
-        if(planetSettings.faceLeft){
-            // face Ouest
             //         ^ Nord
             //       +---+
             //Front< |   | > Back
             //       +---+
             //        \/ Sud
-            InitFaceGrid(2, _pointNordOuestFront, _pointNordOuestBack, _pointSudOuestFront, _pointSudOuestBack, FaceOuest);
+            InitFaceGrid(1, _pointNordEstFront, _pointNordEstBack, _pointSudEstFront, _pointSudEstBack, FaceEst);
+        }
+        if(planetSettings.faceLeft){
+            // face Ouest
+            //         ^ Nord
+            //       +---+
+            // Back< |   | > Front
+            //       +---+
+            //        \/ Sud
+            InitFaceGrid(2, _pointNordOuestBack, _pointNordOuestFront, _pointSudOuestBack, _pointSudOuestFront, FaceOuest);
         }
         if(planetSettings.faceForward){
             // face Front

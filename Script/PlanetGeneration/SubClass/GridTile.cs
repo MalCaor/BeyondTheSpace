@@ -286,40 +286,22 @@ public class GridTile
                 
                 case 1:
                 // EST
-                // face Nord               face Est
-                //       ^ Back              ^ Nord
-                //     +---+                +---+
-                //Est< |   | > Ouest  Back< |   | > Front
-                //     +---+                +---+
-                //      \/ Front             \/ Sud
                 SearchNpos = this.Opos;
-                SearchOpos = this.Npos;
-                SearchEpos = this.Spos;
+                SearchOpos = this.Spos;
+                SearchEpos = this.Npos;
                 SearchSpos = this.Epos;
                 break;
                 
                 case 2:
                 // OUEST
-                // face Nord               face OUEST
-                //       ^ Back              ^ Nord
-                //     +---+                +---+
-                //Est< |   | > Ouest Front< |   | > Back
-                //     +---+                +---+
-                //      \/ Front             \/ Sud
                 SearchNpos = this.Epos;
-                SearchOpos = this.Spos;
-                SearchEpos = this.Npos;
+                SearchOpos = this.Npos;
+                SearchEpos = this.Spos;
                 SearchSpos = this.Opos;
                 break;
                 
                 case 3:
                 // FRONT
-                // face Nord               face FRONT
-                //       ^ Back              ^ Nord
-                //     +---+                +---+
-                //Est< |   | > Ouest Ouest< |   | > Est
-                //     +---+                +---+
-                //      \/ Front             \/ Sud
                 SearchNpos = this.Spos;
                 SearchOpos = this.Epos;
                 SearchEpos = this.Opos;
@@ -328,12 +310,6 @@ public class GridTile
                 
                 case 4:
                 // BACK
-                // face Nord               face BACK
-                //       ^ Back              ^ Nord
-                //     +---+                +---+
-                //Est< |   | > Ouest   Est< |   | > Ouest
-                //     +---+                +---+
-                //      \/ Front             \/ Sud
                 SearchNpos = this.Npos;
                 SearchOpos = this.Opos;
                 SearchEpos = this.Epos;
