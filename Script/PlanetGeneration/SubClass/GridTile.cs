@@ -128,9 +128,9 @@ public class GridTile
     {
         // call findTileOtherFace for each Proxy
         ProxyTileNord = findTileOtherFace(gridGlob, 0);
-        ProxyTileSud = findTileOtherFace(gridGlob, 1);
-        ProxyTileOuest = findTileOtherFace(gridGlob, 2);
-        ProxyTileEst = findTileOtherFace(gridGlob, 3);
+        ProxyTileSud = findTileOtherFace(gridGlob, 2);
+        ProxyTileOuest = findTileOtherFace(gridGlob, 3);
+        ProxyTileEst = findTileOtherFace(gridGlob, 1);
         ProxyTileUp = findTileOtherFace(gridGlob, 4);
         ProxyTileDown = findTileOtherFace(gridGlob, 5);
 
@@ -172,25 +172,25 @@ public class GridTile
         linkFaceToFace[0, 2] = 3;
         linkFaceToFace[0, 3] = 1;
         // face Est
-        //        ^ Nord
-        //      +---+
-        //Back< |   | > Front
-        //      +---+
-        //       \/ Sud
-        linkFaceToFace[1, 0] = 0;
-        linkFaceToFace[1, 1] = 3;
-        linkFaceToFace[1, 2] = 5;
-        linkFaceToFace[1, 3] = 4;
-        // face Ouest
         //         ^ Nord
         //       +---+
         //Front< |   | > Back
         //       +---+
         //        \/ Sud
+        linkFaceToFace[1, 0] = 0;
+        linkFaceToFace[1, 1] = 4;
+        linkFaceToFace[1, 2] = 5;
+        linkFaceToFace[1, 3] = 3;
+        // face Ouest
+        //         ^ Nord
+        //       +---+
+        // Back< |   | > Front
+        //       +---+
+        //        \/ Sud
         linkFaceToFace[2, 0] = 0;
-        linkFaceToFace[2, 1] = 4;
+        linkFaceToFace[2, 1] = 3;
         linkFaceToFace[2, 2] = 5;
-        linkFaceToFace[2, 3] = 3;
+        linkFaceToFace[2, 3] = 4;
         // face Front
         //         ^ Nord
         //       +---+
@@ -226,37 +226,37 @@ public class GridTile
         if(dirTile == 0){
             if(Npos == 0){
                 // get the grid where the face is
-                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
-                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, 0]);
+                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, dirTile]];
+                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, dirTile]);
             } else {
                 return gridGlob[face].Find((x) => x.Npos==Npos-1 && x.Opos==Opos && x.Dpos==Dpos);
             }
         }
         if(dirTile == 3){
-            if(Spos == 0){
+            if(Opos == 0){
                 // get the grid where the face is
-                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
-                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, 0]);
+                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, dirTile]];
+                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, dirTile]);
             } else {
-                return gridGlob[face].Find((x) => x.Npos==Npos+1 && x.Opos==Opos && x.Dpos==Dpos);
+                return gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos-1 && x.Dpos==Dpos);
             }
         }
         if(dirTile == 2){
-            if(Opos == 0){
+            if(Spos == 0){
                 // get the grid where the face is
-                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
-                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, 0]);
+                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, dirTile]];
+                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, dirTile]);
             } else {
-                return gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos-1 && x.Dpos==Dpos);
+                return gridGlob[face].Find((x) => x.Npos==Npos && x.Spos==Spos-1 && x.Dpos==Dpos);
             }
         }
         if(dirTile == 1){
             if(Epos == 0){
                 // get the grid where the face is
-                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, 0]];
-                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, 0]);
+                List<GridTile> grid = gridGlob[linkFaceToFace[this.face, dirTile]];
+                return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, dirTile]);
             } else {
-                return gridGlob[face].Find((x) => x.Npos==Npos && x.Opos==Opos+1 && x.Dpos==Dpos);
+                return gridGlob[face].Find((x) => x.Npos==Npos && x.Epos==Epos-1 && x.Dpos==Dpos);
             }
         }
 

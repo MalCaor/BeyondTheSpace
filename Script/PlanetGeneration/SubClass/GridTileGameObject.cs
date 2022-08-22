@@ -7,12 +7,12 @@ public class GridTileGameObject : MonoBehaviour
     // public var
     public GridTile gridTile;
     // Proxy GridTile
-    public GameObject ProxyTileNord;
-    public GameObject ProxyTileSud;
-    public GameObject ProxyTileOuest;
-    public GameObject ProxyTileEst;
-    public GameObject ProxyTileUp;
-    public GameObject ProxyTileDown;
+    public GridTile ProxyTileNord;
+    public GridTile ProxyTileSud;
+    public GridTile ProxyTileOuest;
+    public GridTile ProxyTileEst;
+    public GridTile ProxyTileUp;
+    public GridTile ProxyTileDown;
 
     // Start is called before the first frame update
     void Start()
@@ -30,27 +30,27 @@ public class GridTileGameObject : MonoBehaviour
     {
         if(gridTile.ProxyTileNord!=null)
         {
-            this.ProxyTileNord = gridTile.ProxyTileNord.tile;
+            this.ProxyTileNord = gridTile.ProxyTileNord;
         }
         if(gridTile.ProxyTileSud!=null)
         {
-            this.ProxyTileSud = gridTile.ProxyTileSud.tile;
+            this.ProxyTileSud = gridTile.ProxyTileSud;
         }
         if(gridTile.ProxyTileOuest!=null)
         {
-            this.ProxyTileOuest = gridTile.ProxyTileOuest.tile;
+            this.ProxyTileOuest = gridTile.ProxyTileOuest;
         }
         if(gridTile.ProxyTileEst!=null)
         {
-            this.ProxyTileEst = gridTile.ProxyTileEst.tile;
+            this.ProxyTileEst = gridTile.ProxyTileEst;
         }
         if(gridTile.ProxyTileUp!=null)
         {
-            this.ProxyTileUp = gridTile.ProxyTileUp.tile;
+            this.ProxyTileUp = gridTile.ProxyTileUp;
         }
         if(gridTile.ProxyTileDown!=null)
         {
-            this.ProxyTileDown = gridTile.ProxyTileDown.tile;
+            this.ProxyTileDown = gridTile.ProxyTileDown;
         }
     }
 }
