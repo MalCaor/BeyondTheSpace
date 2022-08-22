@@ -45,7 +45,7 @@ public class GridTile
     Vector3 pointUpSE;
 
     // constructor
-    public GridTile(int numFace, int N, int O, int E, int S, int U, int D)
+    public GridTile(int numFace, int N, int O, int E, int S, int D, int U)
     {
         // set num Face ( Nord 0 / Est 1 / Ouest 2 / Front 3 / Back 4 / Sud 5 )
         this.face = numFace;
