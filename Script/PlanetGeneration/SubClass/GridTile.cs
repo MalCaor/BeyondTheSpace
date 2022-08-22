@@ -247,7 +247,7 @@ public class GridTile
                 List<GridTile> grid = gridGlob[linkFaceToFace[this.face, dirTile]];
                 return foreignTileCoor(grid, this.face, linkFaceToFace[this.face, dirTile]);
             } else {
-                return gridGlob[face].Find((x) => x.Npos==Npos && x.Spos==Spos-1 && x.Dpos==Dpos);
+                return gridGlob[face].Find((x) => x.Opos==Opos && x.Spos==Spos-1 && x.Dpos==Dpos);
             }
         }
         if(dirTile == 1){
