@@ -17,6 +17,10 @@ public class GridPlanetGenerationEditor : Editor
         {
             grid.Init();
         }
+        if (GUILayout.Button("Generate Proxy Tile"))
+        {
+            grid.InitProxyTile();
+        }
     }
     private void OnEnable()
 	{

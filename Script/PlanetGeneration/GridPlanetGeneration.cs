@@ -45,7 +45,6 @@ public class GridPlanetGeneration : MonoBehaviour
         listGridFaces.Add(FaceSud);
         DestroyChild();
         InitGrid();
-        InitProxyTile();
     }
 
     /// <summary>
@@ -246,7 +245,7 @@ public class GridPlanetGeneration : MonoBehaviour
     /// <summary>
     /// Call Every Tile to set their proxy
     /// </summary>
-    void InitProxyTile()
+    public void InitProxyTile()
     {
         // Nord
         foreach (GridTile tile in FaceNord)
