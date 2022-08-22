@@ -36,15 +36,9 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     public void Init()
     {
-        listGridFaces = new List<List<GridTile>>();
-        listGridFaces.Add(FaceNord);
-        listGridFaces.Add(FaceEst);
-        listGridFaces.Add(FaceOuest);
-        listGridFaces.Add(FaceFront);
-        listGridFaces.Add(FaceBack);
-        listGridFaces.Add(FaceSud);
         DestroyChild();
         InitGrid();
+        InitProxyTile();
     }
 
     /// <summary>
@@ -56,6 +50,31 @@ public class GridPlanetGeneration : MonoBehaviour
         for (int i = childs - 1; i >= 0; i--) 
         {
             GameObject.DestroyImmediate(transform.GetChild( i ).gameObject);
+        }
+        // clear list if exist
+        if(FaceNord!=null)
+        {
+            FaceNord.Clear();
+        }
+        if(FaceEst!=null)
+        {
+            FaceEst.Clear();
+        }
+        if(FaceOuest!=null)
+        {
+            FaceOuest.Clear();
+        }
+        if(FaceFront!=null)
+        {
+            FaceFront.Clear();
+        }
+        if(FaceBack!=null)
+        {
+            FaceBack.Clear();
+        }
+        if(FaceSud!=null)
+        {
+            FaceSud.Clear();
         }
     }
 
@@ -71,6 +90,15 @@ public class GridPlanetGeneration : MonoBehaviour
         FaceFront = new List<GridTile>();
         FaceBack = new List<GridTile>();
         FaceSud = new List<GridTile>();
+
+        // add to list grid
+        listGridFaces = new List<List<GridTile>>();
+        listGridFaces.Add(FaceNord);
+        listGridFaces.Add(FaceEst);
+        listGridFaces.Add(FaceOuest);
+        listGridFaces.Add(FaceFront);
+        listGridFaces.Add(FaceBack);
+        listGridFaces.Add(FaceSud);
 
         // get pos and rad planet for convinience
         Vector3 pos = gameObject.transform.position;
