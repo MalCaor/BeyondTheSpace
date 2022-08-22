@@ -53,14 +53,6 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     void DestroyChild()
     {
-        // remove line
-        foreach (var comp in gameObject.GetComponents<Component>())
-        {
-            if (comp is LineRenderer)
-            {
-                DestroyImmediate(comp);
-            }
-        }
         int childs = transform.childCount;
         for (int i = childs - 1; i >= 0; i--) 
         {
