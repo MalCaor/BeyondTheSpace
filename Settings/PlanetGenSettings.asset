@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointTest: 1
   Sphere: 1
-  radius: 1
+  radius: 5
   resolution: 4
-  height: 1
-  tileHeight: 0.25
+  height: 3
+  tileHeight: 0.3
   faceDown: 1
-  faceBack: 0
-  faceUp: 0
-  faceForward: 0
-  faceLeft: 0
+  faceBack: 1
+  faceUp: 1
+  faceForward: 1
+  faceLeft: 1
   faceRight: 1

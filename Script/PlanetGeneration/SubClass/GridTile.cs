@@ -100,6 +100,9 @@ public class GridTile
 
         // set the grid
         tile = new GameObject();
+        // set pos to mid
+        Vector3 mid = Vector3.Lerp(SOH, NE, 0.5f);
+        tile.transform.position = mid;
         tile.name = this.name;
         LineRenderer lDown = tile.AddComponent<LineRenderer>();
         lDown.startColor = Color.black;
