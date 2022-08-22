@@ -28,6 +28,29 @@ public class GridTileGameObject : MonoBehaviour
 
     public void UpdateProxy()
     {
-        
+        if(gridTile.ProxyTileNord!=null)
+        {
+            this.ProxyTileNord = gridTile.ProxyTileNord.tile;
+        }
+        if(gridTile.ProxyTileSud!=null)
+        {
+            this.ProxyTileSud = gridTile.ProxyTileSud.tile;
+        }
+        if(gridTile.ProxyTileOuest!=null)
+        {
+            this.ProxyTileOuest = gridTile.ProxyTileOuest.tile;
+        }
+        if(gridTile.ProxyTileEst!=null)
+        {
+            this.ProxyTileEst = gridTile.ProxyTileEst.tile;
+        }
+        if(gridTile.ProxyTileUp!=null)
+        {
+            this.ProxyTileUp = gridTile.ProxyTileUp.tile;
+        }
+        if(gridTile.ProxyTileDown!=null)
+        {
+            this.ProxyTileDown = gridTile.ProxyTileDown.tile;
+        }
     }
 }
