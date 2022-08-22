@@ -105,6 +105,7 @@ public class GridTile
         tile.transform.position = mid;
         tile.name = this.name;
         LineRenderer lDown = tile.AddComponent<LineRenderer>();
+        lDown.material = (Material)Resources.Load("Material/LineTileMat");
         lDown.startColor = Color.black;
         lDown.endColor = Color.black;
         lDown.startWidth = 0.01f;
