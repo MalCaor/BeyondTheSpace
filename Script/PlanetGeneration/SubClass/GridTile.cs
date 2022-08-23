@@ -117,9 +117,6 @@ public class GridTile
         Vector3 mid = Vector3.Lerp(SOH, NE, 0.5f);
         tileGameObject.transform.position = mid;
         tileGameObject.name = this.name;
-        
-        // call line Renderer
-        linkToThis.InitLineTile();
     }
 
     public void SetProxyTileGrid(List<List<GridTile>> gridGlob)
@@ -141,6 +138,8 @@ public class GridTile
     /// </summary>
     public void InitTileGridGameObject()
     {
+        // set line
+        tileGameObject.GetComponent<GridTileGameObject>().InitLineTile();
         // set mesh
         tileGameObject.GetComponent<GridTileGameObject>().InitMeshBoxTile();
         // set mesh Col
