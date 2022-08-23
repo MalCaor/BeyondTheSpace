@@ -15,7 +15,7 @@ public class GridTileGameObject : MonoBehaviour
     public GridTile ProxyTileDown;
 
     // mesh
-    public MeshFilter meshBoxTile;
+    public Mesh meshBoxTile;
     public MeshCollider meshCollider;
 
     // Start is called before the first frame update
@@ -85,9 +85,7 @@ public class GridTileGameObject : MonoBehaviour
     /// </summary>
     public void InitMeshBoxTile()
     {
-        meshBoxTile = gameObject.AddComponent<MeshFilter>();
-        Mesh mesh = new Mesh();
-        meshBoxTile.mesh = mesh;
+        meshBoxTile = new Mesh();
         // vert
         Vector3[] vert = new Vector3[8];
         vert[0] = gridTile.pointDownNE;
@@ -98,7 +96,7 @@ public class GridTileGameObject : MonoBehaviour
         vert[5] = gridTile.pointUpSO;
         vert[6] = gridTile.pointDownSO;
         vert[7] = gridTile.pointDownSE;
-        mesh.vertices = vert;
+        meshBoxTile.vertices = vert;
         int[] triangles = {
             0, 2, 1, //face front
             0, 3, 2,
@@ -113,7 +111,7 @@ public class GridTileGameObject : MonoBehaviour
             0, 6, 7, //face bottom
             0, 1, 6
         };
-        mesh.triangles = triangles;
+        meshBoxTile.triangles = triangles;
     }
 
     /// <summary>
@@ -122,6 +120,6 @@ public class GridTileGameObject : MonoBehaviour
     public void InitMeshCollider()
     {
         meshCollider = gameObject.AddComponent<MeshCollider>();
-        meshCollider.sharedMesh = meshBoxTile.sharedMesh;
+        meshCollider.sharedMesh = meshBoxTile;
     }
 }
