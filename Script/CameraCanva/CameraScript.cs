@@ -18,6 +18,8 @@ public class CameraScript : MonoBehaviour
     {
         //Set Cursor to not be visible
         Cursor.visible = true;
+        GridPlanetGeneration gridPlanet = curentGrid.GetComponent<GridPlanetGeneration>();
+        gameObject.transform.Translate(gameObject.transform.up * (1 + gridPlanet.planetSettings.radius + gridPlanet.planetSettings.height*gridPlanet.planetSettings.tileHeight));
     }
 
     // Update is called once per frame
@@ -50,7 +52,7 @@ public class CameraScript : MonoBehaviour
             // go Front
             transform.RotateAround(curentGrid.transform.position, -Vector3.Cross(transform.forward, transform.up), speed);
         }
-        transform.position = gameObject.transform.position * ((Input.GetAxis("Mouse ScrollWheel")+1));
+        transform.position = gameObject.transform.position * ((-Input.GetAxis("Mouse ScrollWheel")+1));
 
         // rotation
         if(Input.GetMouseButton(2))
