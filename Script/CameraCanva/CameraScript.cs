@@ -19,7 +19,7 @@ public class CameraScript : MonoBehaviour
         //Set Cursor to not be visible
         Cursor.visible = true;
         GridPlanetGeneration gridPlanet = curentGrid.GetComponent<GridPlanetGeneration>();
-        gameObject.transform.Translate(gameObject.transform.up * (1 + gridPlanet.planetSettings.radius + gridPlanet.planetSettings.height*gridPlanet.planetSettings.tileHeight));
+        gameObject.transform.Translate(gameObject.transform.up * (1 + gridPlanet.planetSettings.radius + gridPlanet.planetSettings.height+2));
     }
 
     // Update is called once per frame
