@@ -88,14 +88,14 @@ public class GridTileGameObject : MonoBehaviour
         meshBoxTile = new Mesh();
         // vert
         Vector3[] vert = new Vector3[8];
-        vert[0] = gridTile.pointDownNE;
-        vert[1] = gridTile.pointDownNO;
-        vert[2] = gridTile.pointUpNO;
-        vert[3] = gridTile.pointUpNE;
-        vert[4] = gridTile.pointUpSE;
-        vert[5] = gridTile.pointUpSO;
-        vert[6] = gridTile.pointDownSO;
-        vert[7] = gridTile.pointDownSE;
+        vert[0] = transform.InverseTransformPoint(gridTile.pointDownNE);
+        vert[1] = transform.InverseTransformPoint(gridTile.pointDownNO);
+        vert[2] = transform.InverseTransformPoint(gridTile.pointUpNO);
+        vert[3] = transform.InverseTransformPoint(gridTile.pointUpNE);
+        vert[4] = transform.InverseTransformPoint(gridTile.pointUpSE);
+        vert[5] = transform.InverseTransformPoint(gridTile.pointUpSO);
+        vert[6] = transform.InverseTransformPoint(gridTile.pointDownSO);
+        vert[7] = transform.InverseTransformPoint(gridTile.pointDownSE);
         meshBoxTile.vertices = vert;
         int[] triangles = {
             0, 2, 1, //face front
