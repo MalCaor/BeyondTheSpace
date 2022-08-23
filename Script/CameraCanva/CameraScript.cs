@@ -50,16 +50,7 @@ public class CameraScript : MonoBehaviour
             // go Front
             transform.RotateAround(curentGrid.transform.position, -Vector3.Cross(transform.forward, transform.up), speed);
         }
-        if(Input.GetKey(KeyCode.Space))
-        {
-            // go Up
-            transform.RotateAround(curentGrid.transform.position, Vector3.forward, speed);
-        }
-        if(Input.GetKey(KeyCode.C))
-        {
-            // go Down
-            transform.RotateAround(curentGrid.transform.position, Vector3.forward, speed);
-        }
+        transform.position = gameObject.transform.position * ((Input.GetAxis("Mouse ScrollWheel")+1));
 
         // rotation
         if(Input.GetMouseButton(2))
