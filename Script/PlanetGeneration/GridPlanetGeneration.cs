@@ -234,7 +234,7 @@ public class GridPlanetGeneration : MonoBehaviour
                     // set tile
                     GridTile t = new GridTile(numFace, N, O, (planetSettings.resolution-O-1), (planetSettings.resolution-N-1), h, planetSettings.height-1-h);
                     t.InitSquare(NO, NE, SO, SE, NOH, NEH, SOH, SEH);
-                    t.tile.transform.parent = gameObject.transform;
+                    t.tileGameObject.transform.parent = gameObject.transform;
                     switch (numFace)
                     {
                         case 0:

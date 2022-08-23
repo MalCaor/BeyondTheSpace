@@ -9,7 +9,7 @@ public class GridTile
     public string name;
 
     // GameObject in world
-    public GameObject tile;
+    public GameObject tileGameObject;
 
     // Proxy GridTile
     public GridTile ProxyTileNord;
@@ -34,15 +34,23 @@ public class GridTile
     // point that delimite the tile in a 3d space
     // points down
     // NO = NordOuest / NE NordEst / SE SudEst / SO SudOuest
-    Vector3 pointDownNO;
-    Vector3 pointDownNE;
-    Vector3 pointDownSO;
-    Vector3 pointDownSE;
+    [HideInInspector]
+    public Vector3 pointDownNO;
+    [HideInInspector]
+    public Vector3 pointDownNE;
+    [HideInInspector]
+    public Vector3 pointDownSO;
+    [HideInInspector]
+    public Vector3 pointDownSE;
     // points up
-    Vector3 pointUpNO;
-    Vector3 pointUpNE;
-    Vector3 pointUpSO;
-    Vector3 pointUpSE;
+    [HideInInspector]
+    public Vector3 pointUpNO;
+    [HideInInspector]
+    public Vector3 pointUpNE;
+    [HideInInspector]
+    public Vector3 pointUpSO;
+    [HideInInspector]
+    public Vector3 pointUpSE;
 
     // constructor
     public GridTile(int numFace, int N, int O, int E, int S, int D, int U)
@@ -99,33 +107,19 @@ public class GridTile
         pointUpSE = SEH;
 
         // set the grid
-        tile = new GameObject();
-        // set pos to mid
-        Vector3 mid = Vector3.Lerp(SOH, NE, 0.5f);
-        tile.transform.position = mid;
-        tile.name = this.name;
-        LineRenderer lDown = tile.AddComponent<LineRenderer>();
-        lDown.material = (Material)Resources.Load("Material/LineTileMat");
-        lDown.startColor = Color.black;
-        lDown.endColor = Color.black;
-        lDown.startWidth = 0.01f;
-        lDown.endWidth = 0.01f;
-        lDown.positionCount = 10;
-        lDown.SetPosition(0, pointDownNO);
-        lDown.SetPosition(1, pointDownNE);
-        lDown.SetPosition(2, pointDownSE);
-        lDown.SetPosition(3, pointDownSO);
-        lDown.SetPosition(4, pointDownNO);
-        // up
-        lDown.SetPosition(5, pointUpNO);
-        lDown.SetPosition(6, pointUpNE);
-        lDown.SetPosition(7, pointUpSE);
-        lDown.SetPosition(8, pointUpSO);
-        lDown.SetPosition(9, pointUpNO);
+        tileGameObject = new GameObject();
 
         // set Link to object in GameObject
-        GridTileGameObject linkToThis = tile.AddComponent<GridTileGameObject>();
+        GridTileGameObject linkToThis = tileGameObject.AddComponent<GridTileGameObject>();
         linkToThis.gridTile = this;
+
+        // set pos to mid
+        Vector3 mid = Vector3.Lerp(SOH, NE, 0.5f);
+        tileGameObject.transform.position = mid;
+        tileGameObject.name = this.name;
+        
+        // call line Renderer
+        linkToThis.InitLineTile();
     }
 
     public void SetProxyTileGrid(List<List<GridTile>> gridGlob)
@@ -139,7 +133,7 @@ public class GridTile
         ProxyTileDown = findTileOtherFace(gridGlob, 5);
 
         // Update the proxy for GameObject
-        tile.GetComponent<GridTileGameObject>().UpdateProxy();
+        tileGameObject.GetComponent<GridTileGameObject>().UpdateProxy();
     }
 
     /// <summary>
