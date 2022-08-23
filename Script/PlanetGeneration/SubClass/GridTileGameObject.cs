@@ -79,7 +79,7 @@ public class GridTileGameObject : MonoBehaviour
         l.SetPosition(9, gridTile.pointUpNO);
     }
 
-    public void InitMeshCol()
+    public void InitMeshBoxTile()
     {
         meshBoxTile = gameObject.AddComponent<MeshFilter>();
         Mesh mesh = new Mesh();

@@ -142,7 +142,7 @@ public class GridTile
     public void InitTileGridGameObject()
     {
         // set mesh
-        tileGameObject.GetComponent<GridTileGameObject>().InitMeshCol();
+        tileGameObject.GetComponent<GridTileGameObject>().InitMeshBoxTile();
     }
 
     /// <summary>
