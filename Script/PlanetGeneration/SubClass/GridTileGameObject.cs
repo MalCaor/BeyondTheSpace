@@ -16,6 +16,7 @@ public class GridTileGameObject : MonoBehaviour
 
     // mesh
     public MeshFilter meshBoxTile;
+    public MeshCollider meshCollider;
 
     // Start is called before the first frame update
     void Start()
@@ -79,20 +80,48 @@ public class GridTileGameObject : MonoBehaviour
         l.SetPosition(9, gridTile.pointUpNO);
     }
 
+    /// <summary>
+    /// mesh of the 8 vert of the Tile
+    /// </summary>
     public void InitMeshBoxTile()
     {
         meshBoxTile = gameObject.AddComponent<MeshFilter>();
         Mesh mesh = new Mesh();
         meshBoxTile.mesh = mesh;
+        // vert
         Vector3[] vert = new Vector3[8];
-        vert[0] = gridTile.pointDownNO;
-        vert[1] = gridTile.pointDownNE;
-        vert[2] = gridTile.pointDownSE;
-        vert[3] = gridTile.pointDownSO;
-        vert[4] = gridTile.pointUpNO;
-        vert[5] = gridTile.pointUpNE;
-        vert[6] = gridTile.pointUpSE;
-        vert[7] = gridTile.pointUpSO;
+        vert[0] = gridTile.pointDownNE;
+        vert[1] = gridTile.pointDownNO;
+        vert[2] = gridTile.pointUpNO;
+        vert[3] = gridTile.pointUpNE;
+        vert[4] = gridTile.pointUpSE;
+        vert[5] = gridTile.pointUpSO;
+        vert[6] = gridTile.pointDownSO;
+        vert[7] = gridTile.pointDownSE;
         mesh.vertices = vert;
+        int[] triangles = {
+            0, 2, 1, //face front
+            0, 3, 2,
+            2, 3, 4, //face top
+            2, 4, 5,
+            1, 2, 5, //face right
+            1, 5, 6,
+            0, 7, 4, //face left
+            0, 4, 3,
+            5, 4, 7, //face back
+            5, 7, 6,
+            0, 6, 7, //face bottom
+            0, 1, 6
+        };
+        mesh.triangles = triangles;
+    }
+
+    /// <summary>
+    /// invisible Colide for tile
+    /// </summary>
+    public void InitMeshCollider()
+    {
+        meshCollider = gameObject.AddComponent<MeshCollider>();
+        meshCollider.sharedMesh = meshBoxTile.sharedMesh;
     }
 }
