@@ -121,5 +121,6 @@ public class GridTileGameObject : MonoBehaviour
     {
         meshCollider = gameObject.AddComponent<MeshCollider>();
         meshCollider.sharedMesh = meshBoxTile;
+        meshCollider.convex = true;
     }
 }
