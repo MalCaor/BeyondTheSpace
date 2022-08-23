@@ -14,6 +14,9 @@ public class GridTileGameObject : MonoBehaviour
     public GridTile ProxyTileUp;
     public GridTile ProxyTileDown;
 
+    // mesh
+    public MeshFilter meshBoxTile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -78,6 +81,18 @@ public class GridTileGameObject : MonoBehaviour
 
     public void InitMeshCol()
     {
-        
+        meshBoxTile = gameObject.AddComponent<MeshFilter>();
+        Mesh mesh = new Mesh();
+        meshBoxTile.mesh = mesh;
+        Vector3[] vert = new Vector3[8];
+        vert[0] = gridTile.pointDownNO;
+        vert[1] = gridTile.pointDownNE;
+        vert[2] = gridTile.pointDownSE;
+        vert[3] = gridTile.pointDownSO;
+        vert[4] = gridTile.pointUpNO;
+        vert[5] = gridTile.pointUpNE;
+        vert[6] = gridTile.pointUpSE;
+        vert[7] = gridTile.pointUpSO;
+        mesh.vertices = vert;
     }
 }
