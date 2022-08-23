@@ -306,4 +306,41 @@ public class GridPlanetGeneration : MonoBehaviour
             tile.SetProxyTileGrid(listGridFaces);
         }
     }
+
+    /// <summary>
+    /// Call Every Tile to set various stuff
+    /// </summary>
+    public void InitTileGridGameObject()
+    {
+        // Nord
+        foreach (GridTile tile in FaceNord)
+        {
+            tile.InitTileGridGameObject();
+        }
+        // Est
+        foreach (GridTile tile in FaceEst)
+        {
+            tile.InitTileGridGameObject();
+        }
+        // Ouest
+        foreach (GridTile tile in FaceOuest)
+        {
+            tile.InitTileGridGameObject();
+        }
+        // Front
+        foreach (GridTile tile in FaceFront)
+        {
+            tile.InitTileGridGameObject();
+        }
+        // Back
+        foreach (GridTile tile in FaceBack)
+        {
+            tile.InitTileGridGameObject();
+        }
+        // Sud
+        foreach (GridTile tile in FaceSud)
+        {
+            tile.InitTileGridGameObject();
+        }
+    }
 }

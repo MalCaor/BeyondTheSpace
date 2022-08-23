@@ -137,6 +137,15 @@ public class GridTile
     }
 
     /// <summary>
+    /// Various stuff for init the gameObject
+    /// </summary>
+    public void InitTileGridGameObject()
+    {
+        // set mesh
+        tileGameObject.GetComponent<GridTileGameObject>().InitMeshCol();
+    }
+
+    /// <summary>
     /// Find a Tile even on the other Face
     /// dirTile = direction ( Nord 0 / Est 1 / Ouest 2 / Sud 3 / Up 4 / Down 5 )
     /// </summary>

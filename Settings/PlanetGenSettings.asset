@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PointTest: 1
   Sphere: 1
-  radius: 5
-  resolution: 4
-  height: 3
+  radius: 3
+  resolution: 5
+  height: 1
   tileHeight: 0.3
   faceDown: 1
   faceBack: 1

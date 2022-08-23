@@ -75,4 +75,9 @@ public class GridTileGameObject : MonoBehaviour
         l.SetPosition(8, gridTile.pointUpSO);
         l.SetPosition(9, gridTile.pointUpNO);
     }
+
+    public void InitMeshCol()
+    {
+        
+    }
 }
