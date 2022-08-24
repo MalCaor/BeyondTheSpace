@@ -6,7 +6,7 @@ public class CameraScript : MonoBehaviour
 {
     //vars
     // speed of mouvement
-    public float speed = 1f;
+    public float speedBase = 1f;
     // sensivity of camera rotation
     public float sensitivity = 10f;
 
@@ -32,6 +32,11 @@ public class CameraScript : MonoBehaviour
     // mouve cam update
     void UpdateCam()
     {
+        float speed = speedBase;
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            speed = speed * 2;
+        }
         // arrow key (relative to camera not the world)
         if(Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
