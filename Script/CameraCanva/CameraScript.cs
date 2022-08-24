@@ -26,6 +26,7 @@ public class CameraScript : MonoBehaviour
     void Update()
     {
         UpdateCam();
+        RayCastHitDetect();
     }
 
     // mouve cam update
@@ -59,6 +60,22 @@ public class CameraScript : MonoBehaviour
         {
             transform.Rotate(0, Input.GetAxis("Mouse X")* sensitivity, 0);
             transform.Rotate(-Input.GetAxis("Mouse Y")* sensitivity, 0, 0);
+        }
+    }
+
+    void RayCastHitDetect()
+    {
+        RaycastHit hit;
+        Ray ray;
+        // set Layer (3 = Buildable)
+        int layerMask = 3;
+        // invert (ingore everything except 3)
+        layerMask = ~layerMask;
+        // raycast to put object
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        {
+            hit.transform.gameObject.GetComponent<GridTileGameObject>().SetLineColor(Color.blue);
         }
     }
 }
