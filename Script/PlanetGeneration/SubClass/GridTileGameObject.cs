@@ -91,6 +91,14 @@ public class GridTileGameObject : MonoBehaviour
     }
 
     /// <summary>
+    /// change the color of the Tile line
+    /// </summary>
+    public void SetTileLayer(int layerInt)
+    {
+        gameObject.layer = layerInt;
+    }
+
+    /// <summary>
     /// change the color of the Tile in fonction of the car
     /// </summary>
     public void SetColTileAtri()

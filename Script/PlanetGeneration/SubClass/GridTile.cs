@@ -138,6 +138,8 @@ public class GridTile
     /// </summary>
     public void InitTileGridGameObject()
     {
+        // set Layer to TileLayer
+        tileGameObject.GetComponent<GridTileGameObject>().SetTileLayer(3);
         // set line
         tileGameObject.GetComponent<GridTileGameObject>().InitLineTile();
         // set mesh
