@@ -14,6 +14,7 @@ public class EnvironmentManager
     // SetColorTile for Debug puposes
     public Color GetColorTile()
     {
-        return Color.black;
+        Color c = Color.black;
+        return c;
     }
 }
