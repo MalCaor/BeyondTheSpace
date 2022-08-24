@@ -80,6 +80,13 @@ public class GridTileGameObject : MonoBehaviour
         l.SetPosition(9, gridTile.pointUpNO);
     }
 
+    public void SetLineColor(Color col)
+    {
+        LineRenderer l = gameObject.GetComponent<LineRenderer>();
+        l.startColor = col;
+        l.endColor = col;
+    }
+
     /// <summary>
     /// mesh of the 8 vert of the Tile
     /// </summary>
