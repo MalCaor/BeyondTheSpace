@@ -103,16 +103,9 @@ public class GridTileGameObject : MonoBehaviour
     /// </summary>
     public void SetColTileAtri()
     {
-        if(ProxyTileDown == null)
-        {
-            SetLineColor(Color.red);
-            return;
-        }
-        if(ProxyTileUp == null)
-        {
-            SetLineColor(Color.green);
-            return;
-        }
+        // call Grid Tile Mana to get color
+        Color c = gridTile.gridTileManager.GetColorTile();
+        SetLineColor(c);
     }
 
     /// <summary>

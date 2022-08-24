@@ -10,4 +10,10 @@ public class EnvironmentManager
     {
         listEnvironment = new List<Environment>();
     }
+
+    // SetColorTile for Debug puposes
+    public Color GetColorTile()
+    {
+        return Color.black;
+    }
 }

@@ -10,4 +10,10 @@ public class BuildingManager
     {
         listBuilding = new List<Building>();
     }
+
+    // SetColorTile for Debug puposes
+    public Color GetColorTile()
+    {
+        return Color.black;
+    }
 }

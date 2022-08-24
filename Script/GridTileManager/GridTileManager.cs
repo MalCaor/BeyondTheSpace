@@ -12,4 +12,17 @@ public class GridTileManager
         this.buildingManager = new BuildingManager();
         this.environmentManager = new EnvironmentManager();
     }
+
+    // SetColorTile for Debug puposes
+    public Color GetColorTile()
+    {
+        Color c = Color.black;
+        c = buildingManager.GetColorTile();
+        if(c==Color.black)
+        {
+            // black is default
+            c = environmentManager.GetColorTile();
+        }
+        return c;
+    }
 }
