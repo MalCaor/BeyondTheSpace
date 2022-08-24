@@ -11,6 +11,9 @@ public class GridTile
     // GameObject in world
     public GameObject tileGameObject;
 
+    // tile mana
+    public GridTileManager gridTileManager;
+
     // Proxy GridTile
     public GridTile ProxyTileNord;
     public GridTile ProxyTileSud;
@@ -90,7 +93,11 @@ public class GridTile
             break;
         }
 
+        // set name
         this.name = "Tile Face " + faceName + " : N " + Npos + ", O " + Opos + ", E " + Epos + ", S " + Spos + ", D " + Dpos;
+        
+        // set tileManager
+        this.gridTileManager = new GridTileManager();
     }
 
     // set square
