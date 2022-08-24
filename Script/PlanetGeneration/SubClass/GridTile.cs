@@ -144,6 +144,8 @@ public class GridTile
         tileGameObject.GetComponent<GridTileGameObject>().InitMeshBoxTile();
         // set mesh Col
         tileGameObject.GetComponent<GridTileGameObject>().InitMeshCollider();
+        // set col tile
+        tileGameObject.GetComponent<GridTileGameObject>().SetColTileAtri();
     }
 
     /// <summary>

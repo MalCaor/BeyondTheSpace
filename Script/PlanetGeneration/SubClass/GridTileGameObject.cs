@@ -61,7 +61,7 @@ public class GridTileGameObject : MonoBehaviour
     public void InitLineTile()
     {
         LineRenderer l = gameObject.AddComponent<LineRenderer>();
-        l.material = (Material)Resources.Load("Material/LineTileMat");
+        l.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
         l.startColor = Color.black;
         l.endColor = Color.black;
         l.startWidth = 0.01f;
@@ -80,11 +80,31 @@ public class GridTileGameObject : MonoBehaviour
         l.SetPosition(9, gridTile.pointUpNO);
     }
 
+    /// <summary>
+    /// change the color of the Tile line
+    /// </summary>
     public void SetLineColor(Color col)
     {
         LineRenderer l = gameObject.GetComponent<LineRenderer>();
         l.startColor = col;
         l.endColor = col;
+    }
+
+    /// <summary>
+    /// change the color of the Tile in fonction of the car
+    /// </summary>
+    public void SetColTileAtri()
+    {
+        if(ProxyTileDown == null)
+        {
+            SetLineColor(Color.red);
+            return;
+        }
+        if(ProxyTileUp == null)
+        {
+            SetLineColor(Color.green);
+            return;
+        }
     }
 
     /// <summary>
