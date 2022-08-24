@@ -58,9 +58,7 @@ public class CameraScript : MonoBehaviour
         // rotation
         if(Input.GetMouseButton(2))
         {
-            // old
-            //transform.Rotate(0, Input.GetAxis("Mouse X")* sensitivity, 0);
-            //transform.Rotate(-Input.GetAxis("Mouse Y")* sensitivity, 0, 0);
+            // rotate cam
             transform.RotateAround(transform.position, transform.right, Input.GetAxis("Mouse Y"));
             transform.RotateAround(transform.position, transform.position - curentGrid.transform.position, -Input.GetAxis("Mouse X"));
         }
