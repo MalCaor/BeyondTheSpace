@@ -39,8 +39,8 @@ public class GridPlanetGeneration : MonoBehaviour
         DestroyChild();
         InitGrid();
         InitProxyTile();
-        SetTilesManager();
         InitTileGridGameObject();
+        SetTilesManager();
     }
 
     /// <summary>

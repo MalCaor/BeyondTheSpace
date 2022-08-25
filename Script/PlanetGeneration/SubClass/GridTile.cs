@@ -151,6 +151,9 @@ public class GridTile
             destructibility = false;
         }
         gridTileManager.SetTileManager(destructibility);
+        if(!destructibility){
+            tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
+        }
     }
 
     /// <summary>
