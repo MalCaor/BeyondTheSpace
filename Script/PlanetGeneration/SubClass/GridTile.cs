@@ -141,6 +141,19 @@ public class GridTile
     }
 
     /// <summary>
+    /// Init the Tile mana
+    /// </summary>
+    public void SetTileManager()
+    {
+        bool destructibility = true;
+        if (ProxyTileDown == null)
+        {
+            destructibility = false;
+        }
+        gridTileManager.SetTileManager(destructibility);
+    }
+
+    /// <summary>
     /// Various stuff for init the gameObject
     /// </summary>
     public void InitTileGridGameObject()

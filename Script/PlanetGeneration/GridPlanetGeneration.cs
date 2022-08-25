@@ -39,6 +39,7 @@ public class GridPlanetGeneration : MonoBehaviour
         DestroyChild();
         InitGrid();
         InitProxyTile();
+        SetTilesManager();
         InitTileGridGameObject();
     }
 
@@ -305,6 +306,43 @@ public class GridPlanetGeneration : MonoBehaviour
         foreach (GridTile tile in FaceSud)
         {
             tile.SetProxyTileGrid(listGridFaces);
+        }
+    }
+
+    /// <summary>
+    /// Call Every Tile to set Tile Manager
+    /// </summary>
+    public void SetTilesManager()
+    {
+        // Nord
+        foreach (GridTile tile in FaceNord)
+        {
+            tile.SetTileManager();
+        }
+        // Est
+        foreach (GridTile tile in FaceEst)
+        {
+            tile.SetTileManager();
+        }
+        // Ouest
+        foreach (GridTile tile in FaceOuest)
+        {
+            tile.SetTileManager();
+        }
+        // Front
+        foreach (GridTile tile in FaceFront)
+        {
+            tile.SetTileManager();
+        }
+        // Back
+        foreach (GridTile tile in FaceBack)
+        {
+            tile.SetTileManager();
+        }
+        // Sud
+        foreach (GridTile tile in FaceSud)
+        {
+            tile.SetTileManager();
         }
     }
 
