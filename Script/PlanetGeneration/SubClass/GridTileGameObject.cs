@@ -30,6 +30,18 @@ public class GridTileGameObject : MonoBehaviour
         
     }
 
+    public void ShowTileLine()
+    {
+        gameObject.GetComponent<LineRenderer>().enabled = true;
+        gameObject.GetComponent<MeshCollider>().enabled = true;
+    }
+
+    public void HideTileLine()
+    {
+        gameObject.GetComponent<LineRenderer>().enabled = false;
+        gameObject.GetComponent<MeshCollider>().enabled = false;
+    }
+
     public void UpdateProxy()
     {
         if(gridTile.ProxyTileNord!=null)

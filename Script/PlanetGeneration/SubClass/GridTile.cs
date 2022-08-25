@@ -168,6 +168,8 @@ public class GridTile
         tileGameObject.GetComponent<GridTileGameObject>().InitMeshCollider();
         // set col tile
         tileGameObject.GetComponent<GridTileGameObject>().SetColTileAtri();
+        // Hide unitil futher us
+        tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
     }
 
     /// <summary>

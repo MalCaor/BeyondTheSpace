@@ -11,6 +11,8 @@ public class GridTileManager
     // public var
     // isDestructible is fasle for the first row of tile (to stop the player from reaching the 'core' of the planet)
     public bool isDestructible = true;
+    // type tile (0 = Air / 1 = Solid / 2 = Liquid / 3 = Space)
+    public int tileTerrainType = 0;
 
     public GridTileManager()
     {
