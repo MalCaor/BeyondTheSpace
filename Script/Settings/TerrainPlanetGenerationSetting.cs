@@ -7,4 +7,6 @@ public class TerrainPlanetGenerationSetting : ScriptableObject
 {
     // seting for terrain generation
     public int waterLevel;
+    // rougness of the noise
+    public float roughnessNoiseTerrainElevation = 1f;
 }
