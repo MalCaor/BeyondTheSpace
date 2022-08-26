@@ -17,6 +17,7 @@ public class TerrainPlanetGeneration : MonoBehaviour
     {
         grid = gameObject.GetComponent<GridPlanetGeneration>();
         InitTerrain();
+        InitWater();
         ShowHideTerrain();
     }
 
@@ -51,6 +52,40 @@ public class TerrainPlanetGeneration : MonoBehaviour
         foreach (GridTile tile in grid.FaceSud)
         {
             InitTileTerrain(tile);
+        }
+    }
+
+    void InitWater()
+    {
+        // Nord
+        foreach (GridTile tile in grid.FaceNord)
+        {
+            InitTileWater(tile);
+        }
+        // Est
+        foreach (GridTile tile in grid.FaceEst)
+        {
+            InitTileWater(tile);
+        }
+        // Ouest
+        foreach (GridTile tile in grid.FaceOuest)
+        {
+            InitTileWater(tile);
+        }
+        // Front
+        foreach (GridTile tile in grid.FaceFront)
+        {
+            InitTileWater(tile);
+        }
+        // Back
+        foreach (GridTile tile in grid.FaceBack)
+        {
+            InitTileWater(tile);
+        }
+        // Sud
+        foreach (GridTile tile in grid.FaceSud)
+        {
+            InitTileWater(tile);
         }
     }
 
@@ -103,15 +138,31 @@ public class TerrainPlanetGeneration : MonoBehaviour
         }
     }
 
+    void InitTileWater(GridTile t)
+    {
+        if(t.Dpos<=terrainSetting.waterLevel && t.gridTileManager.tileTerrainType == 0)
+        {
+            t.gridTileManager.tileTerrainType = 2;
+            t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
+            t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(Color.blue);
+        }
+    }
+
     void ShowHideTileTerrain(GridTile t)
     {
-        if(t.ProxyTileNord.gridTileManager.tileTerrainType == 1 &&
+        try{
+            if(t.ProxyTileNord.gridTileManager.tileTerrainType == 1 &&
             t.ProxyTileSud.gridTileManager.tileTerrainType == 1 &&
             t.ProxyTileOuest.gridTileManager.tileTerrainType == 1 &&
             t.ProxyTileEst.gridTileManager.tileTerrainType == 1 &&
             t.ProxyTileUp.gridTileManager.tileTerrainType == 1)
+            {
+                t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
+            }
+        }
+        catch
         {
-            t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
+            
         }
     }
 }

@@ -6,5 +6,5 @@ using UnityEngine;
 public class TerrainPlanetGenerationSetting : ScriptableObject
 {
     // seting for terrain generation
-    
+    public int waterLevel;
 }
