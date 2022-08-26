@@ -27,12 +27,18 @@ public class GridTile
 
     // position in face grid
     // if 0 the tile is the first one, if = max then it's on the other side
-    int Npos;
-    int Opos;
-    int Epos;
-    int Spos;
-    int Upos;
-    int Dpos;
+    [HideInInspector]
+    public int Npos;
+    [HideInInspector]
+    public int Opos;
+    [HideInInspector]
+    public int Epos;
+    [HideInInspector]
+    public int Spos;
+    [HideInInspector]
+    public int Upos;
+    [HideInInspector]
+    public int Dpos;
 
     // point that delimite the tile in a 3d space
     // points down

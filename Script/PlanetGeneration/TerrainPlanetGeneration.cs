@@ -7,6 +7,9 @@ public class TerrainPlanetGeneration : MonoBehaviour
     // grid
     GridPlanetGeneration grid;
 
+    // noise
+    Noise noise = new Noise();
+
     // setting
     public TerrainPlanetGenerationSetting terrainSetting;
 
@@ -52,6 +55,8 @@ public class TerrainPlanetGeneration : MonoBehaviour
 
     void InitTileTerrain(GridTile t)
     {
+        float noiseVal = (noise.Evaluate(new Vector2(t.Npos, t.Opos))+1) * 0.5f;
+        Debug.Log(noiseVal);
         t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
     }
 }
