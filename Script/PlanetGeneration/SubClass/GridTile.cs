@@ -151,9 +151,6 @@ public class GridTile
             destructibility = false;
         }
         gridTileManager.SetTileManager(destructibility);
-        if(!destructibility){
-            tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
-        }
     }
 
     /// <summary>
@@ -171,8 +168,6 @@ public class GridTile
         tileGameObject.GetComponent<GridTileGameObject>().InitMeshCollider();
         // set col tile
         tileGameObject.GetComponent<GridTileGameObject>().SetColTileAtri();
-        // Hide unitil futher us
-        tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
     }
 
     /// <summary>
