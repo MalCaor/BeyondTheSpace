@@ -76,8 +76,8 @@ public class GridTileGameObject : MonoBehaviour
         l.material = new Material(Shader.Find("Legacy Shaders/Particles/Alpha Blended Premultiply"));
         l.startColor = Color.black;
         l.endColor = Color.black;
-        l.startWidth = 0.01f;
-        l.endWidth = 0.01f;
+        l.startWidth = 0.1f;
+        l.endWidth = 0.1f;
         l.positionCount = 10;
         l.SetPosition(0, gridTile.pointDownNO);
         l.SetPosition(1, gridTile.pointDownNE);
