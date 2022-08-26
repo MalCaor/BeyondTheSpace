@@ -55,14 +55,24 @@ public class TerrainPlanetGeneration : MonoBehaviour
 
     void InitTileTerrain(GridTile t)
     {
+        // generate terrain
         float noiseVal = (noise.Evaluate(new Vector2(t.Npos, t.Opos))+1) * 0.5f;
         int levelTerrain = (int)Mathf.Round(grid.planetSettings.height * noiseVal);
         if(t.Dpos>levelTerrain)
         {
+            t.gridTileManager.tileTerrainType = 0;
             t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
         } else {
+            t.gridTileManager.tileTerrainType = 1;
             t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
         }
-        
+        if(t.ProxyTileNord.gridTileManager.tileTerrainType == 1 &&
+            t.ProxyTileSud.gridTileManager.tileTerrainType == 1 &&
+            t.ProxyTileOuest.gridTileManager.tileTerrainType == 1 &&
+            t.ProxyTileEst.gridTileManager.tileTerrainType == 1 &&
+            t.ProxyTileUp.gridTileManager.tileTerrainType == 1)
+        {
+            t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
+        }
     }
 }

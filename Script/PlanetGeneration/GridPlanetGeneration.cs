@@ -11,11 +11,17 @@ public class GridPlanetGeneration : MonoBehaviour
     // setting planet
     public PlanetGenerationSettings planetSettings;
     // the 6 faces of a planet
+    [HideInInspector]
     public List<GridTile> FaceNord;
+    [HideInInspector]
     public List<GridTile> FaceEst;
+    [HideInInspector]
     public List<GridTile> FaceOuest;
+    [HideInInspector]
     public List<GridTile> FaceFront;
+    [HideInInspector]
     public List<GridTile> FaceBack;
+    [HideInInspector]
     public List<GridTile> FaceSud;
 
     // here for easy acces
