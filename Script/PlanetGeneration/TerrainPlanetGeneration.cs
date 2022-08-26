@@ -18,6 +18,7 @@ public class TerrainPlanetGeneration : MonoBehaviour
         grid = gameObject.GetComponent<GridPlanetGeneration>();
         InitTerrain();
         InitWater();
+        ColorWaterAndSand();
         ShowHideTerrain();
     }
 
@@ -89,6 +90,40 @@ public class TerrainPlanetGeneration : MonoBehaviour
         }
     }
 
+    void ColorWaterAndSand()
+    {
+        // Nord
+        foreach (GridTile tile in grid.FaceNord)
+        {
+            ColorTileWaterAndSand(tile);
+        }
+        // Est
+        foreach (GridTile tile in grid.FaceEst)
+        {
+            ColorTileWaterAndSand(tile);
+        }
+        // Ouest
+        foreach (GridTile tile in grid.FaceOuest)
+        {
+            ColorTileWaterAndSand(tile);
+        }
+        // Front
+        foreach (GridTile tile in grid.FaceFront)
+        {
+            ColorTileWaterAndSand(tile);
+        }
+        // Back
+        foreach (GridTile tile in grid.FaceBack)
+        {
+            ColorTileWaterAndSand(tile);
+        }
+        // Sud
+        foreach (GridTile tile in grid.FaceSud)
+        {
+            ColorTileWaterAndSand(tile);
+        }
+    }
+
     void ShowHideTerrain()
     {
         // Nord
@@ -145,6 +180,25 @@ public class TerrainPlanetGeneration : MonoBehaviour
             t.gridTileManager.tileTerrainType = 2;
             t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
             t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(Color.blue);
+        }
+    }
+
+    void ColorTileWaterAndSand(GridTile t)
+    {
+        try{
+            if(t.gridTileManager.tileTerrainType == 1 &&(
+                t.ProxyTileNord.gridTileManager.tileTerrainType == 2 ||
+                t.ProxyTileSud.gridTileManager.tileTerrainType == 2 ||
+                t.ProxyTileOuest.gridTileManager.tileTerrainType == 2 ||
+                t.ProxyTileEst.gridTileManager.tileTerrainType == 2 ||
+                t.ProxyTileUp.gridTileManager.tileTerrainType == 2))
+            {
+                t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(Color.yellow);
+            }
+        }
+        catch
+        {
+
         }
     }
 
