@@ -56,7 +56,13 @@ public class TerrainPlanetGeneration : MonoBehaviour
     void InitTileTerrain(GridTile t)
     {
         float noiseVal = (noise.Evaluate(new Vector2(t.Npos, t.Opos))+1) * 0.5f;
-        Debug.Log(noiseVal);
-        t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
+        int levelTerrain = (int)Mathf.Round(grid.planetSettings.height * noiseVal);
+        if(t.Dpos>levelTerrain)
+        {
+            t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
+        } else {
+            t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
+        }
+        
     }
 }
