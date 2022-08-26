@@ -17,6 +17,7 @@ public class TerrainPlanetGeneration : MonoBehaviour
     {
         grid = gameObject.GetComponent<GridPlanetGeneration>();
         InitTerrain();
+        ShowHideTerrain();
     }
 
     void InitTerrain()
@@ -53,6 +54,40 @@ public class TerrainPlanetGeneration : MonoBehaviour
         }
     }
 
+    void ShowHideTerrain()
+    {
+        // Nord
+        foreach (GridTile tile in grid.FaceNord)
+        {
+            ShowHideTileTerrain(tile);
+        }
+        // Est
+        foreach (GridTile tile in grid.FaceEst)
+        {
+            ShowHideTileTerrain(tile);
+        }
+        // Ouest
+        foreach (GridTile tile in grid.FaceOuest)
+        {
+            ShowHideTileTerrain(tile);
+        }
+        // Front
+        foreach (GridTile tile in grid.FaceFront)
+        {
+            ShowHideTileTerrain(tile);
+        }
+        // Back
+        foreach (GridTile tile in grid.FaceBack)
+        {
+            ShowHideTileTerrain(tile);
+        }
+        // Sud
+        foreach (GridTile tile in grid.FaceSud)
+        {
+            ShowHideTileTerrain(tile);
+        }
+    }
+
     void InitTileTerrain(GridTile t)
     {
         // generate terrain
@@ -66,6 +101,10 @@ public class TerrainPlanetGeneration : MonoBehaviour
             t.gridTileManager.tileTerrainType = 1;
             t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
         }
+    }
+
+    void ShowHideTileTerrain(GridTile t)
+    {
         if(t.ProxyTileNord.gridTileManager.tileTerrainType == 1 &&
             t.ProxyTileSud.gridTileManager.tileTerrainType == 1 &&
             t.ProxyTileOuest.gridTileManager.tileTerrainType == 1 &&
