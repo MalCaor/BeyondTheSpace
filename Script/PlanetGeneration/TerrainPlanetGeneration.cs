@@ -234,6 +234,12 @@ public class TerrainPlanetGeneration : MonoBehaviour
 
     void ShowHideTileTerrain(GridTile t)
     {
+        if(t.gridTileManager.tileTerrainType == 0)
+        {
+            t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
+        } else {
+            t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
+        }
         try{
             if(t.ProxyTileNord.gridTileManager.tileTerrainType == 1 &&
             t.ProxyTileSud.gridTileManager.tileTerrainType == 1 &&

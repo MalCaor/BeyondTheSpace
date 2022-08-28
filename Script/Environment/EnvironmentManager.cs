@@ -15,7 +15,14 @@ public class EnvironmentManager
     // SetColorTile for Debug puposes
     public Color GetColorTile()
     {
-        Color c = Color.black;
-        return c;
+        if(listEnvironment.Find((x) => x.name=="water") != null)
+        {
+            return Color.blue;
+        }
+        if(listEnvironment.Find((x) => x.name=="earth") != null)
+        {
+            return Color.grey;
+        }
+        return Color.black;
     }
 }
