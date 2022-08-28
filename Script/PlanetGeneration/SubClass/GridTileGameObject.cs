@@ -128,8 +128,8 @@ public class GridTileGameObject : MonoBehaviour
         vert[3] = transform.InverseTransformPoint(pointMeshSE);
         meshTerrain.vertices = vert;
         int[] triangles = {
-            0, 1, 2, //face front
-            0, 2, 2
+            2, 1, 0, //face front
+            1, 2, 3
         };
         meshTerrain.triangles = triangles;
         // mesh filter
