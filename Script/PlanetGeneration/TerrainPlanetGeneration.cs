@@ -24,7 +24,7 @@ public class TerrainPlanetGeneration : MonoBehaviour
         {
             InitWater();
         }
-        ColorWaterAndSand();
+        SetColor();
         ShowHideTerrain();
     }
 
@@ -130,37 +130,37 @@ public class TerrainPlanetGeneration : MonoBehaviour
         }
     }
 
-    void ColorWaterAndSand()
+    void SetColor()
     {
         // Nord
         foreach (GridTile tile in grid.FaceNord)
         {
-            ColorTileWaterAndSand(tile);
+            SetColorTile(tile);
         }
         // Est
         foreach (GridTile tile in grid.FaceEst)
         {
-            ColorTileWaterAndSand(tile);
+            SetColorTile(tile);
         }
         // Ouest
         foreach (GridTile tile in grid.FaceOuest)
         {
-            ColorTileWaterAndSand(tile);
+            SetColorTile(tile);
         }
         // Front
         foreach (GridTile tile in grid.FaceFront)
         {
-            ColorTileWaterAndSand(tile);
+            SetColorTile(tile);
         }
         // Back
         foreach (GridTile tile in grid.FaceBack)
         {
-            ColorTileWaterAndSand(tile);
+            SetColorTile(tile);
         }
         // Sud
         foreach (GridTile tile in grid.FaceSud)
         {
-            ColorTileWaterAndSand(tile);
+            SetColorTile(tile);
         }
     }
 
@@ -211,10 +211,10 @@ public class TerrainPlanetGeneration : MonoBehaviour
         if(t.Dpos>levelTerrain)
         {
             t.gridTileManager.tileTerrainType = 0;
-            t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
+            t.gridTileManager.environmentManager.listEnvironment.Add(Environment.listEnvironmentGlobal.Find((x) => x.name=="air"));
         } else {
             t.gridTileManager.tileTerrainType = 1;
-            t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
+            t.gridTileManager.environmentManager.listEnvironment.Add(Environment.listEnvironmentGlobal.Find((x) => x.name=="earth"));;
         }
     }
 
@@ -223,28 +223,13 @@ public class TerrainPlanetGeneration : MonoBehaviour
         if(t.Dpos<=terrainSetting.waterLevel && t.gridTileManager.tileTerrainType == 0)
         {
             t.gridTileManager.tileTerrainType = 2;
-            t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
-            t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(Color.blue);
+            t.gridTileManager.environmentManager.listEnvironment.Add(Environment.listEnvironmentGlobal.Find((x) => x.name=="water"));
         }
     }
 
-    void ColorTileWaterAndSand(GridTile t)
+    void SetColorTile(GridTile t)
     {
-        try{
-            if(t.gridTileManager.tileTerrainType == 1 &&(
-                t.ProxyTileNord.gridTileManager.tileTerrainType == 2 ||
-                t.ProxyTileSud.gridTileManager.tileTerrainType == 2 ||
-                t.ProxyTileOuest.gridTileManager.tileTerrainType == 2 ||
-                t.ProxyTileEst.gridTileManager.tileTerrainType == 2 ||
-                t.ProxyTileUp.gridTileManager.tileTerrainType == 2))
-            {
-                t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(Color.yellow);
-            }
-        }
-        catch
-        {
-
-        }
+        t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(t.gridTileManager.GetColorTile());
     }
 
     void ShowHideTileTerrain(GridTile t)
