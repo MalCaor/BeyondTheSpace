@@ -16,6 +16,8 @@ public class TerrainPlanetGeneration : MonoBehaviour
     public void Init()
     {
         grid = gameObject.GetComponent<GridPlanetGeneration>();
+        // init all env
+        EnvironmentGlobalGeneration.InitAllEnvironment();
         InitTerrain();
         ResetColor();
         if (terrainSetting.water)
