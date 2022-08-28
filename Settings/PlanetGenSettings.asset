@@ -15,12 +15,12 @@ MonoBehaviour:
   PointTest: 1
   Sphere: 1
   radius: 10
-  resolution: 20
+  resolution: 30
   height: 10
-  tileHeight: 0.2
-  faceDown: 1
-  faceBack: 1
+  tileHeight: 0.05
+  faceDown: 0
+  faceBack: 0
   faceUp: 1
-  faceForward: 1
-  faceLeft: 1
-  faceRight: 1
+  faceForward: 0
+  faceLeft: 0
+  faceRight: 0

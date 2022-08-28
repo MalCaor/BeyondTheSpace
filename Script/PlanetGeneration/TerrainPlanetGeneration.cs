@@ -17,7 +17,10 @@ public class TerrainPlanetGeneration : MonoBehaviour
     {
         grid = gameObject.GetComponent<GridPlanetGeneration>();
         InitTerrain();
-        InitWater();
+        if (terrainSetting.water)
+        {
+            InitWater();
+        }
         ColorWaterAndSand();
         ShowHideTerrain();
     }

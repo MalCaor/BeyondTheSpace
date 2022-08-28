@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8acfb0b6abe9554795db5d7193ff117, type: 3}
   m_Name: TerrainSettingsDef
   m_EditorClassIdentifier: 
+  waterLevel: 5
+  roughnessNoiseTerrainElevation: 0.05
