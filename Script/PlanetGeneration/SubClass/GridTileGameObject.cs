@@ -25,6 +25,7 @@ public class GridTileGameObject : MonoBehaviour
     Vector3 pointMeshSE;
     public Mesh meshTerrain;
     public MeshFilter meshFilterTerrain;
+    public MeshRenderer meshRendererTerrain;
 
     // Start is called before the first frame update
     void Start()
@@ -42,12 +43,20 @@ public class GridTileGameObject : MonoBehaviour
     {
         gameObject.GetComponent<LineRenderer>().enabled = true;
         gameObject.GetComponent<MeshCollider>().enabled = true;
+        if(gameObject.GetComponent<MeshRenderer>() != null)
+        {
+            gameObject.GetComponent<MeshRenderer>().enabled = true;
+        }
     }
 
     public void HideTileLine()
     {
         gameObject.GetComponent<LineRenderer>().enabled = false;
         gameObject.GetComponent<MeshCollider>().enabled = false;
+        if(gameObject.GetComponent<MeshRenderer>() != null)
+        {
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
     }
 
     public void UpdateProxy()
@@ -113,18 +122,30 @@ public class GridTileGameObject : MonoBehaviour
         meshTerrain = new Mesh();
         // vert
         Vector3[] vert = new Vector3[4];
-        vert[0] = pointMeshNO;
-        vert[1] = pointMeshNE;
-        vert[2] = pointMeshSO;
-        vert[3] = pointMeshSE;
+        vert[0] = transform.InverseTransformPoint(pointMeshNO);
+        vert[1] = transform.InverseTransformPoint(pointMeshNE);
+        vert[2] = transform.InverseTransformPoint(pointMeshSO);
+        vert[3] = transform.InverseTransformPoint(pointMeshSE);
         meshTerrain.vertices = vert;
         int[] triangles = {
             0, 1, 2, //face front
-            0, 2, 3,
+            0, 2, 2
         };
         meshTerrain.triangles = triangles;
-        meshFilterTerrain = gameObject.AddComponent<MeshFilter>();
+        // mesh filter
+        meshFilterTerrain = gameObject.GetComponent<MeshFilter>();
+        if(meshFilterTerrain == null)
+        {
+            meshFilterTerrain = gameObject.AddComponent<MeshFilter>();
+        }
         meshFilterTerrain.mesh = meshTerrain;
+        // mesh Rend
+        meshRendererTerrain = gameObject.GetComponent<MeshRenderer>();
+        if(meshRendererTerrain == null)
+        {
+            meshRendererTerrain = gameObject.AddComponent<MeshRenderer>();
+        }
+        meshRendererTerrain.material = Resources.Load("Material/BlackMatDef") as Material;
     }
 
     /// <summary>
