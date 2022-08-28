@@ -239,6 +239,8 @@ public class TerrainPlanetGeneration : MonoBehaviour
             t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
         } else {
             t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
+            t.tileGameObject.GetComponent<GridTileGameObject>().UpdatePointMesh();
+            t.tileGameObject.GetComponent<GridTileGameObject>().drawMesh();
         }
         try{
             if(t.ProxyTileNord.gridTileManager.tileTerrainType == 1 &&

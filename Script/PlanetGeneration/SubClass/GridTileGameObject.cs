@@ -18,6 +18,14 @@ public class GridTileGameObject : MonoBehaviour
     public Mesh meshBoxTile;
     public MeshCollider meshCollider;
 
+    // point mesh
+    Vector3 pointMeshNO;
+    Vector3 pointMeshNE;
+    Vector3 pointMeshSO;
+    Vector3 pointMeshSE;
+    public Mesh meshTerrain;
+    public MeshFilter meshFilterTerrain;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -90,6 +98,33 @@ public class GridTileGameObject : MonoBehaviour
         l.SetPosition(7, gridTile.pointUpSE);
         l.SetPosition(8, gridTile.pointUpSO);
         l.SetPosition(9, gridTile.pointUpNO);
+    }
+
+    public void UpdatePointMesh()
+    {
+        pointMeshNO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
+        pointMeshNE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
+        pointMeshSO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
+        pointMeshSE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
+    }
+
+    public void drawMesh()
+    {
+        meshTerrain = new Mesh();
+        // vert
+        Vector3[] vert = new Vector3[4];
+        vert[0] = pointMeshNO;
+        vert[1] = pointMeshNE;
+        vert[2] = pointMeshSO;
+        vert[3] = pointMeshSE;
+        meshTerrain.vertices = vert;
+        int[] triangles = {
+            0, 1, 2, //face front
+            0, 2, 3,
+        };
+        meshTerrain.triangles = triangles;
+        meshFilterTerrain = gameObject.AddComponent<MeshFilter>();
+        meshFilterTerrain.mesh = meshTerrain;
     }
 
     /// <summary>
