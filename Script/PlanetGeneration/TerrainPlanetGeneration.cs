@@ -17,12 +17,47 @@ public class TerrainPlanetGeneration : MonoBehaviour
     {
         grid = gameObject.GetComponent<GridPlanetGeneration>();
         InitTerrain();
+        ResetColor();
         if (terrainSetting.water)
         {
             InitWater();
         }
         ColorWaterAndSand();
         ShowHideTerrain();
+    }
+
+    void ResetColor()
+    {
+        // Nord
+        foreach (GridTile tile in grid.FaceNord)
+        {
+            ResetColorTile(tile);
+        }
+        // Est
+        foreach (GridTile tile in grid.FaceEst)
+        {
+            ResetColorTile(tile);
+        }
+        // Ouest
+        foreach (GridTile tile in grid.FaceOuest)
+        {
+            ResetColorTile(tile);
+        }
+        // Front
+        foreach (GridTile tile in grid.FaceFront)
+        {
+            ResetColorTile(tile);
+        }
+        // Back
+        foreach (GridTile tile in grid.FaceBack)
+        {
+            ResetColorTile(tile);
+        }
+        // Sud
+        foreach (GridTile tile in grid.FaceSud)
+        {
+            ResetColorTile(tile);
+        }
     }
 
     void InitTerrain()
@@ -159,6 +194,11 @@ public class TerrainPlanetGeneration : MonoBehaviour
         {
             ShowHideTileTerrain(tile);
         }
+    }
+
+    void ResetColorTile(GridTile t)
+    {
+        t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(Color.black);
     }
 
     void InitTileTerrain(GridTile t)
