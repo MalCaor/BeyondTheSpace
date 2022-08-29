@@ -19,11 +19,19 @@ public class GridTileGameObject : MonoBehaviour
     public Mesh meshBoxTile;
     public MeshCollider meshCollider;
 
-    // point mesh
+    // point mesh coin
     Vector3 pointMeshNO;
     Vector3 pointMeshNE;
     Vector3 pointMeshSO;
     Vector3 pointMeshSE;
+    // mid point mesh
+    Vector3 pointMeshMidN;
+    Vector3 pointMeshMidE;
+    Vector3 pointMeshMidS;
+    Vector3 pointMeshMidO;
+    // mid mid
+    Vector3 pointMeshMid;
+
     public Mesh meshTerrain;
     public MeshFilter meshFilterTerrain;
     public MeshRenderer meshRendererTerrain;
@@ -116,24 +124,48 @@ public class GridTileGameObject : MonoBehaviour
         pointMeshNE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
         pointMeshSO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
         pointMeshSE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
+
+        pointMeshMidN = Vector3.Lerp(pointMeshNO, pointMeshNE, 0.5f);
+        pointMeshMidE = Vector3.Lerp(pointMeshSE, pointMeshNE, 0.5f);
+        pointMeshMidS = Vector3.Lerp(pointMeshSO, pointMeshSE, 0.5f);
+        pointMeshMidO = Vector3.Lerp(pointMeshNO, pointMeshSO, 0.5f);
+
+        pointMeshMid = transform.position;
     }
 
     public void drawMesh()
     {
         meshTerrain = new Mesh();
         // vert
-        Vector3[] vert = new Vector3[4];
+        Vector3[] vert = new Vector3[9];
         vert[0] = transform.InverseTransformPoint(pointMeshNO);
         vert[1] = transform.InverseTransformPoint(pointMeshNE);
         vert[2] = transform.InverseTransformPoint(pointMeshSO);
         vert[3] = transform.InverseTransformPoint(pointMeshSE);
+        // mid p
+        vert[4] = transform.InverseTransformPoint(pointMeshMidN);
+        vert[5] = transform.InverseTransformPoint(pointMeshMidE);
+        vert[6] = transform.InverseTransformPoint(pointMeshMidS);
+        vert[7] = transform.InverseTransformPoint(pointMeshMidO);
+        // mid mid
+        vert[8] = transform.InverseTransformPoint(pointMeshMid);
         meshTerrain.vertices = vert;
         int[] triangles = {
-            2, 1, 0, //face front
-            1, 2, 3
+            //face NO
+            7, 0, 4, 
+            7, 4, 8,
+            //face NE
+            8, 4, 1, 
+            8, 1, 5,
+            //face SO
+            2, 7, 8, 
+            2, 8, 6,
+            //face SE
+            6, 8, 5, 
+            2, 5, 3
         };
         meshTerrain.triangles = triangles;
-        if(gridTile.face != 0)
+        if(gridTile.face == 0)
         {
             // reverse mesh (tech du chlag)
             meshTerrain.triangles = meshTerrain.triangles.Reverse().ToArray();
