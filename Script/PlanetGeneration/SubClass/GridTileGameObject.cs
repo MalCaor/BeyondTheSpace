@@ -189,14 +189,20 @@ public class GridTileGameObject : MonoBehaviour
             etatD = 0;
         }
 
+        List<Vector3> listVert = new List<Vector3>();
+        int numFace = 0;
+
         if(etatU == 0)
         {
-            Vector3 NO = gridTile.pointUpNO;
-            Vector3 NE = gridTile.pointUpNE;
-            Vector3 SO = gridTile.pointUpSO;
-            Vector3 SE = gridTile.pointUpSE;
-            meshTerrain = SetMeshPlane(NO, NE, SO, SE);;
+            listVert.Add(gridTile.pointUpNO);
+            listVert.Add(gridTile.pointUpNE);
+            listVert.Add(gridTile.pointUpSO);
+            listVert.Add(gridTile.pointUpSE);
+            numFace++;
         }
+
+        // create Mesh
+        meshTerrain = SetMeshPlane(listVert, numFace);
 
         if(gridTile.face != 0)
         {
@@ -285,21 +291,31 @@ public class GridTileGameObject : MonoBehaviour
         meshRendererTerrain.material = gridTile.gridTileManager.GetMaterialTile();
     }
 
-    public Mesh SetMeshPlane(Vector3 NO, Vector3 NE, Vector3 SO, Vector3 SE)
+    public Mesh SetMeshPlane(List<Vector3> listVert, int numFaceToDraw)
     {
         Mesh meshRetour = new Mesh();
         // vert
-        Vector3[] vert = new Vector3[4];
-        vert[0] = transform.InverseTransformPoint(NO);
-        vert[1] = transform.InverseTransformPoint(NE);
-        vert[2] = transform.InverseTransformPoint(SO);
-        vert[3] = transform.InverseTransformPoint(SE);
+        Vector3[] vert = new Vector3[4 * numFaceToDraw];
+        for (int i = 0; i < numFaceToDraw*4; i=i+4)
+        {
+            Debug.Log("test");
+            vert[i+0] = transform.InverseTransformPoint(listVert[i+0]);
+            vert[i+1] = transform.InverseTransformPoint(listVert[i+1]);
+            vert[i+2] = transform.InverseTransformPoint(listVert[i+2]);
+            vert[i+3] = transform.InverseTransformPoint(listVert[i+3]);
+        }
         meshRetour.vertices = vert;
-        int[] triangles = {
-            //face NO
-            2, 1, 0, 
-            2, 3, 1
-        };
+        // triangle
+        int[] triangles = new int[6 * numFaceToDraw];
+        for (int i = 0; i < numFaceToDraw*6; i=i+6)
+        {
+            triangles[i+0] = 2+i;
+            triangles[i+1] = 1+i;
+            triangles[i+2] = 0+i;
+            triangles[i+3] = 2+i;
+            triangles[i+4] = 3+i;
+            triangles[i+5] = 1+i;
+        }
         meshRetour.triangles = triangles;
 
         return meshRetour;
