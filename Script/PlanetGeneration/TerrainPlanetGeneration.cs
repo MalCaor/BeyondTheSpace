@@ -206,7 +206,7 @@ public class TerrainPlanetGeneration : MonoBehaviour
     void InitTileTerrain(GridTile t)
     {
         // generate terrain
-        float noiseVal = (noise.Evaluate(new Vector2(t.Npos, t.Opos) * terrainSetting.roughnessNoiseTerrainElevation)+1) * 0.5f;
+        float noiseVal = (noise.Evaluate(new Vector3(t.Npos, t.Opos, t.face) * terrainSetting.roughnessNoiseTerrainElevation)+1) * 0.5f;
         int levelTerrain = (int)Mathf.Round(grid.planetSettings.height * noiseVal);
         if(t.Dpos>levelTerrain)
         {
