@@ -192,12 +192,52 @@ public class GridTileGameObject : MonoBehaviour
         List<Vector3> listVert = new List<Vector3>();
         int numFace = 0;
 
-        if(etatU == 0)
+        if(etatN == 1)
+        {
+            listVert.Add(gridTile.pointUpNO);
+            listVert.Add(gridTile.pointUpNE);
+            listVert.Add(gridTile.pointDownNO);
+            listVert.Add(gridTile.pointDownNE);
+            numFace++;
+        }
+        if(etatE == 1)
+        {
+            listVert.Add(gridTile.pointUpNE);
+            listVert.Add(gridTile.pointUpSE);
+            listVert.Add(gridTile.pointDownNE);
+            listVert.Add(gridTile.pointDownSE);
+            numFace++;
+        }
+        if(etatS == 1)
+        {
+            listVert.Add(gridTile.pointUpSE);
+            listVert.Add(gridTile.pointUpSO);
+            listVert.Add(gridTile.pointDownSE);
+            listVert.Add(gridTile.pointDownSO);
+            numFace++;
+        }
+        if(etatO == 1)
+        {
+            listVert.Add(gridTile.pointUpSO);
+            listVert.Add(gridTile.pointUpNO);
+            listVert.Add(gridTile.pointDownSO);
+            listVert.Add(gridTile.pointDownNO);
+            numFace++;
+        }
+        if(etatD == 0)
         {
             listVert.Add(gridTile.pointUpNO);
             listVert.Add(gridTile.pointUpNE);
             listVert.Add(gridTile.pointUpSO);
             listVert.Add(gridTile.pointUpSE);
+            numFace++;
+        }
+        if(etatU == 0)
+        {
+            listVert.Add(gridTile.pointDownNO);
+            listVert.Add(gridTile.pointDownNE);
+            listVert.Add(gridTile.pointDownSO);
+            listVert.Add(gridTile.pointDownSE);
             numFace++;
         }
 
@@ -294,11 +334,11 @@ public class GridTileGameObject : MonoBehaviour
     public Mesh SetMeshPlane(List<Vector3> listVert, int numFaceToDraw)
     {
         Mesh meshRetour = new Mesh();
+        meshRetour.Clear();
         // vert
         Vector3[] vert = new Vector3[4 * numFaceToDraw];
         for (int i = 0; i < numFaceToDraw*4; i=i+4)
         {
-            Debug.Log("test");
             vert[i+0] = transform.InverseTransformPoint(listVert[i+0]);
             vert[i+1] = transform.InverseTransformPoint(listVert[i+1]);
             vert[i+2] = transform.InverseTransformPoint(listVert[i+2]);
@@ -307,16 +347,21 @@ public class GridTileGameObject : MonoBehaviour
         meshRetour.vertices = vert;
         // triangle
         int[] triangles = new int[6 * numFaceToDraw];
+        int y = 0;
         for (int i = 0; i < numFaceToDraw*6; i=i+6)
         {
-            triangles[i+0] = 2+i;
-            triangles[i+1] = 1+i;
-            triangles[i+2] = 0+i;
-            triangles[i+3] = 2+i;
-            triangles[i+4] = 3+i;
-            triangles[i+5] = 1+i;
+            triangles[i+0] = 2+y;
+            triangles[i+1] = 1+y;
+            triangles[i+2] = 0+y;
+            triangles[i+3] = 2+y;
+            triangles[i+4] = 3+y;
+            triangles[i+5] = 1+y;
+            y = y + 4;
         }
         meshRetour.triangles = triangles;
+
+        // clear
+        listVert.Clear();
 
         return meshRetour;
     }
