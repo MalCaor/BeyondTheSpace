@@ -20,6 +20,9 @@ public class GridTileGameObject : MonoBehaviour
     public Mesh meshBoxTile;
     public MeshCollider meshCollider;
 
+    int resolutionPointMesh = 4;
+    Vector3[] listPointMesh;
+
     // point mesh coin
     Vector3 pointMeshNO;
     Vector3 pointMeshNE;
@@ -119,8 +122,11 @@ public class GridTileGameObject : MonoBehaviour
         l.SetPosition(9, gridTile.pointUpNO);
     }
 
-    public void UpdatePointMeshSolid()
+    public void DrawMeshSolid()
     {
+        // init mesh
+        meshTerrain = new Mesh();
+
         int etatN;
         int etatE;
         int etatS;
@@ -183,158 +189,39 @@ public class GridTileGameObject : MonoBehaviour
             etatD = 0;
         }
 
-        pointMeshNO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
-        pointMeshNE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
-        pointMeshSO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
-        pointMeshSE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
-
-        pointMeshMidN = Vector3.Lerp(pointMeshNO, pointMeshNE, 0.5f);
-        pointMeshMidE = Vector3.Lerp(pointMeshNE, pointMeshSE, 0.5f);
-        pointMeshMidS = Vector3.Lerp(pointMeshSO, pointMeshSE, 0.5f);
-        pointMeshMidO = Vector3.Lerp(pointMeshNO, pointMeshSO, 0.5f);
-
-        pointMeshMid = transform.position;
-        
-        // switch etat
-        int numEtat = Convert.ToInt32(etatN.ToString()+etatE.ToString()+etatS.ToString()+etatO.ToString()+etatD.ToString()+etatU.ToString(), 2);
-        Debug.Log(numEtat);
-        switch (numEtat)
+        if(etatU == 0)
         {
-            // N / E / S / O / D / U
-            case(0):
-            break;
-            case(1):
-            break;
-            case(2):
-            break;
-            case(3):
-            break;
-            case(4):
-            break;
-            case(5):
-            break;
-            case(6):
-            break;
-            case(7):
-            break;
-            case(8):
-            break;
-            case(9):
-            break;
-            case(10):
-            break;
-            case(11):
-            break;
-            case(12):
-            break;
-            case(13):
-            break;
-            case(14):
-            break;
-            case(15):
-            break;
-            case(16):
-            break;
-            case(17):
-            break;
-            case(18):
-            break;
-            case(19):
-            break;
-            case(20):
-            break;
-            case(21):
-            break;
-            case(22):
-            break;
-            case(23):
-            break;
-            case(24):
-            break;
-            case(25):
-            break;
-            case(26):
-            break;
-            case(27):
-            break;
-            case(28):
-            break;
-            case(29):
-            break;
-            case(30):
-            break;
-            case(31):
-            break;
-            case(32):
-            break;
-            case(33):
-            break;
-            case(34):
-            break;
-            case(35):
-            break;
-            case(36):
-            break;
-            case(37):
-            break;
-            case(38):
-            break;
-            case(39):
-            break;
-            case(40):
-            break;
-            case(41):
-            break;
-            case(42):
-            break;
-            case(43):
-            break;
-            case(45):
-            break;
-            case(46):
-            break;
-            case(47):
-            break;
-            case(48):
-            break;
-            case(49):
-            break;
-            case(50):
-            break;
-            case(51):
-            break;
-            case(52):
-            break;
-            case(53):
-            break;
-            case(54):
-            break;
-            case(55):
-            break;
-            case(56):
-            break;
-            case(57):
-            break;
-            case(58):
-            break;
-            case(59):
-            break;
-            case(60):
-            break;
-            case(61):
-            break;
-            case(62):
-            break;
-            case(63):
-            break;
-            default:
-            break;
+            Vector3 NO = gridTile.pointUpNO;
+            Vector3 NE = gridTile.pointUpNE;
+            Vector3 SO = gridTile.pointUpSO;
+            Vector3 SE = gridTile.pointUpSE;
+            meshTerrain = SetMeshPlane(NO, NE, SO, SE);;
         }
+
+        if(gridTile.face != 0)
+        {
+            // reverse mesh (tech du chlag)
+            meshTerrain.triangles = meshTerrain.triangles.Reverse().ToArray();
+        }
+
+        // mesh filter
+        meshFilterTerrain = gameObject.GetComponent<MeshFilter>();
+        if(meshFilterTerrain == null)
+        {
+            meshFilterTerrain = gameObject.AddComponent<MeshFilter>();
+        }
+        meshFilterTerrain.mesh = meshTerrain;
+        // mesh Rend
+        meshRendererTerrain = gameObject.GetComponent<MeshRenderer>();
+        if(meshRendererTerrain == null)
+        {
+            meshRendererTerrain = gameObject.AddComponent<MeshRenderer>();
+        }
+        meshRendererTerrain.material = gridTile.gridTileManager.GetMaterialTile();
     }
 
-    public void UpdatePointMeshLiquid()
+    public void drawMeshLiquid()
     {
-        
         pointMeshNO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
         pointMeshNE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
         pointMeshSO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
@@ -346,10 +233,7 @@ public class GridTileGameObject : MonoBehaviour
         pointMeshMidO = Vector3.Lerp(pointMeshNO, pointMeshSO, 0.5f);
 
         pointMeshMid = transform.position;
-    }
 
-    public void drawMesh()
-    {
         meshTerrain = new Mesh();
         // vert
         Vector3[] vert = new Vector3[9];
@@ -399,6 +283,26 @@ public class GridTileGameObject : MonoBehaviour
             meshRendererTerrain = gameObject.AddComponent<MeshRenderer>();
         }
         meshRendererTerrain.material = gridTile.gridTileManager.GetMaterialTile();
+    }
+
+    public Mesh SetMeshPlane(Vector3 NO, Vector3 NE, Vector3 SO, Vector3 SE)
+    {
+        Mesh meshRetour = new Mesh();
+        // vert
+        Vector3[] vert = new Vector3[4];
+        vert[0] = transform.InverseTransformPoint(NO);
+        vert[1] = transform.InverseTransformPoint(NE);
+        vert[2] = transform.InverseTransformPoint(SO);
+        vert[3] = transform.InverseTransformPoint(SE);
+        meshRetour.vertices = vert;
+        int[] triangles = {
+            //face NO
+            2, 1, 0, 
+            2, 3, 1
+        };
+        meshRetour.triangles = triangles;
+
+        return meshRetour;
     }
 
     public float GetMidPointProxyPos()
@@ -531,15 +435,13 @@ public class GridTileGameObject : MonoBehaviour
             {
                 HideTileLine();
             } else{
-                UpdatePointMeshSolid();
-                drawMesh();
+                DrawMeshSolid();
                 ShowTileLine();
             }
         }
         catch
         {
-            UpdatePointMeshSolid();
-            drawMesh();
+            DrawMeshSolid();
             ShowTileLine();
         }
     }
@@ -549,8 +451,7 @@ public class GridTileGameObject : MonoBehaviour
         try{
             if(ProxyTileUp.gridTileManager.tileTerrainType == 0)
             {
-                UpdatePointMeshLiquid();
-                drawMesh();
+                drawMeshLiquid();
                 ShowTileLine();
             } else{
                 HideTileLine();
@@ -558,8 +459,7 @@ public class GridTileGameObject : MonoBehaviour
         }
         catch
         {
-            UpdatePointMeshLiquid();
-            drawMesh();
+            drawMeshLiquid();
             ShowTileLine();
         }
     }
