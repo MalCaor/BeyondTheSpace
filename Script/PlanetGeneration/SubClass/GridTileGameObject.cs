@@ -208,7 +208,7 @@ public class GridTileGameObject : MonoBehaviour
             2, 8, 6,
             //face SE
             6, 8, 5, 
-            2, 5, 3
+            6, 5, 3
         };
         meshTerrain.triangles = triangles;
         if(gridTile.face == 0)
