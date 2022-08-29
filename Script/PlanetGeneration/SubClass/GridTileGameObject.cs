@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class GridTileGameObject : MonoBehaviour
 {
@@ -120,56 +121,214 @@ public class GridTileGameObject : MonoBehaviour
 
     public void UpdatePointMeshSolid()
     {
-        // get mid %
-        float MidN;
-        float MidE;
-        float MidS;
-        float MidO;
-        // get mid point
+        int etatN;
+        int etatE;
+        int etatS;
+        int etatO;
+        int etatU;
+        int etatD;
+        // get voisin etat
         if(ProxyTileNord != null)
         {
-            MidN = ProxyTileNord.tileGameObject.GetComponent<GridTileGameObject>().GetMidPointProxyPos();
+            etatN = ProxyTileNord.gridTileManager.tileTerrainType;
+            if(etatN != 1){
+                etatN = 0;
+            }
         } else {
-            MidN = 0.5f;
+            etatN = 0;
         }
         if(ProxyTileEst != null)
         {
-            MidE = ProxyTileEst.tileGameObject.GetComponent<GridTileGameObject>().GetMidPointProxyPos();
+            etatE = ProxyTileEst.gridTileManager.tileTerrainType;
+            if(etatE != 1){
+                etatE = 0;
+            }
         } else {
-            MidE = 0.5f;
+            etatE = 0;
         }
         if(ProxyTileSud != null)
         {
-            MidS = ProxyTileSud.tileGameObject.GetComponent<GridTileGameObject>().GetMidPointProxyPos();
+            etatS = ProxyTileSud.gridTileManager.tileTerrainType;
+            if(etatS != 1){
+                etatS = 0;
+            }
         } else {
-            MidS = 0.5f;
+            etatS = 0;
         }
         if(ProxyTileOuest != null)
         {
-            MidO = ProxyTileOuest.tileGameObject.GetComponent<GridTileGameObject>().GetMidPointProxyPos();
+            etatO = ProxyTileOuest.gridTileManager.tileTerrainType;
+            if(etatO != 1){
+                etatO = 0;
+            }
         } else {
-            MidO = 0.5f;
+            etatO = 0;
+        }
+        if(ProxyTileUp != null)
+        {
+            etatU = ProxyTileUp.gridTileManager.tileTerrainType;
+            if(etatU != 1){
+                etatU = 0;
+            }
+        } else {
+            etatU = 0;
+        }
+        if(ProxyTileDown != null)
+        {
+            etatD = ProxyTileDown.gridTileManager.tileTerrainType;
+            if(etatD != 1){
+                etatD = 0;
+            }
+        } else {
+            etatD = 0;
         }
 
-        // get corner %
+        pointMeshNO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
+        pointMeshNE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
+        pointMeshSO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
+        pointMeshSE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
 
-        float perNO = (MidN + MidO)/(float)2;
-        float perNE = (MidN + MidE)/(float)2;
-        float perSO = (MidS + MidO)/(float)2;
-        float perSE = (MidS + MidE)/(float)2;
-
-        pointMeshNO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, perNO);
-        pointMeshNE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, perNE);
-        pointMeshSO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, perSO);
-        pointMeshSE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, perSE);
-
-
-        pointMeshMidN = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO,MidN), Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE,MidN), 0.5f);
-        pointMeshMidE = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE,MidE), Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidE), 0.5f);
-        pointMeshMidS = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidS), Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO,MidS), 0.5f);
-        pointMeshMidO = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO,MidO), Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO,MidO), 0.5f);
+        pointMeshMidN = Vector3.Lerp(pointMeshNO, pointMeshNE, 0.5f);
+        pointMeshMidE = Vector3.Lerp(pointMeshNE, pointMeshSE, 0.5f);
+        pointMeshMidS = Vector3.Lerp(pointMeshSO, pointMeshSE, 0.5f);
+        pointMeshMidO = Vector3.Lerp(pointMeshNO, pointMeshSO, 0.5f);
 
         pointMeshMid = transform.position;
+        
+        // switch etat
+        int numEtat = Convert.ToInt32(etatN.ToString()+etatE.ToString()+etatS.ToString()+etatO.ToString()+etatD.ToString()+etatU.ToString(), 2);
+        Debug.Log(numEtat);
+        switch (numEtat)
+        {
+            case(0):
+            break;
+            case(1):
+            break;
+            case(2):
+            break;
+            case(3):
+            break;
+            case(4):
+            break;
+            case(5):
+            break;
+            case(6):
+            break;
+            case(7):
+            break;
+            case(8):
+            break;
+            case(9):
+            break;
+            case(10):
+            break;
+            case(11):
+            break;
+            case(12):
+            break;
+            case(13):
+            break;
+            case(14):
+            break;
+            case(15):
+            break;
+            case(16):
+            break;
+            case(17):
+            break;
+            case(18):
+            break;
+            case(19):
+            break;
+            case(20):
+            break;
+            case(21):
+            break;
+            case(22):
+            break;
+            case(23):
+            break;
+            case(24):
+            break;
+            case(25):
+            break;
+            case(26):
+            break;
+            case(27):
+            break;
+            case(28):
+            break;
+            case(29):
+            break;
+            case(30):
+            break;
+            case(31):
+            break;
+            case(32):
+            break;
+            case(33):
+            break;
+            case(34):
+            break;
+            case(35):
+            break;
+            case(36):
+            break;
+            case(37):
+            break;
+            case(38):
+            break;
+            case(39):
+            break;
+            case(40):
+            break;
+            case(41):
+            break;
+            case(42):
+            break;
+            case(43):
+            break;
+            case(45):
+            break;
+            case(46):
+            break;
+            case(47):
+            break;
+            case(48):
+            break;
+            case(49):
+            break;
+            case(50):
+            break;
+            case(51):
+            break;
+            case(52):
+            break;
+            case(53):
+            break;
+            case(54):
+            break;
+            case(55):
+            break;
+            case(56):
+            break;
+            case(57):
+            break;
+            case(58):
+            break;
+            case(59):
+            break;
+            case(60):
+            break;
+            case(61):
+            break;
+            case(62):
+            break;
+            case(63):
+            break;
+            default:
+            break;
+        }
     }
 
     public void UpdatePointMeshLiquid()
