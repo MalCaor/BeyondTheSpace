@@ -120,15 +120,45 @@ public class GridTileGameObject : MonoBehaviour
 
     public void UpdatePointMesh()
     {
+        
         pointMeshNO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
         pointMeshNE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
         pointMeshSO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
         pointMeshSE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
 
-        pointMeshMidN = Vector3.Lerp(pointMeshNO, pointMeshNE, 0.5f);
-        pointMeshMidE = Vector3.Lerp(pointMeshSE, pointMeshNE, 0.5f);
-        pointMeshMidS = Vector3.Lerp(pointMeshSO, pointMeshSE, 0.5f);
-        pointMeshMidO = Vector3.Lerp(pointMeshNO, pointMeshSO, 0.5f);
+        float MidN;
+        float MidE;
+        float MidS;
+        float MidO;
+        // get mid point
+        if(ProxyTileNord != null)
+        {
+            MidN = ProxyTileNord.tileGameObject.GetComponent<GridTileGameObject>().GetMidPointProxyPos();
+        } else {
+            MidN = 0.5f;
+        }
+        if(ProxyTileEst != null)
+        {
+            MidE = ProxyTileEst.tileGameObject.GetComponent<GridTileGameObject>().GetMidPointProxyPos();
+        } else {
+            MidE = 0.5f;
+        }
+        if(ProxyTileSud != null)
+        {
+            MidS = ProxyTileSud.tileGameObject.GetComponent<GridTileGameObject>().GetMidPointProxyPos();
+        } else {
+            MidS = 0.5f;
+        }
+        if(ProxyTileOuest != null)
+        {
+            MidO = ProxyTileOuest.tileGameObject.GetComponent<GridTileGameObject>().GetMidPointProxyPos();
+        } else {
+            MidO = 0.5f;
+        }
+        pointMeshMidN = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO,MidN), Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE,MidN), 0.5f);
+        pointMeshMidE = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE,MidN), Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidN), 0.5f);
+        pointMeshMidS = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidN), Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO,MidN), 0.5f);
+        pointMeshMidO = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO,MidN), Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO,MidN), 0.5f);
 
         pointMeshMid = transform.position;
     }
@@ -184,6 +214,29 @@ public class GridTileGameObject : MonoBehaviour
             meshRendererTerrain = gameObject.AddComponent<MeshRenderer>();
         }
         meshRendererTerrain.material = gridTile.gridTileManager.GetMaterialTile();
+    }
+
+    public float GetMidPointProxyPos()
+    {
+        float retour = 0.5f;
+        if(gridTile.gridTileManager.tileTerrainType == 0)
+        {
+            // i'm air
+            return 0f;
+        }
+        try
+        {
+            if(ProxyTileUp.gridTileManager.tileTerrainType == 1)
+            {
+                // there is a block up
+                return 1f;
+            }
+        }
+        catch (System.Exception)
+        {
+            
+        }
+        return retour;
     }
 
     /// <summary>
