@@ -25,7 +25,7 @@ public class TerrainPlanetGeneration : MonoBehaviour
             InitWater();
         }
         SetColor();
-        ShowHideTerrain();
+        DrawGameObject();
     }
 
     void ResetColor()
@@ -164,37 +164,37 @@ public class TerrainPlanetGeneration : MonoBehaviour
         }
     }
 
-    void ShowHideTerrain()
+    void DrawGameObject()
     {
         // Nord
         foreach (GridTile tile in grid.FaceNord)
         {
-            ShowHideTileTerrain(tile);
+            DrawGameObjectTerrain(tile);
         }
         // Est
         foreach (GridTile tile in grid.FaceEst)
         {
-            ShowHideTileTerrain(tile);
+            DrawGameObjectTerrain(tile);
         }
         // Ouest
         foreach (GridTile tile in grid.FaceOuest)
         {
-            ShowHideTileTerrain(tile);
+            DrawGameObjectTerrain(tile);
         }
         // Front
         foreach (GridTile tile in grid.FaceFront)
         {
-            ShowHideTileTerrain(tile);
+            DrawGameObjectTerrain(tile);
         }
         // Back
         foreach (GridTile tile in grid.FaceBack)
         {
-            ShowHideTileTerrain(tile);
+            DrawGameObjectTerrain(tile);
         }
         // Sud
         foreach (GridTile tile in grid.FaceSud)
         {
-            ShowHideTileTerrain(tile);
+            DrawGameObjectTerrain(tile);
         }
     }
 
@@ -232,29 +232,8 @@ public class TerrainPlanetGeneration : MonoBehaviour
         t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(t.gridTileManager.GetColorTile());
     }
 
-    void ShowHideTileTerrain(GridTile t)
+    void DrawGameObjectTerrain(GridTile t)
     {
-        if(t.gridTileManager.tileTerrainType == 0)
-        {
-            t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
-        } else {
-            t.tileGameObject.GetComponent<GridTileGameObject>().ShowTileLine();
-            t.tileGameObject.GetComponent<GridTileGameObject>().UpdatePointMesh();
-            t.tileGameObject.GetComponent<GridTileGameObject>().drawMesh();
-        }
-        try{
-            if(t.ProxyTileNord.gridTileManager.tileTerrainType == 1 &&
-            t.ProxyTileSud.gridTileManager.tileTerrainType == 1 &&
-            t.ProxyTileOuest.gridTileManager.tileTerrainType == 1 &&
-            t.ProxyTileEst.gridTileManager.tileTerrainType == 1 &&
-            t.ProxyTileUp.gridTileManager.tileTerrainType == 1)
-            {
-                t.tileGameObject.GetComponent<GridTileGameObject>().HideTileLine();
-            }
-        }
-        catch
-        {
-
-        }
+        t.tileGameObject.GetComponent<GridTileGameObject>().DrawGameObject();
     }
 }

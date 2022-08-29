@@ -219,4 +219,80 @@ public class GridTileGameObject : MonoBehaviour
         meshCollider.sharedMesh = meshBoxTile;
         meshCollider.convex = true;
     }
+
+    public void DrawGameObject()
+    {
+        if(gridTile.gridTileManager.tileTerrainType == 0)
+        {
+            // air
+        }
+        if(gridTile.gridTileManager.tileTerrainType == 1)
+        {
+            // solid
+            DrawGameObjectSolid();
+        }
+        if(gridTile.gridTileManager.tileTerrainType == 2)
+        {
+            // liquid
+            DrawGameObjectLiquid();
+        }
+        if(gridTile.gridTileManager.tileTerrainType == 3)
+        {
+            // space
+        }
+    }
+
+    void DrawGameObjectSolid()
+    {
+        try{
+            if(ProxyTileNord.gridTileManager.tileTerrainType == 1 &&
+            ProxyTileSud.gridTileManager.tileTerrainType == 1 &&
+            ProxyTileOuest.gridTileManager.tileTerrainType == 1 &&
+            ProxyTileEst.gridTileManager.tileTerrainType == 1 &&
+            ProxyTileUp.gridTileManager.tileTerrainType == 1)
+            {
+                HideTileLine();
+            } else{
+                UpdatePointMesh();
+                drawMesh();
+                ShowTileLine();
+            }
+        }
+        catch
+        {
+            UpdatePointMesh();
+            drawMesh();
+            ShowTileLine();
+        }
+    }
+
+    void DrawGameObjectLiquid()
+    {
+        try{
+            if(ProxyTileUp.gridTileManager.tileTerrainType == 0)
+            {
+                UpdatePointMesh();
+                drawMesh();
+                ShowTileLine();
+            } else{
+                HideTileLine();
+            }
+        }
+        catch
+        {
+            UpdatePointMesh();
+            drawMesh();
+            ShowTileLine();
+        }
+    }
+
+    void DrawGameObjectAir()
+    {
+        HideTileLine();
+    }
+
+    void DrawGameObjectSpace()
+    {
+        HideTileLine();
+    }
 }
