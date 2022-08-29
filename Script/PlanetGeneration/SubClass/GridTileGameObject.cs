@@ -120,12 +120,7 @@ public class GridTileGameObject : MonoBehaviour
 
     public void UpdatePointMeshSolid()
     {
-        
-        pointMeshNO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
-        pointMeshNE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
-        pointMeshSO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
-        pointMeshSE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
-
+        // get mid %
         float MidN;
         float MidE;
         float MidS;
@@ -155,6 +150,20 @@ public class GridTileGameObject : MonoBehaviour
         } else {
             MidO = 0.5f;
         }
+
+        // get corner %
+
+        float perNO = (MidN + MidO)/(float)2;
+        float perNE = (MidN + MidE)/(float)2;
+        float perSO = (MidS + MidO)/(float)2;
+        float perSE = (MidS + MidE)/(float)2;
+
+        pointMeshNO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, perNO);
+        pointMeshNE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, perNE);
+        pointMeshSO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, perSO);
+        pointMeshSE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, perSE);
+
+
         pointMeshMidN = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO,MidN), Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE,MidN), 0.5f);
         pointMeshMidE = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE,MidE), Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidE), 0.5f);
         pointMeshMidS = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidS), Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO,MidS), 0.5f);
