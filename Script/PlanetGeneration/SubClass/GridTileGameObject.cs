@@ -145,7 +145,7 @@ public class GridTileGameObject : MonoBehaviour
         {
             meshRendererTerrain = gameObject.AddComponent<MeshRenderer>();
         }
-        meshRendererTerrain.material = Resources.Load("Material/BlackMatDef") as Material;
+        meshRendererTerrain.material = gridTile.gridTileManager.GetMaterialTile();
     }
 
     /// <summary>

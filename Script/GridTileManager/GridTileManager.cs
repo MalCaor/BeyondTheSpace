@@ -41,4 +41,17 @@ public class GridTileManager
         }
         return c;
     }
+
+    public Material GetMaterialTile()
+    {
+        if(tileTerrainType == 1)
+        {
+            // Solid
+            return Resources.Load("Material/BlackMatDef") as Material;
+        } else {
+            // Liquid
+            return Resources.Load("Material/BlueMatDef") as Material;
+        }
+        
+    }
 }
