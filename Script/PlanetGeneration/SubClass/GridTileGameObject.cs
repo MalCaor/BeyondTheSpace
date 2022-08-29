@@ -200,6 +200,7 @@ public class GridTileGameObject : MonoBehaviour
         Debug.Log(numEtat);
         switch (numEtat)
         {
+            // N / E / S / O / D / U
             case(0):
             break;
             case(1):
