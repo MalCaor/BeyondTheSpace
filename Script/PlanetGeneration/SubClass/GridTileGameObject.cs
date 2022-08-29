@@ -156,9 +156,9 @@ public class GridTileGameObject : MonoBehaviour
             MidO = 0.5f;
         }
         pointMeshMidN = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO,MidN), Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE,MidN), 0.5f);
-        pointMeshMidE = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE,MidN), Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidN), 0.5f);
-        pointMeshMidS = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidN), Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO,MidN), 0.5f);
-        pointMeshMidO = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO,MidN), Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO,MidN), 0.5f);
+        pointMeshMidE = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE,MidE), Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidE), 0.5f);
+        pointMeshMidS = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE,MidS), Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO,MidS), 0.5f);
+        pointMeshMidO = Vector3.Lerp(Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO,MidO), Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO,MidO), 0.5f);
 
         pointMeshMid = transform.position;
     }
@@ -238,19 +238,19 @@ public class GridTileGameObject : MonoBehaviour
         if(gridTile.gridTileManager.tileTerrainType == 0)
         {
             // i'm air
-            return 0f;
+            return (float)0;
         }
-        try
+        if(gridTile.gridTileManager.tileTerrainType == 2)
+        {
+            // I'm Water
+            return (float)0;
+        }
+        if(ProxyTileUp != null)
         {
             if(ProxyTileUp.gridTileManager.tileTerrainType == 1)
             {
-                // there is a block up
                 return 1f;
             }
-        }
-        catch (System.Exception)
-        {
-            
         }
         return retour;
     }
