@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GridTileGameObject : MonoBehaviour
 {
@@ -132,6 +133,11 @@ public class GridTileGameObject : MonoBehaviour
             1, 2, 3
         };
         meshTerrain.triangles = triangles;
+        if(gridTile.face != 0)
+        {
+            // reverse mesh (tech du chlag)
+            meshTerrain.triangles = meshTerrain.triangles.Reverse().ToArray();
+        }
         // mesh filter
         meshFilterTerrain = gameObject.GetComponent<MeshFilter>();
         if(meshFilterTerrain == null)

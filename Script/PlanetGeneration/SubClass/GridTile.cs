@@ -23,7 +23,7 @@ public class GridTile
     public GridTile ProxyTileDown;
 
     // Nord 0 / Est 1 / Ouest 2 / Front 3 / Back 4 / Sud 5
-    int face;
+    public int face;
 
     // position in face grid
     // if 0 the tile is the first one, if = max then it's on the other side
