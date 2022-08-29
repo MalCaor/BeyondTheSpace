@@ -225,6 +225,7 @@ public class GridTileGameObject : MonoBehaviour
         if(gridTile.gridTileManager.tileTerrainType == 0)
         {
             // air
+            DrawGameObjectAir();
         }
         if(gridTile.gridTileManager.tileTerrainType == 1)
         {
@@ -239,6 +240,7 @@ public class GridTileGameObject : MonoBehaviour
         if(gridTile.gridTileManager.tileTerrainType == 3)
         {
             // space
+            DrawGameObjectSpace();
         }
     }
 
