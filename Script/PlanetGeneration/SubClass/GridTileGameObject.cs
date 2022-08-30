@@ -71,6 +71,23 @@ public class GridTileGameObject : MonoBehaviour
             gameObject.GetComponent<MeshRenderer>().enabled = false;
         }
     }
+    public void ShowMeshTerrain()
+    {
+        gameObject.GetComponent<MeshCollider>().enabled = true;
+        if(gameObject.GetComponent<MeshRenderer>() != null)
+        {
+            gameObject.GetComponent<MeshRenderer>().enabled = true;
+        }
+    }
+
+    public void HideMeshTerrain()
+    {
+        gameObject.GetComponent<MeshCollider>().enabled = false;
+        if(gameObject.GetComponent<MeshRenderer>() != null)
+        {
+            gameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+    }
 
     public void UpdateProxy()
     {
@@ -120,6 +137,7 @@ public class GridTileGameObject : MonoBehaviour
         l.SetPosition(7, gridTile.pointUpSE);
         l.SetPosition(8, gridTile.pointUpSO);
         l.SetPosition(9, gridTile.pointUpNO);
+        l.enabled = false;
     }
 
     public void DrawMeshSolid()
@@ -654,16 +672,16 @@ public class GridTileGameObject : MonoBehaviour
             ProxyTileEst.gridTileManager.tileTerrainType == 1 &&
             ProxyTileUp.gridTileManager.tileTerrainType == 1)
             {
-                HideTileLine();
+                HideMeshTerrain();
             } else{
                 DrawMeshSolid();
-                ShowTileLine();
+                ShowMeshTerrain();
             }
         }
         catch
         {
             DrawMeshSolid();
-            ShowTileLine();
+            ShowMeshTerrain();
         }
     }
 
@@ -673,15 +691,15 @@ public class GridTileGameObject : MonoBehaviour
             if(ProxyTileUp.gridTileManager.tileTerrainType == 0)
             {
                 drawMeshLiquid();
-                ShowTileLine();
+                ShowMeshTerrain();
             } else{
-                HideTileLine();
+                HideMeshTerrain();
             }
         }
         catch
         {
             drawMeshLiquid();
-            ShowTileLine();
+            ShowMeshTerrain();
         }
     }
 
