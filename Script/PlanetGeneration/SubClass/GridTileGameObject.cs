@@ -55,22 +55,13 @@ public class GridTileGameObject : MonoBehaviour
     public void ShowTileLine()
     {
         gameObject.GetComponent<LineRenderer>().enabled = true;
-        gameObject.GetComponent<MeshCollider>().enabled = true;
-        if(gameObject.GetComponent<MeshRenderer>() != null)
-        {
-            gameObject.GetComponent<MeshRenderer>().enabled = true;
-        }
     }
 
     public void HideTileLine()
     {
         gameObject.GetComponent<LineRenderer>().enabled = false;
-        gameObject.GetComponent<MeshCollider>().enabled = false;
-        if(gameObject.GetComponent<MeshRenderer>() != null)
-        {
-            gameObject.GetComponent<MeshRenderer>().enabled = false;
-        }
     }
+    
     public void ShowMeshTerrain()
     {
         gameObject.GetComponent<MeshCollider>().enabled = true;

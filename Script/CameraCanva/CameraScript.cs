@@ -13,6 +13,8 @@ public class CameraScript : MonoBehaviour
     // curent grid to rotate around
     public GameObject curentGrid;
 
+    GridTileGameObject oldTile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -71,20 +73,22 @@ public class CameraScript : MonoBehaviour
 
     void RayCastHitDetectTile()
     {
-        if (Input.GetMouseButton(0))
+        if(oldTile!=null)
         {
-            RaycastHit hit;
-            Ray ray;
-            // set Layer (3 = Buildable)
-            int layerMask = 3;
-            // invert (ingore everything except 3)
-            layerMask = ~layerMask;
-            // raycast to put object
-            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
-            {
-                hit.transform.gameObject.GetComponent<GridTileGameObject>().SetLineColor(Color.blue);
-            }
+            oldTile.HideTileLine();
+        }
+        RaycastHit hit;
+        Ray ray;
+        // set Layer (3 = Buildable)
+        int layerMask = 3;
+        // invert (ingore everything except 3)
+        layerMask = ~layerMask;
+        // raycast to put object
+        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        {
+            oldTile = hit.transform.gameObject.GetComponent<GridTileGameObject>();
+            oldTile.ShowTileLine();
         }
     }
 }
