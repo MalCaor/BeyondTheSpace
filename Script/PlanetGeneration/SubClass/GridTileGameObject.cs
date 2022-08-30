@@ -263,6 +263,62 @@ public class GridTileGameObject : MonoBehaviour
             listVert.Add(SE);
             numFace++;
         }
+        if(etatE == 0)
+        {
+            Vector3 NO;
+            Vector3 NE;
+            Vector3 SO;
+            Vector3 SE;
+            if(etatU == 1)
+            {
+                NO = gridTile.pointUpSE;
+                NE = gridTile.pointUpNE;
+            } else {
+                NO = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
+                NE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
+            }
+            if(etatD == 1)
+            {
+                SO = gridTile.pointDownSE;
+                SE = gridTile.pointDownNE;
+            } else {
+                SO = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
+                SE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
+            }
+            listVert.Add(NO);
+            listVert.Add(NE);
+            listVert.Add(SO);
+            listVert.Add(SE);
+            numFace++;
+        }
+        if(etatO == 0)
+        {
+            Vector3 NO;
+            Vector3 NE;
+            Vector3 SO;
+            Vector3 SE;
+            if(etatU == 1)
+            {
+                NO = gridTile.pointUpSO;
+                NE = gridTile.pointUpNO;
+            } else {
+                NO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
+                NE = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
+            }
+            if(etatD == 1)
+            {
+                SO = gridTile.pointDownSO;
+                SE = gridTile.pointDownNO;
+            } else {
+                SO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
+                SE = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
+            }
+            listVert.Add(NE);
+            listVert.Add(NO);
+            listVert.Add(SE);
+            listVert.Add(SO);
+            numFace++;
+        }
 
         // create Mesh
         meshTerrain = SetMeshPlane(listVert, numFace);
