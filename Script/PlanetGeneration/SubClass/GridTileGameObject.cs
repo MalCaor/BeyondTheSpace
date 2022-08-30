@@ -697,10 +697,12 @@ public class GridTileGameObject : MonoBehaviour
     void DrawGameObjectAir()
     {
         HideTileLine();
+        HideMeshTerrain();
     }
 
     void DrawGameObjectSpace()
     {
         HideTileLine();
+        HideMeshTerrain();
     }
 }
