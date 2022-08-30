@@ -322,26 +322,82 @@ public class GridTileGameObject : MonoBehaviour
         // set face earth (corner)
         if(etatN == 1)
         {
-            if(ProxyTileNord!=null)
+            if(ProxyTileNord.solidFaceUp() == 1)
             {
-                if(ProxyTileNord.solidFaceUp() == 1)
-                {
-                    Debug.Log("ui");
-                    // draw corner
-                    Vector3 NO;
-                    Vector3 NE;
-                    Vector3 SO;
-                    Vector3 SE;
-                    NO = gridTile.pointUpNO;
-                    NE = gridTile.pointUpNE;
-                    SO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
-                    SE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
-                    listVert.Add(NO);
-                    listVert.Add(NE);
-                    listVert.Add(SO);
-                    listVert.Add(SE);
-                    numFace++;
-                }
+                // draw corner
+                Vector3 NO;
+                Vector3 NE;
+                Vector3 SO;
+                Vector3 SE;
+                NO = gridTile.pointUpNO;
+                NE = gridTile.pointUpNE;
+                SO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
+                SE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
+                listVert.Add(NO);
+                listVert.Add(NE);
+                listVert.Add(SO);
+                listVert.Add(SE);
+                numFace++;
+            }
+        }
+        if(etatS == 1)
+        {
+            if(ProxyTileSud.solidFaceUp() == 1)
+            {
+                // draw corner
+                Vector3 NO;
+                Vector3 NE;
+                Vector3 SO;
+                Vector3 SE;
+                NO = gridTile.pointUpSO;
+                NE = gridTile.pointUpSE;
+                SO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
+                SE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
+                listVert.Add(NE);
+                listVert.Add(NO);
+                listVert.Add(SE);
+                listVert.Add(SO);
+                numFace++;
+            }
+        }
+        if(etatE == 1)
+        {
+            if(ProxyTileEst.solidFaceUp() == 1)
+            {
+                // draw corner
+                Vector3 NO;
+                Vector3 NE;
+                Vector3 SO;
+                Vector3 SE;
+                NO = gridTile.pointUpNE;
+                NE = gridTile.pointUpSE;
+                SO = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
+                SE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
+                listVert.Add(NO);
+                listVert.Add(NE);
+                listVert.Add(SO);
+                listVert.Add(SE);
+                numFace++;
+            }
+        }
+        if(etatO == 1)
+        {
+            if(ProxyTileOuest.solidFaceUp() == 1)
+            {
+                // draw corner
+                Vector3 NO;
+                Vector3 NE;
+                Vector3 SO;
+                Vector3 SE;
+                NO = gridTile.pointUpNO;
+                NE = gridTile.pointUpSO;
+                SO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
+                SE = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
+                listVert.Add(NE);
+                listVert.Add(NO);
+                listVert.Add(SE);
+                listVert.Add(SO);
+                numFace++;
             }
         }
 
