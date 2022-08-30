@@ -30,4 +30,7 @@ public class GridPlanetData : MonoBehaviour
     public Vector3 _pointSudOuestFront;
     public Vector3 _pointSudEstBack;
     public Vector3 _pointSudEstFront;
+
+    // pos cam start
+    public Vector3 posCamStart;
 }

@@ -12,6 +12,7 @@ public class CameraScript : MonoBehaviour
 
     // curent grid to rotate around
     public GameObject curentGrid;
+    GridPlanetData curentGridData;
 
     GridTileGameObject oldTile;
     GridTileGameObject selectedTile;
@@ -19,10 +20,10 @@ public class CameraScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        curentGridData = curentGrid.GetComponent<GridPlanetData>();
         //Set Cursor to not be visible
         Cursor.visible = true;
-        GridPlanetGeneration gridPlanet = curentGrid.GetComponent<GridPlanetGeneration>();
-        gameObject.transform.Translate(gameObject.transform.up * (1 + gridPlanet.planetSettings.radius + gridPlanet.planetSettings.height+2));
+        gameObject.transform.position = curentGridData.posCamStart;
     }
 
     // Update is called once per frame
