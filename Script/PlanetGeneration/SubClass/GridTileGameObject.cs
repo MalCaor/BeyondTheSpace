@@ -324,25 +324,23 @@ public class GridTileGameObject : MonoBehaviour
         {
             if(ProxyTileNord!=null)
             {
-                if(ProxyTileNord != null)
+                if(ProxyTileNord.solidFaceUp() == 1)
                 {
-                    if(ProxyTileNord.solidFaceUp() == 1)
-                    {
-                        // draw corner
-                        Vector3 NO;
-                        Vector3 NE;
-                        Vector3 SO;
-                        Vector3 SE;
-                        NO = gridTile.pointUpNO;
-                        NE = gridTile.pointUpNE;
-                        SO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
-                        SE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
-                        listVert.Add(NE);
-                        listVert.Add(NO);
-                        listVert.Add(SE);
-                        listVert.Add(SO);
-                        numFace++;
-                    }
+                    Debug.Log("ui");
+                    // draw corner
+                    Vector3 NO;
+                    Vector3 NE;
+                    Vector3 SO;
+                    Vector3 SE;
+                    NO = gridTile.pointUpNO;
+                    NE = gridTile.pointUpNE;
+                    SO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
+                    SE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
+                    listVert.Add(NO);
+                    listVert.Add(NE);
+                    listVert.Add(SO);
+                    listVert.Add(SE);
+                    numFace++;
                 }
             }
         }

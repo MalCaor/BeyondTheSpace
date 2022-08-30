@@ -111,7 +111,7 @@ public class GridTile
     {
         if(this.ProxyTileUp != null)
         {
-            if(ProxyTileUp.gridTileManager.tileTerrainType!=1)
+            if(ProxyTileUp.gridTileManager.tileTerrainType==1)
             {
                 return 1;
             } else {
