@@ -10,6 +10,7 @@ public class GridTile
 
     // GameObject in world
     public GameObject tileGameObject;
+    public GridTileGameObject gridTileGameObject;
 
     // tile mana
     public GridTileManager gridTileManager;
@@ -125,6 +126,7 @@ public class GridTile
         // set Link to object in GameObject
         GridTileGameObject linkToThis = tileGameObject.AddComponent<GridTileGameObject>();
         linkToThis.gridTile = this;
+        gridTileGameObject = linkToThis;
 
         // set pos to mid
         Vector3 mid = Vector3.Lerp(SOH, NE, 0.5f);

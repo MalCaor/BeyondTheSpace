@@ -319,6 +319,36 @@ public class GridTileGameObject : MonoBehaviour
             listVert.Add(SO);
             numFace++;
         }
+        // set face earth (corner)
+        if(etatN == 1)
+        {
+            if(ProxyTileNord!=null)
+            {
+                if(ProxyTileNord != null)
+                {
+            Debug.Log("North");
+            /*
+                    if(ProxyTileNord.ProxyTileUp.gridTileManager.tileTerrainType == 1)
+                    {
+                        Debug.Log("North");
+                        // draw corner
+                        Vector3 NO;
+                        Vector3 NE;
+                        Vector3 SO;
+                        Vector3 SE;
+                        NO = gridTile.pointUpNO;
+                        NE = gridTile.pointUpNE;
+                        SO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
+                        SE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
+                        listVert.Add(NE);
+                        listVert.Add(NO);
+                        listVert.Add(SE);
+                        listVert.Add(SO);
+                        numFace++;
+                    }*/
+                }
+            }
+        }
 
         // create Mesh
         meshTerrain = SetMeshPlane(listVert, numFace);
