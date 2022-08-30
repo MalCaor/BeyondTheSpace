@@ -40,18 +40,6 @@ public class GridTileGameObject : MonoBehaviour
     public MeshFilter meshFilterTerrain;
     public MeshRenderer meshRendererTerrain;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void ShowTileLine()
     {
         gameObject.GetComponent<LineRenderer>().enabled = true;
@@ -64,6 +52,7 @@ public class GridTileGameObject : MonoBehaviour
     
     public void ShowMeshTerrain()
     {
+        gameObject.SetActive(true);
         gameObject.GetComponent<MeshCollider>().enabled = true;
         if(gameObject.GetComponent<MeshRenderer>() != null)
         {
@@ -663,7 +652,7 @@ public class GridTileGameObject : MonoBehaviour
             ProxyTileEst.gridTileManager.tileTerrainType == 1 &&
             ProxyTileUp.gridTileManager.tileTerrainType == 1)
             {
-                HideMeshTerrain();
+                gameObject.SetActive(false);
             } else{
                 DrawMeshSolid();
                 ShowMeshTerrain();
@@ -684,7 +673,7 @@ public class GridTileGameObject : MonoBehaviour
                 drawMeshLiquid();
                 ShowMeshTerrain();
             } else{
-                HideMeshTerrain();
+                gameObject.SetActive(false);
             }
         }
         catch
@@ -696,13 +685,11 @@ public class GridTileGameObject : MonoBehaviour
 
     void DrawGameObjectAir()
     {
-        HideTileLine();
-        HideMeshTerrain();
+        gameObject.SetActive(false);
     }
 
     void DrawGameObjectSpace()
     {
-        HideTileLine();
-        HideMeshTerrain();
+        gameObject.SetActive(false);
     }
 }
