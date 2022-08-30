@@ -192,52 +192,16 @@ public class GridTileGameObject : MonoBehaviour
         List<Vector3> listVert = new List<Vector3>();
         int numFace = 0;
 
-        if(etatN == 1)
+        if((etatU == 1 && etatD == 0) || (etatU == 0 && etatD == 1))
         {
-            listVert.Add(gridTile.pointUpNO);
-            listVert.Add(gridTile.pointUpNE);
-            listVert.Add(gridTile.pointDownNO);
-            listVert.Add(gridTile.pointDownNE);
-            numFace++;
-        }
-        if(etatE == 1)
-        {
-            listVert.Add(gridTile.pointUpNE);
-            listVert.Add(gridTile.pointUpSE);
-            listVert.Add(gridTile.pointDownNE);
-            listVert.Add(gridTile.pointDownSE);
-            numFace++;
-        }
-        if(etatS == 1)
-        {
-            listVert.Add(gridTile.pointUpSE);
-            listVert.Add(gridTile.pointUpSO);
-            listVert.Add(gridTile.pointDownSE);
-            listVert.Add(gridTile.pointDownSO);
-            numFace++;
-        }
-        if(etatO == 1)
-        {
-            listVert.Add(gridTile.pointUpSO);
-            listVert.Add(gridTile.pointUpNO);
-            listVert.Add(gridTile.pointDownSO);
-            listVert.Add(gridTile.pointDownNO);
-            numFace++;
-        }
-        if(etatD == 0)
-        {
-            listVert.Add(gridTile.pointUpNO);
-            listVert.Add(gridTile.pointUpNE);
-            listVert.Add(gridTile.pointUpSO);
-            listVert.Add(gridTile.pointUpSE);
-            numFace++;
-        }
-        if(etatU == 0)
-        {
-            listVert.Add(gridTile.pointDownNO);
-            listVert.Add(gridTile.pointDownNE);
-            listVert.Add(gridTile.pointDownSO);
-            listVert.Add(gridTile.pointDownSE);
+            Vector3 NO = Vector3.Lerp(gridTile.pointDownNO, gridTile.pointUpNO, 0.5f);
+            Vector3 NE = Vector3.Lerp(gridTile.pointDownNE, gridTile.pointUpNE, 0.5f);
+            Vector3 SO = Vector3.Lerp(gridTile.pointDownSO, gridTile.pointUpSO, 0.5f);
+            Vector3 SE = Vector3.Lerp(gridTile.pointDownSE, gridTile.pointUpSE, 0.5f);
+            listVert.Add(NO);
+            listVert.Add(NE);
+            listVert.Add(SO);
+            listVert.Add(SE);
             numFace++;
         }
 

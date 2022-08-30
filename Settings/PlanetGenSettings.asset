@@ -17,7 +17,7 @@ MonoBehaviour:
   radius: 10
   resolution: 10
   height: 10
-  tileHeight: 0.2
+  tileHeight: 0.3
   faceDown: 1
   faceBack: 1
   faceUp: 1
