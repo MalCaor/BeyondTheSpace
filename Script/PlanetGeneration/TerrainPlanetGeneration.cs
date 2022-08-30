@@ -5,7 +5,11 @@ using UnityEngine;
 public class TerrainPlanetGeneration : MonoBehaviour
 {
     // grid
-    GridPlanetGeneration grid;
+    public GameObject planet;
+    [HideInInspector]
+    public GridPlanetData grid;
+    [HideInInspector]
+    public GridPlanetGeneration gridGener;
 
     // noise
     Noise noise = new Noise();
@@ -15,7 +19,8 @@ public class TerrainPlanetGeneration : MonoBehaviour
 
     public void Init()
     {
-        grid = gameObject.GetComponent<GridPlanetGeneration>();
+        grid = planet.GetComponent<GridPlanetData>();
+        gridGener = gameObject.GetComponent<GridPlanetGeneration>();
         // init all env
         EnvironmentGlobalGeneration.InitAllEnvironment();
         InitTerrain();
@@ -207,7 +212,7 @@ public class TerrainPlanetGeneration : MonoBehaviour
     {
         // generate terrain
         float noiseVal = (noise.Evaluate(new Vector3(t.Npos, t.Opos, t.face) * terrainSetting.roughnessNoiseTerrainElevation)+1) * 0.5f;
-        int levelTerrain = (int)Mathf.Round(grid.planetSettings.height * noiseVal);
+        int levelTerrain = (int)Mathf.Round(gridGener.planetSettings.height * noiseVal);
         if(t.Dpos>levelTerrain)
         {
             t.gridTileManager.tileTerrainType = 0;

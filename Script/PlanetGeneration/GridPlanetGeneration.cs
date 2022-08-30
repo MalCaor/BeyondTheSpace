@@ -4,38 +4,15 @@ using UnityEngine;
 
 public class GridPlanetGeneration : MonoBehaviour
 {
-    // var planet static
-    public static GridPlanetGeneration grid;
+    // var planet target
+    public GameObject planet;
+    // planet data
+    public GridPlanetData planetData;
 
     // vars Pub
     // setting planet
     public PlanetGenerationSettings planetSettings;
-    // the 6 faces of a planet
-    [HideInInspector]
-    public List<GridTile> FaceNord;
-    [HideInInspector]
-    public List<GridTile> FaceEst;
-    [HideInInspector]
-    public List<GridTile> FaceOuest;
-    [HideInInspector]
-    public List<GridTile> FaceFront;
-    [HideInInspector]
-    public List<GridTile> FaceBack;
-    [HideInInspector]
-    public List<GridTile> FaceSud;
-
-    // here for easy acces
-    List<List<GridTile>> listGridFaces;
-
-    // vars priv
-    Vector3 _pointNordOuestBack;
-    Vector3 _pointNordOuestFront;
-    Vector3 _pointNordEstBack;
-    Vector3 _pointNordEstFront;
-    Vector3 _pointSudOuestBack;
-    Vector3 _pointSudOuestFront;
-    Vector3 _pointSudEstBack;
-    Vector3 _pointSudEstFront;
+    
 
     /// <summary>
     /// Init The Grid
@@ -54,36 +31,14 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     void DestroyChild()
     {
-        int childs = transform.childCount;
+        // destroy data
+        GameObject.DestroyImmediate(planet.GetComponent<GridPlanetData>());
+        int childs = planet.transform.childCount;
         for (int i = childs - 1; i >= 0; i--) 
         {
-            GameObject.DestroyImmediate(transform.GetChild( i ).gameObject);
+            GameObject.DestroyImmediate(planet.transform.GetChild( i ).gameObject);
         }
-        // clear list if exist
-        if(FaceNord!=null)
-        {
-            FaceNord.Clear();
-        }
-        if(FaceEst!=null)
-        {
-            FaceEst.Clear();
-        }
-        if(FaceOuest!=null)
-        {
-            FaceOuest.Clear();
-        }
-        if(FaceFront!=null)
-        {
-            FaceFront.Clear();
-        }
-        if(FaceBack!=null)
-        {
-            FaceBack.Clear();
-        }
-        if(FaceSud!=null)
-        {
-            FaceSud.Clear();
-        }
+        
     }
 
     /// <summary>
@@ -91,37 +46,38 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     void InitGrid()
     {
+        planetData = planet.AddComponent<GridPlanetData>();
         // set up the list Faces
-        FaceNord = new List<GridTile>();
-        FaceEst = new List<GridTile>();
-        FaceOuest = new List<GridTile>();
-        FaceFront = new List<GridTile>();
-        FaceBack = new List<GridTile>();
-        FaceSud = new List<GridTile>();
+        planetData.FaceNord = new List<GridTile>();
+        planetData.FaceEst = new List<GridTile>();
+        planetData.FaceOuest = new List<GridTile>();
+        planetData.FaceFront = new List<GridTile>();
+        planetData.FaceBack = new List<GridTile>();
+        planetData.FaceSud = new List<GridTile>();
 
         // add to list grid
-        listGridFaces = new List<List<GridTile>>();
-        listGridFaces.Add(FaceNord);
-        listGridFaces.Add(FaceEst);
-        listGridFaces.Add(FaceOuest);
-        listGridFaces.Add(FaceFront);
-        listGridFaces.Add(FaceBack);
-        listGridFaces.Add(FaceSud);
+        planetData.listGridFaces = new List<List<GridTile>>();
+        planetData.listGridFaces.Add(planetData.FaceNord);
+        planetData.listGridFaces.Add(planetData.FaceEst);
+        planetData.listGridFaces.Add(planetData.FaceOuest);
+        planetData.listGridFaces.Add(planetData.FaceFront);
+        planetData.listGridFaces.Add(planetData.FaceBack);
+        planetData.listGridFaces.Add(planetData.FaceSud);
 
         // get pos and rad planet for convinience
-        Vector3 pos = gameObject.transform.position;
+        Vector3 pos = planet.transform.position;
         float rad =  planetSettings.radius;
 
         // create the base cube points
         // each point is named after the 3 face it's composed of
-        _pointNordOuestBack = new Vector3(pos.x+rad, pos.y+rad, pos.z-rad);
-        _pointNordOuestFront = new Vector3(pos.x+rad, pos.y+rad, pos.z+rad);
-        _pointNordEstBack = new Vector3(pos.x-rad, pos.y+rad, pos.z-rad);
-        _pointNordEstFront = new Vector3(pos.x-rad, pos.y+rad, pos.z+rad);
-        _pointSudOuestBack = new Vector3(pos.x+rad, pos.y-rad, pos.z-rad);
-        _pointSudOuestFront = new Vector3(pos.x+rad, pos.y-rad, pos.z+rad);
-        _pointSudEstBack = new Vector3(pos.x-rad, pos.y-rad, pos.z-rad);
-        _pointSudEstFront = new Vector3(pos.x-rad, pos.y-rad, pos.z+rad);
+        planetData._pointNordOuestBack = new Vector3(pos.x+rad, pos.y+rad, pos.z-rad);
+        planetData._pointNordOuestFront = new Vector3(pos.x+rad, pos.y+rad, pos.z+rad);
+        planetData._pointNordEstBack = new Vector3(pos.x-rad, pos.y+rad, pos.z-rad);
+        planetData._pointNordEstFront = new Vector3(pos.x-rad, pos.y+rad, pos.z+rad);
+        planetData._pointSudOuestBack = new Vector3(pos.x+rad, pos.y-rad, pos.z-rad);
+        planetData._pointSudOuestFront = new Vector3(pos.x+rad, pos.y-rad, pos.z+rad);
+        planetData._pointSudEstBack = new Vector3(pos.x-rad, pos.y-rad, pos.z-rad);
+        planetData._pointSudEstFront = new Vector3(pos.x-rad, pos.y-rad, pos.z+rad);
 
         // create the planet faces if enable
         if(planetSettings.faceUp){
@@ -131,7 +87,7 @@ public class GridPlanetGeneration : MonoBehaviour
             //Est< |   | > Ouest
             //     +---+
             //      \/ Front
-            InitFaceGrid(0, _pointNordEstBack, _pointNordOuestBack, _pointNordEstFront, _pointNordOuestFront, FaceNord);
+            InitFaceGrid(0, planetData._pointNordEstBack, planetData._pointNordOuestBack, planetData._pointNordEstFront, planetData._pointNordOuestFront, planetData.FaceNord);
         }
         if(planetSettings.faceRight){
             // face Est
@@ -140,7 +96,7 @@ public class GridPlanetGeneration : MonoBehaviour
             //Front< |   | > Back
             //       +---+
             //        \/ Sud
-            InitFaceGrid(1, _pointNordEstFront, _pointNordEstBack, _pointSudEstFront, _pointSudEstBack, FaceEst);
+            InitFaceGrid(1, planetData._pointNordEstFront, planetData._pointNordEstBack, planetData._pointSudEstFront, planetData._pointSudEstBack, planetData.FaceEst);
         }
         if(planetSettings.faceLeft){
             // face Ouest
@@ -149,7 +105,7 @@ public class GridPlanetGeneration : MonoBehaviour
             // Back< |   | > Front
             //       +---+
             //        \/ Sud
-            InitFaceGrid(2, _pointNordOuestBack, _pointNordOuestFront, _pointSudOuestBack, _pointSudOuestFront, FaceOuest);
+            InitFaceGrid(2, planetData._pointNordOuestBack, planetData._pointNordOuestFront, planetData._pointSudOuestBack, planetData._pointSudOuestFront, planetData.FaceOuest);
         }
         if(planetSettings.faceForward){
             // face Front
@@ -158,7 +114,7 @@ public class GridPlanetGeneration : MonoBehaviour
             //Ouest< |   | > Est
             //       +---+
             //        \/ Sud
-            InitFaceGrid(3, _pointNordOuestFront, _pointNordEstFront, _pointSudOuestFront, _pointSudEstFront, FaceFront);
+            InitFaceGrid(3, planetData._pointNordOuestFront, planetData._pointNordEstFront, planetData._pointSudOuestFront, planetData._pointSudEstFront, planetData.FaceFront);
         }
         if(planetSettings.faceBack){
             // face Back
@@ -167,7 +123,7 @@ public class GridPlanetGeneration : MonoBehaviour
             //Est< |   | > Ouest
             //     +---+
             //      \/ Sud
-            InitFaceGrid(4, _pointNordEstBack, _pointNordOuestBack, _pointSudEstBack, _pointSudOuestBack, FaceBack);
+            InitFaceGrid(4, planetData._pointNordEstBack, planetData._pointNordOuestBack, planetData._pointSudEstBack, planetData._pointSudOuestBack, planetData.FaceBack);
         }
         if(planetSettings.faceDown){
             // face Sud
@@ -176,7 +132,7 @@ public class GridPlanetGeneration : MonoBehaviour
             //Est< |   | > Ouest
             //     +---+
             //      \/ Front
-            InitFaceGrid(5, _pointSudEstBack, _pointSudOuestBack, _pointSudEstFront, _pointSudOuestFront, FaceSud);
+            InitFaceGrid(5, planetData._pointSudEstBack, planetData._pointSudOuestBack, planetData._pointSudEstFront, planetData._pointSudOuestFront, planetData.FaceSud);
         }
     }
 
@@ -242,31 +198,31 @@ public class GridPlanetGeneration : MonoBehaviour
                     // set tile
                     GridTile t = new GridTile(numFace, N, O, (planetSettings.resolution-O-1), (planetSettings.resolution-N-1), h, planetSettings.height-1-h);
                     t.InitSquare(NO, NE, SO, SE, NOH, NEH, SOH, SEH);
-                    t.tileGameObject.transform.parent = gameObject.transform;
+                    t.tileGameObject.transform.parent = planet.transform;
                     switch (numFace)
                     {
                         case 0:
-                        FaceNord.Add(t);
+                        planetData.FaceNord.Add(t);
                         break;
                         
                         case 1:
-                        FaceEst.Add(t);
+                        planetData.FaceEst.Add(t);
                         break;
 
                         case 2:
-                        FaceOuest.Add(t);
+                        planetData.FaceOuest.Add(t);
                         break;
 
                         case 3:
-                        FaceFront.Add(t);
+                        planetData.FaceFront.Add(t);
                         break;
 
                         case 4:
-                        FaceBack.Add(t);
+                        planetData.FaceBack.Add(t);
                         break;
 
                         case 5:
-                        FaceSud.Add(t);
+                        planetData.FaceSud.Add(t);
                         break;
 
                         default:
@@ -284,34 +240,34 @@ public class GridPlanetGeneration : MonoBehaviour
     public void InitProxyTile()
     {
         // Nord
-        foreach (GridTile tile in FaceNord)
+        foreach (GridTile tile in planetData.FaceNord)
         {
-            tile.SetProxyTileGrid(listGridFaces);
+            tile.SetProxyTileGrid(planetData.listGridFaces);
         }
         // Est
-        foreach (GridTile tile in FaceEst)
+        foreach (GridTile tile in planetData.FaceEst)
         {
-            tile.SetProxyTileGrid(listGridFaces);
+            tile.SetProxyTileGrid(planetData.listGridFaces);
         }
         // Ouest
-        foreach (GridTile tile in FaceOuest)
+        foreach (GridTile tile in planetData.FaceOuest)
         {
-            tile.SetProxyTileGrid(listGridFaces);
+            tile.SetProxyTileGrid(planetData.listGridFaces);
         }
         // Front
-        foreach (GridTile tile in FaceFront)
+        foreach (GridTile tile in planetData.FaceFront)
         {
-            tile.SetProxyTileGrid(listGridFaces);
+            tile.SetProxyTileGrid(planetData.listGridFaces);
         }
         // Back
-        foreach (GridTile tile in FaceBack)
+        foreach (GridTile tile in planetData.FaceBack)
         {
-            tile.SetProxyTileGrid(listGridFaces);
+            tile.SetProxyTileGrid(planetData.listGridFaces);
         }
         // Sud
-        foreach (GridTile tile in FaceSud)
+        foreach (GridTile tile in planetData.FaceSud)
         {
-            tile.SetProxyTileGrid(listGridFaces);
+            tile.SetProxyTileGrid(planetData.listGridFaces);
         }
     }
 
@@ -321,32 +277,32 @@ public class GridPlanetGeneration : MonoBehaviour
     public void SetTilesManager()
     {
         // Nord
-        foreach (GridTile tile in FaceNord)
+        foreach (GridTile tile in planetData.FaceNord)
         {
             tile.SetTileManager();
         }
         // Est
-        foreach (GridTile tile in FaceEst)
+        foreach (GridTile tile in planetData.FaceEst)
         {
             tile.SetTileManager();
         }
         // Ouest
-        foreach (GridTile tile in FaceOuest)
+        foreach (GridTile tile in planetData.FaceOuest)
         {
             tile.SetTileManager();
         }
         // Front
-        foreach (GridTile tile in FaceFront)
+        foreach (GridTile tile in planetData.FaceFront)
         {
             tile.SetTileManager();
         }
         // Back
-        foreach (GridTile tile in FaceBack)
+        foreach (GridTile tile in planetData.FaceBack)
         {
             tile.SetTileManager();
         }
         // Sud
-        foreach (GridTile tile in FaceSud)
+        foreach (GridTile tile in planetData.FaceSud)
         {
             tile.SetTileManager();
         }
@@ -358,32 +314,32 @@ public class GridPlanetGeneration : MonoBehaviour
     public void InitTileGridGameObject()
     {
         // Nord
-        foreach (GridTile tile in FaceNord)
+        foreach (GridTile tile in planetData.FaceNord)
         {
             tile.InitTileGridGameObject();
         }
         // Est
-        foreach (GridTile tile in FaceEst)
+        foreach (GridTile tile in planetData.FaceEst)
         {
             tile.InitTileGridGameObject();
         }
         // Ouest
-        foreach (GridTile tile in FaceOuest)
+        foreach (GridTile tile in planetData.FaceOuest)
         {
             tile.InitTileGridGameObject();
         }
         // Front
-        foreach (GridTile tile in FaceFront)
+        foreach (GridTile tile in planetData.FaceFront)
         {
             tile.InitTileGridGameObject();
         }
         // Back
-        foreach (GridTile tile in FaceBack)
+        foreach (GridTile tile in planetData.FaceBack)
         {
             tile.InitTileGridGameObject();
         }
         // Sud
-        foreach (GridTile tile in FaceSud)
+        foreach (GridTile tile in planetData.FaceSud)
         {
             tile.InitTileGridGameObject();
         }
