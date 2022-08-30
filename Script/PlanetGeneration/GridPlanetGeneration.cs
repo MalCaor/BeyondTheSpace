@@ -46,7 +46,6 @@ public class GridPlanetGeneration : MonoBehaviour
     /// </summary>
     void InitGrid()
     {
-        planetData.posCamStart = planet.transform.position + (planet.transform.up * (1 + planetSettings.radius + planetSettings.height+2));
         planetData = planet.AddComponent<GridPlanetData>();
         // set up the list Faces
         planetData.FaceNord = new List<GridTile>();
