@@ -109,9 +109,8 @@ public class GridTile
 
     public int solidFaceUp()
     {
-        if(ProxyTileUp != null)
+        if(this.ProxyTileUp != null)
         {
-            Debug.Log("What?");
             if(ProxyTileUp.gridTileManager.tileTerrainType!=1)
             {
                 return 1;

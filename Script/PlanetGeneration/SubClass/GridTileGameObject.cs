@@ -328,7 +328,6 @@ public class GridTileGameObject : MonoBehaviour
                 {
                     if(ProxyTileNord.solidFaceUp() == 1)
                     {
-                        Debug.Log("North");
                         // draw corner
                         Vector3 NO;
                         Vector3 NE;
