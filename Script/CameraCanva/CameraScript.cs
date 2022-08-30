@@ -14,6 +14,7 @@ public class CameraScript : MonoBehaviour
     public GameObject curentGrid;
 
     GridTileGameObject oldTile;
+    GridTileGameObject selectedTile;
 
     // Start is called before the first frame update
     void Start()
@@ -75,7 +76,10 @@ public class CameraScript : MonoBehaviour
     {
         if(oldTile!=null)
         {
-            oldTile.HideTileLine();
+            if(oldTile!=selectedTile)
+            {
+                oldTile.HideTileLine();
+            }
         }
         RaycastHit hit;
         Ray ray;
@@ -89,6 +93,17 @@ public class CameraScript : MonoBehaviour
         {
             oldTile = hit.transform.gameObject.GetComponent<GridTileGameObject>();
             oldTile.ShowTileLine();
+            if(Input.GetMouseButton(0))
+            {
+                if(selectedTile!=null)
+                {
+                    selectedTile.SetLineColor(selectedTile.gridTile.gridTileManager.GetColorTile());
+                    selectedTile.HideTileLine();
+                }
+                selectedTile = oldTile;
+                selectedTile.SetLineColor(Color.black);
+                selectedTile.ShowTileLine();
+            }
         }
     }
 }
