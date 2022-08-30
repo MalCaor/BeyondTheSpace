@@ -107,6 +107,21 @@ public class GridTile
         this.gridTileManager = new GridTileManager();
     }
 
+    public int solidFaceUp()
+    {
+        if(ProxyTileUp != null)
+        {
+            Debug.Log("What?");
+            if(ProxyTileUp.gridTileManager.tileTerrainType!=1)
+            {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+        return 0;
+    }
+
     // set square
     public void InitSquare(Vector3 NO, Vector3 NE, Vector3 SO, Vector3 SE, Vector3 NOH, Vector3 NEH, Vector3 SOH, Vector3 SEH)
     {

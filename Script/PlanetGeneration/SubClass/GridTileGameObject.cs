@@ -326,9 +326,7 @@ public class GridTileGameObject : MonoBehaviour
             {
                 if(ProxyTileNord != null)
                 {
-            Debug.Log("North");
-            /*
-                    if(ProxyTileNord.ProxyTileUp.gridTileManager.tileTerrainType == 1)
+                    if(ProxyTileNord.solidFaceUp() == 1)
                     {
                         Debug.Log("North");
                         // draw corner
@@ -345,7 +343,7 @@ public class GridTileGameObject : MonoBehaviour
                         listVert.Add(SE);
                         listVert.Add(SO);
                         numFace++;
-                    }*/
+                    }
                 }
             }
         }
