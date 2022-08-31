@@ -421,7 +421,7 @@ public class GridTileGameObject : MonoBehaviour
         {
             meshRendererTerrain = gameObject.AddComponent<MeshRenderer>();
         }
-        meshRendererTerrain.material = gridTile.gridTileManager.GetMaterialTile();
+        meshRendererTerrain.sharedMaterial= gridTile.gridTileManager.GetMaterialTile();
     }
 
     public void drawMeshLiquid()
