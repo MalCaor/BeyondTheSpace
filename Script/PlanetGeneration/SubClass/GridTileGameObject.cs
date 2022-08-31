@@ -20,7 +20,6 @@ public class GridTileGameObject : MonoBehaviour
     public Mesh meshBoxTile;
     public MeshCollider meshCollider;
 
-    int resolutionPointMesh = 4;
     Vector3[] listPointMesh;
 
     // point mesh coin
@@ -39,6 +38,9 @@ public class GridTileGameObject : MonoBehaviour
     public Mesh meshTerrain;
     public MeshFilter meshFilterTerrain;
     public MeshRenderer meshRendererTerrain;
+    
+    // uv
+    Vector2[] uvMeshTerrain;
 
     public void ShowTileLine()
     {
@@ -407,6 +409,15 @@ public class GridTileGameObject : MonoBehaviour
             // reverse mesh (tech du chlag)
             meshTerrain.triangles = meshTerrain.triangles.Reverse().ToArray();
         }
+
+        // set uvs
+        uvMeshTerrain = new Vector2[meshTerrain.vertices.Length];
+        for (int i = 0; i < uvMeshTerrain.Length; i++)
+        {
+            uvMeshTerrain[i] = new Vector2(meshTerrain.vertices[i].x, meshTerrain.vertices[i].z);
+        }
+
+        meshTerrain.uv = uvMeshTerrain;
 
         // mesh filter
         meshFilterTerrain = gameObject.GetComponent<MeshFilter>();
