@@ -19,7 +19,7 @@ public class TerrainPlanetGeneration : MonoBehaviour
 
     public void Init()
     {
-        noise = new Noise((int)Mathf.Round(terrainSetting.roughnessNoiseTerrainElevation));
+        noise = new Noise(terrainSetting.SeedTerrainGeneration);
         grid = planet.GetComponent<GridPlanetData>();
         gridGener = gameObject.GetComponent<GridPlanetGeneration>();
         // init all env
@@ -213,12 +213,8 @@ public class TerrainPlanetGeneration : MonoBehaviour
     {
         // generate terrain
         // get angle from planet
-        float anglex;
-        float anglez;
         float angleUp = Vector3.Angle(planet.transform.up, t.tileGameObject.transform.position - planet.transform.position);
-        float angleDown = Vector3.Angle(-planet.transform.up, t.tileGameObject.transform.position - planet.transform.position);
         float angleRight = Vector3.Angle(planet.transform.right, t.tileGameObject.transform.position - planet.transform.position);
-        float angleLeft = Vector3.Angle(-planet.transform.right, t.tileGameObject.transform.position - planet.transform.position);
         // evaluate
         float noiseVal = (noise.Evaluate(new Vector4(angleUp, t.Npos, angleRight, t.Opos) / terrainSetting.roughnessNoiseTerrainElevation)+1) * 0.5f;
         int levelTerrain = (int)Mathf.Round(gridGener.planetSettings.height * noiseVal);
