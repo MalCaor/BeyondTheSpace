@@ -93,7 +93,10 @@ public class CameraScript : MonoBehaviour
         if(Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
         {
             oldTile = hit.transform.gameObject.GetComponent<GridTileGameObject>();
-            oldTile.ShowTileLine();
+            if(oldTile!=null)
+            {
+                oldTile.ShowTileLine();
+            }
             if(Input.GetMouseButton(0))
             {
                 if(selectedTile!=null)
