@@ -663,7 +663,8 @@ public class GridTileGameObject : MonoBehaviour
             ProxyTileEst.gridTileManager.tileTerrainType == 1 &&
             ProxyTileUp.gridTileManager.tileTerrainType == 1)
             {
-                gameObject.SetActive(false);
+                // do sepuku
+                DestroyImmediate(gameObject);
             } else{
                 DrawMeshSolid();
                 ShowMeshTerrain();
