@@ -25,47 +25,11 @@ public class TerrainPlanetGeneration : MonoBehaviour
         // init all env
         EnvironmentGlobalGeneration.InitAllEnvironment();
         InitTerrain();
-        ResetColor();
         if (terrainSetting.water)
         {
             InitWater();
         }
-        SetColor();
         DrawGameObject();
-    }
-
-    void ResetColor()
-    {
-        // Nord
-        foreach (GridTile tile in grid.FaceNord)
-        {
-            ResetColorTile(tile);
-        }
-        // Est
-        foreach (GridTile tile in grid.FaceEst)
-        {
-            ResetColorTile(tile);
-        }
-        // Ouest
-        foreach (GridTile tile in grid.FaceOuest)
-        {
-            ResetColorTile(tile);
-        }
-        // Front
-        foreach (GridTile tile in grid.FaceFront)
-        {
-            ResetColorTile(tile);
-        }
-        // Back
-        foreach (GridTile tile in grid.FaceBack)
-        {
-            ResetColorTile(tile);
-        }
-        // Sud
-        foreach (GridTile tile in grid.FaceSud)
-        {
-            ResetColorTile(tile);
-        }
     }
 
     void InitTerrain()
@@ -136,40 +100,6 @@ public class TerrainPlanetGeneration : MonoBehaviour
         }
     }
 
-    void SetColor()
-    {
-        // Nord
-        foreach (GridTile tile in grid.FaceNord)
-        {
-            SetColorTile(tile);
-        }
-        // Est
-        foreach (GridTile tile in grid.FaceEst)
-        {
-            SetColorTile(tile);
-        }
-        // Ouest
-        foreach (GridTile tile in grid.FaceOuest)
-        {
-            SetColorTile(tile);
-        }
-        // Front
-        foreach (GridTile tile in grid.FaceFront)
-        {
-            SetColorTile(tile);
-        }
-        // Back
-        foreach (GridTile tile in grid.FaceBack)
-        {
-            SetColorTile(tile);
-        }
-        // Sud
-        foreach (GridTile tile in grid.FaceSud)
-        {
-            SetColorTile(tile);
-        }
-    }
-
     void DrawGameObject()
     {
         // Nord
@@ -204,17 +134,13 @@ public class TerrainPlanetGeneration : MonoBehaviour
         }
     }
 
-    void ResetColorTile(GridTile t)
-    {
-        t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(Color.black);
-    }
-
     void InitTileTerrain(GridTile t)
     {
         // generate terrain
         // get angle from planet
-        float angleUp = Vector3.Angle(planet.transform.up, t.tileGameObject.transform.position - planet.transform.position);
-        float angleRight = Vector3.Angle(planet.transform.right, t.tileGameObject.transform.position - planet.transform.position);
+        // pointDownNO is just to have a point to focus on
+        float angleUp = Vector3.Angle(planet.transform.up, t.pointDownNO - planet.transform.position);
+        float angleRight = Vector3.Angle(planet.transform.right, t.pointDownNO - planet.transform.position);
         // evaluate
         float noiseVal = (noise.Evaluate(new Vector4(angleUp, t.Npos, angleRight, t.Opos) / terrainSetting.roughnessNoiseTerrainElevation)+1) * 0.5f;
         int levelTerrain = (int)Mathf.Round(gridGener.planetSettings.height * noiseVal);
@@ -223,6 +149,7 @@ public class TerrainPlanetGeneration : MonoBehaviour
             t.gridTileManager.tileTerrainType = 0;
             t.gridTileManager.environmentManager.listEnvironment.Add(Environment.listEnvironmentGlobal.Find((x) => x.name=="air"));
         } else {
+            t.InitTileGridGameObject();
             t.gridTileManager.tileTerrainType = 1;
             t.gridTileManager.environmentManager.listEnvironment.Add(Environment.listEnvironmentGlobal.Find((x) => x.name=="earth"));;
         }
@@ -232,18 +159,17 @@ public class TerrainPlanetGeneration : MonoBehaviour
     {
         if(t.Dpos<=terrainSetting.waterLevel && t.gridTileManager.tileTerrainType == 0)
         {
+            t.InitTileGridGameObject();
             t.gridTileManager.tileTerrainType = 2;
             t.gridTileManager.environmentManager.listEnvironment.Add(Environment.listEnvironmentGlobal.Find((x) => x.name=="water"));
         }
     }
 
-    void SetColorTile(GridTile t)
-    {
-        t.tileGameObject.GetComponent<GridTileGameObject>().SetLineColor(t.gridTileManager.GetColorTile());
-    }
-
     void DrawGameObjectTerrain(GridTile t)
     {
-        t.tileGameObject.GetComponent<GridTileGameObject>().DrawGameObject();
+        if(t.tileGameObject!=null)
+        {
+            t.tileGameObject.GetComponent<GridTileGameObject>().DrawGameObject();
+        }
     }
 }

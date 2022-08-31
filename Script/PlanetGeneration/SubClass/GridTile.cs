@@ -8,6 +8,9 @@ public class GridTile
     // name for the player
     public string name;
 
+    // parent gameObject
+    public GameObject planet;
+
     // GameObject in world
     public GameObject tileGameObject;
     public GridTileGameObject gridTileGameObject;
@@ -122,8 +125,10 @@ public class GridTile
     }
 
     // set square
-    public void InitSquare(Vector3 NO, Vector3 NE, Vector3 SO, Vector3 SE, Vector3 NOH, Vector3 NEH, Vector3 SOH, Vector3 SEH)
+    public void InitSquare(GameObject planet, Vector3 NO, Vector3 NE, Vector3 SO, Vector3 SE, Vector3 NOH, Vector3 NEH, Vector3 SOH, Vector3 SEH)
     {
+        this.planet = planet;
+
         pointDownNO = NO;
         pointDownNE = NE;
         pointDownSO = SO;
@@ -134,18 +139,7 @@ public class GridTile
         pointUpSO = SOH;
         pointUpSE = SEH;
 
-        // set the grid
-        tileGameObject = new GameObject();
-
-        // set Link to object in GameObject
-        GridTileGameObject linkToThis = tileGameObject.AddComponent<GridTileGameObject>();
-        linkToThis.gridTile = this;
-        gridTileGameObject = linkToThis;
-
-        // set pos to mid
-        Vector3 mid = Vector3.Lerp(SOH, NE, 0.5f);
-        tileGameObject.transform.position = mid;
-        tileGameObject.name = this.name;
+        
     }
 
     public void SetProxyTileGrid(List<List<GridTile>> gridGlob)
@@ -158,8 +152,7 @@ public class GridTile
         ProxyTileUp = findTileOtherFace(gridGlob, 4);
         ProxyTileDown = findTileOtherFace(gridGlob, 5);
 
-        // Update the proxy for GameObject
-        tileGameObject.GetComponent<GridTileGameObject>().UpdateProxy();
+        
     }
 
     /// <summary>
@@ -180,6 +173,22 @@ public class GridTile
     /// </summary>
     public void InitTileGridGameObject()
     {
+        // set the grid
+        tileGameObject = new GameObject();
+        tileGameObject.transform.parent = planet.transform;
+
+        // set Link to object in GameObject
+        GridTileGameObject linkToThis = tileGameObject.AddComponent<GridTileGameObject>();
+        linkToThis.gridTile = this;
+        gridTileGameObject = linkToThis;
+
+        // set pos to mid
+        Vector3 mid = Vector3.Lerp(pointUpSO, pointDownNE, 0.5f);
+        tileGameObject.transform.position = mid;
+        tileGameObject.name = this.name;
+
+        // Update the proxy for GameObject
+        tileGameObject.GetComponent<GridTileGameObject>().UpdateProxy();
         // set Layer to TileLayer
         tileGameObject.GetComponent<GridTileGameObject>().SetTileLayer(3);
         // set line

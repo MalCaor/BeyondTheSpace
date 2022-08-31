@@ -22,7 +22,6 @@ public class GridPlanetGeneration : MonoBehaviour
         DestroyChild();
         InitGrid();
         InitProxyTile();
-        InitTileGridGameObject();
         SetTilesManager();
     }
 
@@ -197,8 +196,7 @@ public class GridPlanetGeneration : MonoBehaviour
 
                     // set tile
                     GridTile t = new GridTile(numFace, N, O, (planetSettings.resolution-O-1), (planetSettings.resolution-N-1), h, planetSettings.height-1-h);
-                    t.InitSquare(NO, NE, SO, SE, NOH, NEH, SOH, SEH);
-                    t.tileGameObject.transform.parent = planet.transform;
+                    t.InitSquare(planet, NO, NE, SO, SE, NOH, NEH, SOH, SEH);
                     switch (numFace)
                     {
                         case 0:
@@ -308,40 +306,5 @@ public class GridPlanetGeneration : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Call Every Tile to set various stuff
-    /// </summary>
-    public void InitTileGridGameObject()
-    {
-        // Nord
-        foreach (GridTile tile in planetData.FaceNord)
-        {
-            tile.InitTileGridGameObject();
-        }
-        // Est
-        foreach (GridTile tile in planetData.FaceEst)
-        {
-            tile.InitTileGridGameObject();
-        }
-        // Ouest
-        foreach (GridTile tile in planetData.FaceOuest)
-        {
-            tile.InitTileGridGameObject();
-        }
-        // Front
-        foreach (GridTile tile in planetData.FaceFront)
-        {
-            tile.InitTileGridGameObject();
-        }
-        // Back
-        foreach (GridTile tile in planetData.FaceBack)
-        {
-            tile.InitTileGridGameObject();
-        }
-        // Sud
-        foreach (GridTile tile in planetData.FaceSud)
-        {
-            tile.InitTileGridGameObject();
-        }
-    }
+    
 }

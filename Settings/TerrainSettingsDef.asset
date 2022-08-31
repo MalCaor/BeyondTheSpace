@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   water: 1
   waterLevel: 5
+  SeedTerrainGeneration: 1
   roughnessNoiseTerrainElevation: 100
