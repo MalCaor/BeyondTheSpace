@@ -18,9 +18,9 @@ MonoBehaviour:
   resolution: 20
   height: 10
   tileHeight: 0.3
-  faceDown: 0
-  faceBack: 0
+  faceDown: 1
+  faceBack: 1
   faceUp: 1
-  faceForward: 0
-  faceLeft: 0
-  faceRight: 0
+  faceForward: 1
+  faceLeft: 1
+  faceRight: 1
