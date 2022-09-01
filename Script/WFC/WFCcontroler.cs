@@ -9,7 +9,8 @@ public class WFCcontroler : MonoBehaviour
 
     public void GenerateBitMapWFC()
     {
-        WFC.GetAllColor(bitMap);
-        return;
+        Model model;
+        int height = bitMap.height;
+        int width = bitMap.width;
     }
 }
