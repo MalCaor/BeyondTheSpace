@@ -187,8 +187,6 @@ public class GridTile
         tileGameObject.transform.position = mid;
         tileGameObject.name = this.name;
 
-        // Update the proxy for GameObject
-        tileGameObject.GetComponent<GridTileGameObject>().UpdateProxy();
         // set Layer to TileLayer
         tileGameObject.GetComponent<GridTileGameObject>().SetTileLayer(3);
         // set line

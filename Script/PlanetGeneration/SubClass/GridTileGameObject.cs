@@ -8,13 +8,6 @@ public class GridTileGameObject : MonoBehaviour
 {
     // public var
     public GridTile gridTile;
-    // Proxy GridTile
-    public GridTile ProxyTileNord;
-    public GridTile ProxyTileSud;
-    public GridTile ProxyTileOuest;
-    public GridTile ProxyTileEst;
-    public GridTile ProxyTileUp;
-    public GridTile ProxyTileDown;
 
     // mesh
     public Mesh meshBoxTile;
@@ -71,34 +64,6 @@ public class GridTileGameObject : MonoBehaviour
         }
     }
 
-    public void UpdateProxy()
-    {
-        if(gridTile.ProxyTileNord!=null)
-        {
-            this.ProxyTileNord = gridTile.ProxyTileNord;
-        }
-        if(gridTile.ProxyTileSud!=null)
-        {
-            this.ProxyTileSud = gridTile.ProxyTileSud;
-        }
-        if(gridTile.ProxyTileOuest!=null)
-        {
-            this.ProxyTileOuest = gridTile.ProxyTileOuest;
-        }
-        if(gridTile.ProxyTileEst!=null)
-        {
-            this.ProxyTileEst = gridTile.ProxyTileEst;
-        }
-        if(gridTile.ProxyTileUp!=null)
-        {
-            this.ProxyTileUp = gridTile.ProxyTileUp;
-        }
-        if(gridTile.ProxyTileDown!=null)
-        {
-            this.ProxyTileDown = gridTile.ProxyTileDown;
-        }
-    }
-
     public void InitLineTile()
     {
         LineRenderer l = gameObject.AddComponent<LineRenderer>();
@@ -134,54 +99,54 @@ public class GridTileGameObject : MonoBehaviour
         int etatU;
         int etatD;
         // get voisin etat
-        if(ProxyTileNord != null)
+        if(gridTile.ProxyTileNord != null)
         {
-            etatN = ProxyTileNord.gridTileManager.tileTerrainType;
+            etatN = gridTile.ProxyTileNord.gridTileManager.tileTerrainType;
             if(etatN != 1){
                 etatN = 0;
             }
         } else {
             etatN = 0;
         }
-        if(ProxyTileEst != null)
+        if(gridTile.ProxyTileEst != null)
         {
-            etatE = ProxyTileEst.gridTileManager.tileTerrainType;
+            etatE = gridTile.ProxyTileEst.gridTileManager.tileTerrainType;
             if(etatE != 1){
                 etatE = 0;
             }
         } else {
             etatE = 0;
         }
-        if(ProxyTileSud != null)
+        if(gridTile.ProxyTileSud != null)
         {
-            etatS = ProxyTileSud.gridTileManager.tileTerrainType;
+            etatS = gridTile.ProxyTileSud.gridTileManager.tileTerrainType;
             if(etatS != 1){
                 etatS = 0;
             }
         } else {
             etatS = 0;
         }
-        if(ProxyTileOuest != null)
+        if(gridTile.ProxyTileOuest != null)
         {
-            etatO = ProxyTileOuest.gridTileManager.tileTerrainType;
+            etatO = gridTile.ProxyTileOuest.gridTileManager.tileTerrainType;
             if(etatO != 1){
                 etatO = 0;
             }
         } else {
             etatO = 0;
         }
-        if(ProxyTileUp != null)
+        if(gridTile.ProxyTileUp != null)
         {
-            etatU = ProxyTileUp.gridTileManager.tileTerrainType;
+            etatU = gridTile.ProxyTileUp.gridTileManager.tileTerrainType;
             if(etatU != 1){
                 etatU = 0;
             }
         } else {
             etatU = 0;
         }
-        if(ProxyTileDown != null)
+        if(gridTile.ProxyTileDown != null)
         {
-            etatD = ProxyTileDown.gridTileManager.tileTerrainType;
+            etatD = gridTile.ProxyTileDown.gridTileManager.tileTerrainType;
             if(etatD != 1){
                 etatD = 0;
             }
@@ -322,7 +287,7 @@ public class GridTileGameObject : MonoBehaviour
         // set face earth (corner)
         if(etatN == 1)
         {
-            if(ProxyTileNord.solidFaceUp() == 1)
+            if(gridTile.ProxyTileNord.solidFaceUp() == 1)
             {
                 // draw corner
                 Vector3 NO;
@@ -342,7 +307,7 @@ public class GridTileGameObject : MonoBehaviour
         }
         if(etatS == 1)
         {
-            if(ProxyTileSud.solidFaceUp() == 1)
+            if(gridTile.ProxyTileSud.solidFaceUp() == 1)
             {
                 // draw corner
                 Vector3 NO;
@@ -362,7 +327,7 @@ public class GridTileGameObject : MonoBehaviour
         }
         if(etatE == 1)
         {
-            if(ProxyTileEst.solidFaceUp() == 1)
+            if(gridTile.ProxyTileEst.solidFaceUp() == 1)
             {
                 // draw corner
                 Vector3 NO;
@@ -382,7 +347,7 @@ public class GridTileGameObject : MonoBehaviour
         }
         if(etatO == 1)
         {
-            if(ProxyTileOuest.solidFaceUp() == 1)
+            if(gridTile.ProxyTileOuest.solidFaceUp() == 1)
             {
                 // draw corner
                 Vector3 NO;
@@ -548,9 +513,9 @@ public class GridTileGameObject : MonoBehaviour
             // I'm Water
             return (float)0;
         }
-        if(ProxyTileUp != null)
+        if(gridTile.ProxyTileUp != null)
         {
-            if(ProxyTileUp.gridTileManager.tileTerrainType == 1)
+            if(gridTile.ProxyTileUp.gridTileManager.tileTerrainType == 1)
             {
                 return 1f;
             }
@@ -657,11 +622,11 @@ public class GridTileGameObject : MonoBehaviour
     void DrawGameObjectSolid()
     {
         try{
-            if(ProxyTileNord.gridTileManager.tileTerrainType == 1 &&
-            ProxyTileSud.gridTileManager.tileTerrainType == 1 &&
-            ProxyTileOuest.gridTileManager.tileTerrainType == 1 &&
-            ProxyTileEst.gridTileManager.tileTerrainType == 1 &&
-            ProxyTileUp.gridTileManager.tileTerrainType == 1)
+            if(gridTile.ProxyTileNord.gridTileManager.tileTerrainType == 1 &&
+            gridTile.ProxyTileSud.gridTileManager.tileTerrainType == 1 &&
+            gridTile.ProxyTileOuest.gridTileManager.tileTerrainType == 1 &&
+            gridTile.ProxyTileEst.gridTileManager.tileTerrainType == 1 &&
+            gridTile.ProxyTileUp.gridTileManager.tileTerrainType == 1)
             {
                 // do sepuku
                 DestroyImmediate(gameObject);
@@ -680,7 +645,7 @@ public class GridTileGameObject : MonoBehaviour
     void DrawGameObjectLiquid()
     {
         try{
-            if(ProxyTileUp.gridTileManager.tileTerrainType == 0)
+            if(gridTile.ProxyTileUp.gridTileManager.tileTerrainType == 0)
             {
                 drawMeshLiquid();
                 ShowMeshTerrain();
