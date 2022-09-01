@@ -15,7 +15,8 @@ public class WaveFonctionCollapse
         {
             for (int w = 0; w < ogBitMap.width; w++)
             {
-                Debug.Log(ogBitMap.GetPixel(h,w));
+                Debug.Log(ColorUtility.ToHtmlStringRGB(ogBitMap.GetPixel(h,w)));
+                return;
             }
         }
     }

@@ -10,5 +10,6 @@ public class WFCcontroler : MonoBehaviour
     public void GenerateBitMapWFC()
     {
         WFC.GetAllColor(bitMap);
+        return;
     }
 }
