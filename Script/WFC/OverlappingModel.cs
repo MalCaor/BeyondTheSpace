@@ -107,7 +107,7 @@ class OverlappingModel : Model
         }
     }
 
-    public override void Save(string filename)
+    public void Save(Texture2D OutputTexture)
     {
         int[] bitmap = new int[MX * MY];
         if (observed[0] >= 0)
@@ -152,5 +152,6 @@ class OverlappingModel : Model
         }
         
         // TODO : Bitmap Output
+        ImageConversion.LoadImage(OutputTexture, bitmap);
     }
 }

@@ -225,8 +225,6 @@ abstract class Model
         }
     }
 
-    public abstract void Save(string filename);
-
     protected static int[] dx = { -1, 0, 1, 0 };
     protected static int[] dy = { 0, 1, 0, -1 };
     static int[] opposite = { 2, 3, 0, 1 };
