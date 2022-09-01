@@ -12,7 +12,6 @@ class OverlappingModel : Model
     public OverlappingModel(Texture2D textureInput, int N, int width, int height, bool periodicInput, bool periodic, int symmetry, bool ground, Heuristic heuristic)
         : base(width, height, N, periodic, heuristic)
     {
-        // convert texture2d into byte 
         byte[] bitmap = textureInput.GetRawTextureData();    
         int SX = textureInput.height;
         int SY = textureInput.width;
@@ -152,6 +151,11 @@ class OverlappingModel : Model
         }
         
         // TODO : Bitmap Output
-        ImageConversion.LoadImage(OutputTexture, bitmap);
+        byte[] bitmapOutput = new byte[bitmap.Length];
+        for (int i = 0; i < bitmap.Length; i++)
+        {
+            bitmapOutput[i] = System.Convert.ToByte(bitmap[i]);
+        }
+        ImageConversion.LoadImage(OutputTexture, bitmapOutput);
     }
 }
