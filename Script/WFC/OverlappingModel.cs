@@ -146,6 +146,7 @@ class OverlappingModel : Model
                                 b += argb & 0xff;
                             }
                     }
+                Debug.Log(contributors);
                 bitmap[i] = unchecked((int)0xff000000 | ((r / contributors) << 16) | ((g / contributors) << 8) | b / contributors);
             }
         }
