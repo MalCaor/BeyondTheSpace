@@ -8,11 +8,13 @@ public class WFCcontroler : MonoBehaviour
     public Texture2D bitMap;
     public Texture2D bitMapOutPut;
     public int N;
+    public int seed;
+    public int limit;
 
     public void GenerateBitMapWFC()
     {
         OverlappingModel model = new OverlappingModel(bitMap, N, bitMap.width, bitMap.height, false, false, 0, false, Model.Heuristic.Entropy);
-        int height = bitMap.height;
-        int width = bitMap.width;
+        model.Run(seed, limit);
+        model.Save(bitMapOutPut);
     }
 }
