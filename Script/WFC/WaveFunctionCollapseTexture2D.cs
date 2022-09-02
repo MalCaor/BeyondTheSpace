@@ -42,6 +42,7 @@ public class WaveFunctionCollapseTexture2D
                     {
                         linkNumProxyColbyCol[curPixel].Add(p, 0);
                     }
+                    linkNumProxyColbyCol[curPixel][p] ++;
                 }
                 if(x+1>width)
                 {
@@ -50,6 +51,7 @@ public class WaveFunctionCollapseTexture2D
                     {
                         linkNumProxyColbyCol[curPixel].Add(p, 0);
                     }
+                    linkNumProxyColbyCol[curPixel][p] ++;
                 }
                 if(y-1>0)
                 {
@@ -58,6 +60,7 @@ public class WaveFunctionCollapseTexture2D
                     {
                         linkNumProxyColbyCol[curPixel].Add(p, 0);
                     }
+                    linkNumProxyColbyCol[curPixel][p] ++;
                 }
                 if(y+1<height)
                 {
@@ -66,6 +69,7 @@ public class WaveFunctionCollapseTexture2D
                     {
                         linkNumProxyColbyCol[curPixel].Add(p, 0);
                     }
+                    linkNumProxyColbyCol[curPixel][p] ++;
                 }
             }
         }
