@@ -10,7 +10,7 @@ public class WaveFunctionCollapseTexture2D
     // all proxy of the colors
     Dictionary<Color, Dictionary<Color,int>> linkNumProxyColbyCol;
 
-    public void run(Texture2D InputTexture)
+    public void run(Texture2D InputTexture, Texture2D OutputTexture, int newHeight, int newWidth)
     {
         // init
         listAllColor = new List<Color>();
