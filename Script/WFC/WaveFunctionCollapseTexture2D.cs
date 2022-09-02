@@ -101,6 +101,7 @@ public class WaveFunctionCollapseTexture2D
 
     void selectColor(List<Color> list, Color c)
     {
+        // let only the selected color int the list
         foreach (Color cl in list)
         {
             if(!cl.Equals(c))
@@ -122,7 +123,8 @@ public class WaveFunctionCollapseTexture2D
                 int numColor = list[x, y].Count;
                 if(numColor == 0)
                 {
-                    Debug.LogError("Cas insolvable");
+                    // unsolvable but not us to check
+                    continue;
                 }
                 if(numColor == 1)
                 {
@@ -192,5 +194,31 @@ public class WaveFunctionCollapseTexture2D
                 }
             }
         }
+    }
+
+    Color chooseColor(List<Color>[,] list)
+    {
+        // choose a random color form the pixel with the lowest entropy
+        int xL = list.GetLength(0);
+        int yL = list.GetLength(1);
+
+        int xTarget;
+        int yTarget;
+        int countTarget = int.MaxValue;
+
+        for (int x = 0; x < xL; x++)
+        {
+            for (int y = 0; y < yL; y++)
+            {
+                if(list[x, y].Count < countTarget)
+                {
+                    countTarget = list[x, y].Count;
+                    xTarget = x;
+                    yTarget = y;
+                }
+            }
+        }
+        // TODO : finish
+        return Color.black;
     }
 }
