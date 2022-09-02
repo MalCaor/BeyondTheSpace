@@ -8,13 +8,13 @@ public class WaveFunctionCollapseTexture2D
     // all color in the og img
     List<Color> listAllColor;
     // all proxy of the colors
-    Dictionary<Color, List<Dictionary<Color,int>>> linkNumProxyColbyCol;
+    Dictionary<Color, Dictionary<Color,int>> linkNumProxyColbyCol;
 
     public void run(Texture2D InputTexture)
     {
         // init
         listAllColor = new List<Color>();
-        linkNumProxyColbyCol = new Dictionary<Color, List<Dictionary<Color,int>>>();
+        linkNumProxyColbyCol = new Dictionary<Color, Dictionary<Color,int>>();
         int height = InputTexture.height;
         int width = InputTexture.width;
 
@@ -31,7 +31,41 @@ public class WaveFunctionCollapseTexture2D
                 // add to dic
                 if(!linkNumProxyColbyCol.ContainsKey(curPixel))
                 {
-                    linkNumProxyColbyCol.Add(curPixel, new List<Dictionary<Color,int>>());
+                    linkNumProxyColbyCol.Add(curPixel, new Dictionary<Color,int>());
+                }
+
+                // Increment proxy
+                if(x-1>0)
+                {
+                    Color p = InputTexture.GetPixel(x-1, y);
+                    if(!linkNumProxyColbyCol[curPixel].ContainsKey(p))
+                    {
+                        linkNumProxyColbyCol[curPixel].Add(p, 0);
+                    }
+                }
+                if(x+1>width)
+                {
+                    Color p = InputTexture.GetPixel(x+1, y);
+                    if(!linkNumProxyColbyCol[curPixel].ContainsKey(p))
+                    {
+                        linkNumProxyColbyCol[curPixel].Add(p, 0);
+                    }
+                }
+                if(y-1>0)
+                {
+                    Color p = InputTexture.GetPixel(x, y-1);
+                    if(!linkNumProxyColbyCol[curPixel].ContainsKey(p))
+                    {
+                        linkNumProxyColbyCol[curPixel].Add(p, 0);
+                    }
+                }
+                if(y+1<height)
+                {
+                    Color p = InputTexture.GetPixel(x, y+1);
+                    if(!linkNumProxyColbyCol[curPixel].ContainsKey(p))
+                    {
+                        linkNumProxyColbyCol[curPixel].Add(p, 0);
+                    }
                 }
             }
         }
