@@ -132,65 +132,61 @@ public class WaveFunctionCollapseTexture2D
                 // check proxy and update list
                 if(x-1>0)
                 {
-                    if(list[x-1,y].Count == 1)
+                    List<Color> colPosible = new List<Color>();
+                    foreach (Color c in list[x-1, y])
                     {
-                        // there is a pixel set
-                        foreach (Color c in list[x,y])
+                        colPosible.AddRange(linkNumProxyColbyCol[c].Keys);
+                    }
+                    foreach (Color c in list[x, y])
+                    {
+                        if(!colPosible.Contains(c))
                         {
-                            // get c color posible
-                            if(!linkNumProxyColbyCol[list[x-1,y][0]].ContainsKey(c))
-                            {
-                                // remove if 0 proba
-                                list[x,y].Remove(c);
-                            }
+                            list[x, y].Remove(c);
                         }
                     }
                 }
                 if(x+1>xL)
                 {
-                    if(list[x+1,y].Count == 1)
+                    List<Color> colPosible = new List<Color>();
+                    foreach (Color c in list[x+1, y])
                     {
-                        // there is a pixel set
-                        foreach (Color c in list[x,y])
+                        colPosible.AddRange(linkNumProxyColbyCol[c].Keys);
+                    }
+                    foreach (Color c in list[x, y])
+                    {
+                        if(!colPosible.Contains(c))
                         {
-                            // get c color posible
-                            if(!linkNumProxyColbyCol[list[x+1,y][0]].ContainsKey(c))
-                            {
-                                // remove if 0 proba
-                                list[x,y].Remove(c);
-                            }
+                            list[x, y].Remove(c);
                         }
                     }
                 }
                 if(y-1>0)
                 {
-                    if(list[x,y-1].Count == 1)
+                    List<Color> colPosible = new List<Color>();
+                    foreach (Color c in list[x, y-1])
                     {
-                        // there is a pixel set
-                        foreach (Color c in list[x,y])
+                        colPosible.AddRange(linkNumProxyColbyCol[c].Keys);
+                    }
+                    foreach (Color c in list[x, y])
+                    {
+                        if(!colPosible.Contains(c))
                         {
-                            // get c color posible
-                            if(!linkNumProxyColbyCol[list[x,y-1][0]].ContainsKey(c))
-                            {
-                                // remove if 0 proba
-                                list[x,y].Remove(c);
-                            }
+                            list[x, y].Remove(c);
                         }
                     }
                 }
                 if(y+1<yL)
                 {
-                    if(list[x,y+1].Count == 1)
+                    List<Color> colPosible = new List<Color>();
+                    foreach (Color c in list[x, y+1])
                     {
-                        // there is a pixel set
-                        foreach (Color c in list[x,y])
+                        colPosible.AddRange(linkNumProxyColbyCol[c].Keys);
+                    }
+                    foreach (Color c in list[x, y])
+                    {
+                        if(!colPosible.Contains(c))
                         {
-                            // get c color posible
-                            if(!linkNumProxyColbyCol[list[x,y+1][0]].ContainsKey(c))
-                            {
-                                // remove if 0 proba
-                                list[x,y].Remove(c);
-                            }
+                            list[x, y].Remove(c);
                         }
                     }
                 }
