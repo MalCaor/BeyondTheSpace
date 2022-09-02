@@ -84,7 +84,6 @@ public class WaveFunctionCollapseTexture2D
                     linkNumProxyColbyCol[c].Add(c2, 0);
                 }
             }
-            Debug.Log(c);
         }
     }
 }
