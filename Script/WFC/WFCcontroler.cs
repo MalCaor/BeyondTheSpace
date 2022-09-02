@@ -11,5 +11,6 @@ public class WFCcontroler : MonoBehaviour
     public void Init()
     {
         WaveFunctionCollapseTexture2D WFC = new WaveFunctionCollapseTexture2D();
+        WFC.run(InputTexture);
     }
 }
