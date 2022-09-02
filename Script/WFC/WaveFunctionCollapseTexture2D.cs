@@ -73,5 +73,18 @@ public class WaveFunctionCollapseTexture2D
                 }
             }
         }
+
+        // set missing color
+        foreach (Color c in listAllColor)
+        {
+            foreach (Color c2 in listAllColor)
+            {
+                if(!linkNumProxyColbyCol[c].ContainsKey(c2))
+                {
+                    linkNumProxyColbyCol[c].Add(c2, 0);
+                }
+            }
+            Debug.Log(c);
+        }
     }
 }
