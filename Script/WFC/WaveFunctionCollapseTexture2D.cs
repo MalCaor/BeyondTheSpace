@@ -9,6 +9,8 @@ public class WaveFunctionCollapseTexture2D
     List<Color> listAllColor;
     // all proxy of the colors
     Dictionary<Color, Dictionary<Color,int>> linkNumProxyColbyCol;
+    // final pixel matrix
+    List<Color>[,] finalMatrix;
 
     public void run(Texture2D InputTexture, Texture2D OutputTexture, int newHeight, int newWidth)
     {
@@ -83,6 +85,16 @@ public class WaveFunctionCollapseTexture2D
                 {
                     linkNumProxyColbyCol[c].Add(c2, 0);
                 }
+            }
+        }
+
+        finalMatrix = new List<Color>[newWidth, newHeight];
+        for (int x = 0; x < newWidth; x++)
+        {
+            for (int y = 0; y < newHeight; y++)
+            {
+                // set all color as posibility
+                finalMatrix[x, y] = listAllColor;
             }
         }
     }
