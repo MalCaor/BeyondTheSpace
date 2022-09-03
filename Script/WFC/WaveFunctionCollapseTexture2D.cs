@@ -104,7 +104,7 @@ public class WaveFunctionCollapseTexture2D
         bool loop = true;
         while (loop)
         {
-            //Debug.Log("### chooseColor ###");
+            Debug.Log("### chooseColor ###");
             col = chooseColor(finalMatrix);
             if(col == 0 && !sansEchec)
             {
@@ -128,17 +128,17 @@ public class WaveFunctionCollapseTexture2D
         } else
         {
             // set col
-            OutputTexture = new Texture2D(newWidth, newHeight);
+            //OutputTexture = new Texture2D(newWidth, newHeight);
+            Texture2D text = new Texture2D(newWidth, newHeight);
             for (int x = 0; x < newWidth; x++)
             {
                 for (int y = 0; y < newHeight; y++)
                 {
-                    //Debug.Log("OG Pix : " + OutputTexture.GetPixel(x,y));
-                    //Debug.Log("NEW Pix : " + finalMatrix[x,y][0]);
-                    OutputTexture.SetPixel(x, y, finalMatrix[x,y][0]);
+                    text.SetPixel(x, y, finalMatrix[x,y][0]);
                 }
             }
-            OutputTexture.Apply();
+            //OutputTexture.Apply();
+            Graphics.CopyTexture(text, OutputTexture);
             Debug.Log("Finish");
         }
     }
