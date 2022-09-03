@@ -12,7 +12,7 @@ public class WaveFunctionCollapseTexture2D
     // final pixel matrix
     List<Color>[,] finalMatrix;
 
-    public void run(Texture2D InputTexture, Texture2D OutputTexture, int newHeight, int newWidth)
+    public void run(Texture2D InputTexture, Texture2D OutputTexture, int newHeight, int newWidth, bool sansEchec)
     {
         // init
         listAllColor = new List<Color>();
@@ -220,21 +220,23 @@ public class WaveFunctionCollapseTexture2D
         }
     }
 
-    Color chooseColor(List<Color>[,] list)
+    Color chooseColor(List<Color>[,] list, bool sansEchec)
     {
         // choose a random color form the pixel with the lowest entropy
         int xL = list.GetLength(0);
         int yL = list.GetLength(1);
 
-        int xTarget;
-        int yTarget;
+        int xTarget = 0;
+        int yTarget = 0;
         int countTarget = int.MaxValue;
 
+        // calculate entropy (lowest number of colors posible)
         for (int x = 0; x < xL; x++)
         {
             for (int y = 0; y < yL; y++)
             {
-                if(list[x, y].Count < countTarget)
+                // check id count is bellow countTarget AND is it's not already selected (=1)
+                if(list[x, y].Count < countTarget && list[x, y].Count != 1)
                 {
                     countTarget = list[x, y].Count;
                     xTarget = x;
@@ -242,7 +244,29 @@ public class WaveFunctionCollapseTexture2D
                 }
             }
         }
-        // TODO : finish
-        return Color.black;
+        
+        // test if 0
+        if(countTarget == 0)
+        {
+            // there is a pixel with no Color posible
+            // if sansEchec set a black pixel (Default Value)
+            if(sansEchec)
+            {
+                selectColor(list[xTarget, yTarget], Color.black);
+                return Color.black;
+            } else
+            {
+                // stop the prog
+                Debug.LogError("Pixel " + xTarget + ", " + yTarget + " could not be set as it has no Color posible left"); 
+                return Color.black;
+            }
+        }
+
+        // TODO : code wheighted random
+        // select a random num
+        int r = Mathf.RoundToInt(Random.Range(0, countTarget));
+        // select the color
+        selectColor(list[xTarget, yTarget], list[xTarget, yTarget][r]);
+        return list[xTarget, yTarget][r];
     }
 }
