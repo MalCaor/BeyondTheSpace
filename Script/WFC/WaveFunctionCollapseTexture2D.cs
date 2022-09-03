@@ -129,8 +129,8 @@ public class WaveFunctionCollapseTexture2D
             {
                 for (int y = 0; y < newHeight; y++)
                 {
-                    Debug.Log("OG Pix : " + OutputTexture.GetPixel(x,y));
-                    Debug.Log("NEW Pix : " + finalMatrix[x,y][0]);
+                    //Debug.Log("OG Pix : " + OutputTexture.GetPixel(x,y));
+                    //Debug.Log("NEW Pix : " + finalMatrix[x,y][0]);
                     OutputTexture.SetPixel(x, y, finalMatrix[x,y][0]);
                 }
             }
@@ -285,15 +285,18 @@ public class WaveFunctionCollapseTexture2D
         {
             // there is a pixel with no Color posible
             selectColor(list[xTarget, yTarget], Color.black);
+            Debug.Log("Black");
             return Color.black;
         }
 
         if(countTarget == int.MaxValue)
         {
             // every color have been selected
+            Debug.Log("white");
             return Color.white;
         }
 
+        Debug.Log("Normal");
         // TODO : code wheighted random
         // select a random num
         int r = Mathf.RoundToInt(Random.Range(0, countTarget));
