@@ -88,6 +88,7 @@ public class WaveFunctionCollapseTexture2D
             }
         }
 
+        // fill final mat with all col possible
         finalMatrix = new List<Color>[newWidth, newHeight];
         for (int x = 0; x < newWidth; x++)
         {
@@ -97,18 +98,40 @@ public class WaveFunctionCollapseTexture2D
                 finalMatrix[x, y] = listAllColor;
             }
         }
+
+        // just set a random col (don't mater)
+        Color col = Color.black;
+        bool loop = true;
+        while (loop)
+        {
+            propagate(finalMatrix);
+            col = chooseColor(finalMatrix);
+            if(col == Color.black && !sansEchec)
+            {
+                // a pixel could not be set
+                Debug.LogError("Erreur");
+                loop = false;
+            }
+            if(col == Color.white)
+            {
+                // finish
+                loop = false;
+            }
+        }
+        if(col == Color.black)
+        {
+            // finished on a Error
+        } else
+        {
+            
+        }
     }
 
     void selectColor(List<Color> list, Color c)
     {
         // let only the selected color int the list
-        foreach (Color cl in list)
-        {
-            if(!cl.Equals(c))
-            {
-                list.Remove(cl);
-            }
-        }
+        list.Clear();
+        list.Add(c);
     }
 
     void propagate(List<Color>[,] list)
@@ -220,7 +243,7 @@ public class WaveFunctionCollapseTexture2D
         }
     }
 
-    Color chooseColor(List<Color>[,] list, bool sansEchec)
+    Color chooseColor(List<Color>[,] list)
     {
         // choose a random color form the pixel with the lowest entropy
         int xL = list.GetLength(0);
@@ -249,17 +272,14 @@ public class WaveFunctionCollapseTexture2D
         if(countTarget == 0)
         {
             // there is a pixel with no Color posible
-            // if sansEchec set a black pixel (Default Value)
-            if(sansEchec)
-            {
-                selectColor(list[xTarget, yTarget], Color.black);
-                return Color.black;
-            } else
-            {
-                // stop the prog
-                Debug.LogError("Pixel " + xTarget + ", " + yTarget + " could not be set as it has no Color posible left"); 
-                return Color.black;
-            }
+            selectColor(list[xTarget, yTarget], Color.black);
+            return Color.black;
+        }
+
+        if(countTarget == int.MaxValue)
+        {
+            // every color have been selected
+            return Color.white;
         }
 
         // TODO : code wheighted random
