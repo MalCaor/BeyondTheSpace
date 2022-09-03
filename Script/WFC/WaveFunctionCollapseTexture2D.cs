@@ -137,7 +137,13 @@ public class WaveFunctionCollapseTexture2D
                     List<Color> colPosible = new List<Color>();
                     foreach (Color c in list[x-1, y])
                     {
-                        colPosible.AddRange(linkNumProxyColbyCol[c].Keys);
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                        {
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                            {
+                                colPosible.Add(clink);
+                            }
+                        }
                     }
                     foreach (Color c in list[x, y])
                     {
@@ -152,7 +158,13 @@ public class WaveFunctionCollapseTexture2D
                     List<Color> colPosible = new List<Color>();
                     foreach (Color c in list[x+1, y])
                     {
-                        colPosible.AddRange(linkNumProxyColbyCol[c].Keys);
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                        {
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                            {
+                                colPosible.Add(clink);
+                            }
+                        }
                     }
                     foreach (Color c in list[x, y])
                     {
@@ -167,7 +179,13 @@ public class WaveFunctionCollapseTexture2D
                     List<Color> colPosible = new List<Color>();
                     foreach (Color c in list[x, y-1])
                     {
-                        colPosible.AddRange(linkNumProxyColbyCol[c].Keys);
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                        {
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                            {
+                                colPosible.Add(clink);
+                            }
+                        }
                     }
                     foreach (Color c in list[x, y])
                     {
@@ -182,7 +200,13 @@ public class WaveFunctionCollapseTexture2D
                     List<Color> colPosible = new List<Color>();
                     foreach (Color c in list[x, y+1])
                     {
-                        colPosible.AddRange(linkNumProxyColbyCol[c].Keys);
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                        {
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                            {
+                                colPosible.Add(clink);
+                            }
+                        }
                     }
                     foreach (Color c in list[x, y])
                     {
