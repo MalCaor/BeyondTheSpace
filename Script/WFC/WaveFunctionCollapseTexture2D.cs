@@ -104,7 +104,9 @@ public class WaveFunctionCollapseTexture2D
         bool loop = true;
         while (loop)
         {
+            Debug.Log("### PROPAGATE ###");
             propagate(finalMatrix);
+            Debug.Log("### chooseColor ###");
             col = chooseColor(finalMatrix);
             if(col == Color.black && !sansEchec)
             {
@@ -115,6 +117,7 @@ public class WaveFunctionCollapseTexture2D
             if(col == Color.white)
             {
                 // finish
+                Debug.Log("white found");
                 loop = false;
             }
         }
@@ -151,6 +154,9 @@ public class WaveFunctionCollapseTexture2D
         int xL = list.GetLength(0);
         int yL = list.GetLength(1);
 
+        Debug.Log("xL : " + xL);
+        Debug.Log("yL : " + yL);
+
         for (int x = 0; x < xL; x++)
         {
             for (int y = 0; y < yL; y++)
@@ -159,11 +165,13 @@ public class WaveFunctionCollapseTexture2D
                 if(numColor == 0)
                 {
                     // unsolvable but not us to check
+                    Debug.Log("unsolvable found");
                     continue;
                 }
                 if(numColor == 1)
                 {
                     // Color already selected
+                    Debug.Log("Color Selected");
                     continue;
                 }
                 // check proxy and update list
@@ -193,6 +201,7 @@ public class WaveFunctionCollapseTexture2D
                     foreach (Color c in listModif)
                     {
                         list[x, y].Remove(c);
+                        Debug.Log("Remove Color : " + c);
                     }
                 }
                 if(x+1>xL)
@@ -221,6 +230,7 @@ public class WaveFunctionCollapseTexture2D
                     foreach (Color c in listModif)
                     {
                         list[x, y].Remove(c);
+                        Debug.Log("Remove Color : " + c);
                     }
                 }
                 if(y-1>0)
@@ -249,6 +259,7 @@ public class WaveFunctionCollapseTexture2D
                     foreach (Color c in listModif)
                     {
                         list[x, y].Remove(c);
+                        Debug.Log("Remove Color : " + c);
                     }
                 }
                 if(y+1<yL)
@@ -277,6 +288,7 @@ public class WaveFunctionCollapseTexture2D
                     foreach (Color c in listModif)
                     {
                         list[x, y].Remove(c);
+                        Debug.Log("Remove Color : " + c);
                     }
                 }
             }
