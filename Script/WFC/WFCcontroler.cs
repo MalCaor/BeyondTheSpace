@@ -7,13 +7,11 @@ public class WFCcontroler : MonoBehaviour
     // vars
     public Texture2D InputTexture;
     public Texture2D OutputTexture;
-    public int newHeight;
-    public int newWidth;
     public bool sansEchec;
 
     public void Init()
     {
         WaveFunctionCollapseTexture2D WFC = new WaveFunctionCollapseTexture2D();
-        WFC.run(InputTexture, OutputTexture, newHeight, newWidth, sansEchec);
+        WFC.run(InputTexture, OutputTexture, sansEchec);
     }
 }

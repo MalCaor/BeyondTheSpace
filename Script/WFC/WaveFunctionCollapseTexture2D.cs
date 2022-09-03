@@ -12,13 +12,15 @@ public class WaveFunctionCollapseTexture2D
     // final pixel matrix
     List<Color>[,] finalMatrix;
 
-    public void run(Texture2D InputTexture, Texture2D OutputTexture, int newHeight, int newWidth, bool sansEchec)
+    public void run(Texture2D InputTexture, Texture2D OutputTexture, bool sansEchec)
     {
         // init
         listAllColor = new List<Color>();
         linkNumProxyColbyCol = new Dictionary<Color, Dictionary<Color,int>>();
         int height = InputTexture.height;
         int width = InputTexture.width;
+        int newHeight = OutputTexture.height;
+        int newWidth = OutputTexture.width;
 
         for (int x = 0; x < width; x++)
         {
@@ -138,6 +140,8 @@ public class WaveFunctionCollapseTexture2D
                 }
             }
             //OutputTexture.Apply();
+            Debug.Log("text : w:" + text.width + ", h:" + text.height);
+            Debug.Log("OutputTexture : w:" + OutputTexture.width + ", h:" + OutputTexture.height);
             Graphics.CopyTexture(text, OutputTexture);
             Debug.Log("Finish");
         }
