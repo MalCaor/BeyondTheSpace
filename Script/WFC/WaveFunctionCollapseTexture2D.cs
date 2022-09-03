@@ -100,30 +100,31 @@ public class WaveFunctionCollapseTexture2D
         }
 
         // just set a random col (don't mater)
-        Color col = Color.black;
+        int col = 0;
         bool loop = true;
         while (loop)
         {
-            Debug.Log("### PROPAGATE ###");
+            //Debug.Log("### PROPAGATE ###");
             propagate(finalMatrix);
-            Debug.Log("### chooseColor ###");
+            //Debug.Log("### chooseColor ###");
             col = chooseColor(finalMatrix);
-            if(col == Color.black && !sansEchec)
+            if(col == 0 && !sansEchec)
             {
                 // a pixel could not be set
-                Debug.LogError("Erreur");
+                //Debug.LogError("Erreur");
                 loop = false;
             }
-            if(col == Color.white)
+            if(col == 2)
             {
                 // finish
-                Debug.Log("white found");
+                //Debug.Log("white found");
                 loop = false;
             }
         }
-        if(col == Color.black)
+        if(col == 0)
         {
             // finished on a Error
+            Debug.Log("Error");
         } else
         {
             // set col
@@ -154,8 +155,8 @@ public class WaveFunctionCollapseTexture2D
         int xL = list.GetLength(0);
         int yL = list.GetLength(1);
 
-        Debug.Log("xL : " + xL);
-        Debug.Log("yL : " + yL);
+        //Debug.Log("xL : " + xL);
+        //Debug.Log("yL : " + yL);
 
         for (int x = 0; x < xL; x++)
         {
@@ -165,13 +166,13 @@ public class WaveFunctionCollapseTexture2D
                 if(numColor == 0)
                 {
                     // unsolvable but not us to check
-                    Debug.Log("unsolvable found");
+                    //Debug.Log("unsolvable found");
                     continue;
                 }
                 if(numColor == 1)
                 {
                     // Color already selected
-                    Debug.Log("Color Selected");
+                    //Debug.Log("Color Selected");
                     continue;
                 }
                 // check proxy and update list
@@ -201,7 +202,7 @@ public class WaveFunctionCollapseTexture2D
                     foreach (Color c in listModif)
                     {
                         list[x, y].Remove(c);
-                        Debug.Log("Remove Color : " + c);
+                        //Debug.Log("Remove Color : " + c);
                     }
                 }
                 if(x+1>xL)
@@ -230,7 +231,7 @@ public class WaveFunctionCollapseTexture2D
                     foreach (Color c in listModif)
                     {
                         list[x, y].Remove(c);
-                        Debug.Log("Remove Color : " + c);
+                        //Debug.Log("Remove Color : " + c);
                     }
                 }
                 if(y-1>0)
@@ -259,7 +260,7 @@ public class WaveFunctionCollapseTexture2D
                     foreach (Color c in listModif)
                     {
                         list[x, y].Remove(c);
-                        Debug.Log("Remove Color : " + c);
+                        //Debug.Log("Remove Color : " + c);
                     }
                 }
                 if(y+1<yL)
@@ -288,14 +289,15 @@ public class WaveFunctionCollapseTexture2D
                     foreach (Color c in listModif)
                     {
                         list[x, y].Remove(c);
-                        Debug.Log("Remove Color : " + c);
+                        //Debug.Log("Remove Color : " + c);
                     }
                 }
             }
         }
     }
 
-    Color chooseColor(List<Color>[,] list)
+    // return int (1 = ok, 2 = finish, 0 = black)
+    int chooseColor(List<Color>[,] list)
     {
         // choose a random color form the pixel with the lowest entropy
         int xL = list.GetLength(0);
@@ -325,23 +327,23 @@ public class WaveFunctionCollapseTexture2D
         {
             // there is a pixel with no Color posible
             selectColor(list[xTarget, yTarget], Color.black);
-            Debug.Log("Black");
-            return Color.black;
+            //Debug.Log("Black");
+            return 0;
         }
 
         if(countTarget == int.MaxValue)
         {
             // every color have been selected
-            Debug.Log("white");
-            return Color.white;
+            //Debug.Log("finish");
+            return 2;
         }
 
-        Debug.Log("Normal");
+        //Debug.Log("Normal");
         // TODO : code wheighted random
         // select a random num
         int r = Mathf.RoundToInt(Random.Range(0, countTarget));
         // select the color
         selectColor(list[xTarget, yTarget], list[xTarget, yTarget][r]);
-        return list[xTarget, yTarget][0];
+        return 1;
     }
 }
