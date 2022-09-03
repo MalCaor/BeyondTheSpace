@@ -180,12 +180,19 @@ public class WaveFunctionCollapseTexture2D
                             }
                         }
                     }
+                    // list modif is because you can't foreach and modify the list at the same time
+                    List<Color> listModif = new List<Color>();
                     foreach (Color c in list[x, y])
                     {
                         if(!colPosible.Contains(c))
                         {
-                            list[x, y].Remove(c);
+                            listModif.Add(c);
                         }
+                    }
+                    // remove all colors in list modif
+                    foreach (Color c in listModif)
+                    {
+                        list[x, y].Remove(c);
                     }
                 }
                 if(x+1>xL)
@@ -201,12 +208,19 @@ public class WaveFunctionCollapseTexture2D
                             }
                         }
                     }
+                    // list modif is because you can't foreach and modify the list at the same time
+                    List<Color> listModif = new List<Color>();
                     foreach (Color c in list[x, y])
                     {
                         if(!colPosible.Contains(c))
                         {
-                            list[x, y].Remove(c);
+                            listModif.Add(c);
                         }
+                    }
+                    // remove all colors in list modif
+                    foreach (Color c in listModif)
+                    {
+                        list[x, y].Remove(c);
                     }
                 }
                 if(y-1>0)
@@ -222,12 +236,19 @@ public class WaveFunctionCollapseTexture2D
                             }
                         }
                     }
+                    // list modif is because you can't foreach and modify the list at the same time
+                    List<Color> listModif = new List<Color>();
                     foreach (Color c in list[x, y])
                     {
                         if(!colPosible.Contains(c))
                         {
-                            list[x, y].Remove(c);
+                            listModif.Add(c);
                         }
+                    }
+                    // remove all colors in list modif
+                    foreach (Color c in listModif)
+                    {
+                        list[x, y].Remove(c);
                     }
                 }
                 if(y+1<yL)
@@ -243,12 +264,19 @@ public class WaveFunctionCollapseTexture2D
                             }
                         }
                     }
+                    // list modif is because you can't foreach and modify the list at the same time
+                    List<Color> listModif = new List<Color>();
                     foreach (Color c in list[x, y])
                     {
                         if(!colPosible.Contains(c))
                         {
-                            list[x, y].Remove(c);
+                            listModif.Add(c);
                         }
+                    }
+                    // remove all colors in list modif
+                    foreach (Color c in listModif)
+                    {
+                        list[x, y].Remove(c);
                     }
                 }
             }
