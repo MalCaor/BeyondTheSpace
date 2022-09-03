@@ -129,10 +129,13 @@ public class WaveFunctionCollapseTexture2D
             {
                 for (int y = 0; y < newHeight; y++)
                 {
+                    Debug.Log("OG Pix : " + OutputTexture.GetPixel(x,y));
+                    Debug.Log("NEW Pix : " + finalMatrix[x,y][0]);
                     OutputTexture.SetPixel(x, y, finalMatrix[x,y][0]);
                 }
             }
             OutputTexture.Apply();
+            Debug.Log("Finish");
         }
     }
 
@@ -296,6 +299,6 @@ public class WaveFunctionCollapseTexture2D
         int r = Mathf.RoundToInt(Random.Range(0, countTarget));
         // select the color
         selectColor(list[xTarget, yTarget], list[xTarget, yTarget][r]);
-        return list[xTarget, yTarget][r];
+        return list[xTarget, yTarget][0];
     }
 }
