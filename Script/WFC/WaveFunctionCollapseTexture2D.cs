@@ -123,20 +123,15 @@ public class WaveFunctionCollapseTexture2D
             // finished on a Error
         } else
         {
-            Color[] allColFinal = new Color[newWidth * newHeight];
             // set col
-            int i = 0;
+            OutputTexture = new Texture2D(newWidth, newHeight);
             for (int x = 0; x < newWidth; x++)
             {
                 for (int y = 0; y < newHeight; y++)
                 {
-                    allColFinal[i] = finalMatrix[x, y][0];
-                    i++;
+                    OutputTexture.SetPixel(x, y, finalMatrix[x,y][0]);
                 }
             }
-            Debug.Log("Finish!");
-            OutputTexture.Reinitialize(newWidth, newHeight);
-            OutputTexture.SetPixels(allColFinal);
             OutputTexture.Apply();
         }
     }
