@@ -181,29 +181,27 @@ public class WaveFunctionCollapseTexture2D
                     if(list[x-1, y].Count==1)
                     {
                         List<Color> colPosible = new List<Color>();
-                        foreach (Color c in list[x-1, y])
+                        Color c = list[x-1, y][0];
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                         {
-                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
                             {
-                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
-                                {
-                                    colPosible.Add(clink);
-                                }
+                                colPosible.Add(clink);
                             }
                         }
                         // list modif is because you can't foreach and modify the list at the same time
                         List<Color> listModif = new List<Color>();
-                        foreach (Color c in list[x, y])
+                        foreach (Color cParcour in list[x, y])
                         {
-                            if(!colPosible.Contains(c))
+                            if(!colPosible.Contains(cParcour))
                             {
-                                listModif.Add(c);
+                                listModif.Add(cParcour);
                             }
                         }
                         // remove all colors in list modif
-                        foreach (Color c in listModif)
+                        foreach (Color cToDelet in listModif)
                         {
-                            list[x, y].Remove(c);
+                            list[x, y].Remove(cToDelet);
                             //Debug.Log("Remove Color : " + c);
                         }
                     }
@@ -213,29 +211,27 @@ public class WaveFunctionCollapseTexture2D
                     if(list[x+1, y].Count==1)
                     {
                         List<Color> colPosible = new List<Color>();
-                        foreach (Color c in list[x+1, y])
+                        Color c = list[x+1, y][0];
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                         {
-                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
                             {
-                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
-                                {
-                                    colPosible.Add(clink);
-                                }
+                                colPosible.Add(clink);
                             }
                         }
                         // list modif is because you can't foreach and modify the list at the same time
                         List<Color> listModif = new List<Color>();
-                        foreach (Color c in list[x, y])
+                        foreach (Color cParcour in list[x, y])
                         {
-                            if(!colPosible.Contains(c))
+                            if(!colPosible.Contains(cParcour))
                             {
-                                listModif.Add(c);
+                                listModif.Add(cParcour);
                             }
                         }
                         // remove all colors in list modif
-                        foreach (Color c in listModif)
+                        foreach (Color cToDelet in listModif)
                         {
-                            list[x, y].Remove(c);
+                            list[x, y].Remove(cToDelet);
                             //Debug.Log("Remove Color : " + c);
                         }
                     }
@@ -245,29 +241,27 @@ public class WaveFunctionCollapseTexture2D
                     if(list[x, y-1].Count==1)
                     {
                         List<Color> colPosible = new List<Color>();
-                        foreach (Color c in list[x, y-1])
+                        Color c = list[x, y-1][0];
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                         {
-                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
                             {
-                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
-                                {
-                                    colPosible.Add(clink);
-                                }
+                                colPosible.Add(clink);
                             }
                         }
                         // list modif is because you can't foreach and modify the list at the same time
                         List<Color> listModif = new List<Color>();
-                        foreach (Color c in list[x, y])
+                        foreach (Color cParcour in list[x, y])
                         {
-                            if(!colPosible.Contains(c))
+                            if(!colPosible.Contains(cParcour))
                             {
-                                listModif.Add(c);
+                                listModif.Add(cParcour);
                             }
                         }
                         // remove all colors in list modif
-                        foreach (Color c in listModif)
+                        foreach (Color cToDelet in listModif)
                         {
-                            list[x, y].Remove(c);
+                            list[x, y].Remove(cToDelet);
                             //Debug.Log("Remove Color : " + c);
                         }
                     }
@@ -277,29 +271,27 @@ public class WaveFunctionCollapseTexture2D
                     if(list[x, y+1].Count==1)
                     {
                         List<Color> colPosible = new List<Color>();
-                        foreach (Color c in list[x, y+1])
+                        Color c = list[x, y+1][0];
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                         {
-                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
                             {
-                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
-                                {
-                                    colPosible.Add(clink);
-                                }
+                                colPosible.Add(clink);
                             }
                         }
                         // list modif is because you can't foreach and modify the list at the same time
                         List<Color> listModif = new List<Color>();
-                        foreach (Color c in list[x, y])
+                        foreach (Color cParcour in list[x, y])
                         {
-                            if(!colPosible.Contains(c))
+                            if(!colPosible.Contains(cParcour))
                             {
-                                listModif.Add(c);
+                                listModif.Add(cParcour);
                             }
                         }
                         // remove all colors in list modif
-                        foreach (Color c in listModif)
+                        foreach (Color cToDelet in listModif)
                         {
-                            list[x, y].Remove(c);
+                            list[x, y].Remove(cToDelet);
                             //Debug.Log("Remove Color : " + c);
                         }
                     }
