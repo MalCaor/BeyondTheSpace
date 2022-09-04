@@ -159,7 +159,7 @@ public class WaveFunctionCollapseTexture2D
         //Debug.Log("yL : " + yL);
 
         for (int x = 0; x < xL; x++)
-        {
+        { 
             for (int y = 0; y < yL; y++)
             {
                 int numColor = list[x, y].Count;
@@ -180,6 +180,7 @@ public class WaveFunctionCollapseTexture2D
                 {
                     if(list[x-1, y].Count==1)
                     {
+                        Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
                         Color c = list[x-1, y][0];
                         foreach (Color clink in linkNumProxyColbyCol[c].Keys)
@@ -210,6 +211,7 @@ public class WaveFunctionCollapseTexture2D
                 {
                     if(list[x+1, y].Count==1)
                     {
+                        Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
                         Color c = list[x+1, y][0];
                         foreach (Color clink in linkNumProxyColbyCol[c].Keys)
@@ -240,6 +242,7 @@ public class WaveFunctionCollapseTexture2D
                 {
                     if(list[x, y-1].Count==1)
                     {
+                        Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
                         Color c = list[x, y-1][0];
                         foreach (Color clink in linkNumProxyColbyCol[c].Keys)
@@ -270,6 +273,7 @@ public class WaveFunctionCollapseTexture2D
                 {
                     if(list[x, y+1].Count==1)
                     {
+                        Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
                         Color c = list[x, y+1][0];
                         foreach (Color clink in linkNumProxyColbyCol[c].Keys)
@@ -319,6 +323,7 @@ public class WaveFunctionCollapseTexture2D
                 // check id count is bellow countTarget AND is it's not already selected (=1)
                 if(list[x, y].Count < countTarget && list[x, y].Count != 1)
                 {
+                    Debug.Log("found a pixel with les entropy : " + list[x, y].Count);
                     countTarget = list[x, y].Count;
                     xTarget = x;
                     yTarget = y;
