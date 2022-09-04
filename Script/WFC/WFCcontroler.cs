@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,7 +18,6 @@ public class WFCcontroler : MonoBehaviour
         Texture2D text = WFC.run(InputTexture, newHeight, newWidth, sansEchec);
         // save texture
         byte[] pngBytes = text.EncodeToPNG();
-        Debug.Log(Application.dataPath + OutputTexture);
-        File.WriteAllBytes(Application.dataPath + OutputTexture);
+        File.WriteAllBytes(Application.dataPath + OutputTexture, pngBytes);
     }
 }
