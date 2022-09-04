@@ -119,6 +119,8 @@ public class WaveFunctionCollapseTexture2D
         bool loop = true;
         while (loop)
         {
+            //Debug.Log("### PROPAGATE ###");
+            propagate(finalMatrix);
             //Debug.Log("### chooseColor ###");
             col = chooseColor(finalMatrix);
             if(col == 0 && !sansEchec)
@@ -133,8 +135,6 @@ public class WaveFunctionCollapseTexture2D
                 //Debug.Log("white found");
                 loop = false;
             }
-            //Debug.Log("### PROPAGATE ###");
-            propagate(finalMatrix);
         }
         if(col == 0)
         {
