@@ -178,118 +178,130 @@ public class WaveFunctionCollapseTexture2D
                 // check proxy and update list
                 if(x-1>0)
                 {
-                    List<Color> colPosible = new List<Color>();
-                    foreach (Color c in list[x-1, y])
+                    if(list[x-1, y].Count==1)
                     {
-                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                        List<Color> colPosible = new List<Color>();
+                        foreach (Color c in list[x-1, y])
                         {
-                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                             {
-                                colPosible.Add(clink);
+                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                                {
+                                    colPosible.Add(clink);
+                                }
                             }
                         }
-                    }
-                    // list modif is because you can't foreach and modify the list at the same time
-                    List<Color> listModif = new List<Color>();
-                    foreach (Color c in list[x, y])
-                    {
-                        if(!colPosible.Contains(c))
+                        // list modif is because you can't foreach and modify the list at the same time
+                        List<Color> listModif = new List<Color>();
+                        foreach (Color c in list[x, y])
                         {
-                            listModif.Add(c);
+                            if(!colPosible.Contains(c))
+                            {
+                                listModif.Add(c);
+                            }
                         }
-                    }
-                    // remove all colors in list modif
-                    foreach (Color c in listModif)
-                    {
-                        list[x, y].Remove(c);
-                        //Debug.Log("Remove Color : " + c);
+                        // remove all colors in list modif
+                        foreach (Color c in listModif)
+                        {
+                            list[x, y].Remove(c);
+                            //Debug.Log("Remove Color : " + c);
+                        }
                     }
                 }
                 if(x+1>xL)
                 {
-                    List<Color> colPosible = new List<Color>();
-                    foreach (Color c in list[x+1, y])
+                    if(list[x+1, y].Count==1)
                     {
-                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                        List<Color> colPosible = new List<Color>();
+                        foreach (Color c in list[x+1, y])
                         {
-                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                             {
-                                colPosible.Add(clink);
+                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                                {
+                                    colPosible.Add(clink);
+                                }
                             }
                         }
-                    }
-                    // list modif is because you can't foreach and modify the list at the same time
-                    List<Color> listModif = new List<Color>();
-                    foreach (Color c in list[x, y])
-                    {
-                        if(!colPosible.Contains(c))
+                        // list modif is because you can't foreach and modify the list at the same time
+                        List<Color> listModif = new List<Color>();
+                        foreach (Color c in list[x, y])
                         {
-                            listModif.Add(c);
+                            if(!colPosible.Contains(c))
+                            {
+                                listModif.Add(c);
+                            }
                         }
-                    }
-                    // remove all colors in list modif
-                    foreach (Color c in listModif)
-                    {
-                        list[x, y].Remove(c);
-                        //Debug.Log("Remove Color : " + c);
+                        // remove all colors in list modif
+                        foreach (Color c in listModif)
+                        {
+                            list[x, y].Remove(c);
+                            //Debug.Log("Remove Color : " + c);
+                        }
                     }
                 }
                 if(y-1>0)
                 {
-                    List<Color> colPosible = new List<Color>();
-                    foreach (Color c in list[x, y-1])
+                    if(list[x, y-1].Count==1)
                     {
-                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                        List<Color> colPosible = new List<Color>();
+                        foreach (Color c in list[x, y-1])
                         {
-                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                             {
-                                colPosible.Add(clink);
+                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                                {
+                                    colPosible.Add(clink);
+                                }
                             }
                         }
-                    }
-                    // list modif is because you can't foreach and modify the list at the same time
-                    List<Color> listModif = new List<Color>();
-                    foreach (Color c in list[x, y])
-                    {
-                        if(!colPosible.Contains(c))
+                        // list modif is because you can't foreach and modify the list at the same time
+                        List<Color> listModif = new List<Color>();
+                        foreach (Color c in list[x, y])
                         {
-                            listModif.Add(c);
+                            if(!colPosible.Contains(c))
+                            {
+                                listModif.Add(c);
+                            }
                         }
-                    }
-                    // remove all colors in list modif
-                    foreach (Color c in listModif)
-                    {
-                        list[x, y].Remove(c);
-                        //Debug.Log("Remove Color : " + c);
+                        // remove all colors in list modif
+                        foreach (Color c in listModif)
+                        {
+                            list[x, y].Remove(c);
+                            //Debug.Log("Remove Color : " + c);
+                        }
                     }
                 }
                 if(y+1<yL)
                 {
-                    List<Color> colPosible = new List<Color>();
-                    foreach (Color c in list[x, y+1])
+                    if(list[x, y+1].Count==1)
                     {
-                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                        List<Color> colPosible = new List<Color>();
+                        foreach (Color c in list[x, y+1])
                         {
-                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                             {
-                                colPosible.Add(clink);
+                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
+                                {
+                                    colPosible.Add(clink);
+                                }
                             }
                         }
-                    }
-                    // list modif is because you can't foreach and modify the list at the same time
-                    List<Color> listModif = new List<Color>();
-                    foreach (Color c in list[x, y])
-                    {
-                        if(!colPosible.Contains(c))
+                        // list modif is because you can't foreach and modify the list at the same time
+                        List<Color> listModif = new List<Color>();
+                        foreach (Color c in list[x, y])
                         {
-                            listModif.Add(c);
+                            if(!colPosible.Contains(c))
+                            {
+                                listModif.Add(c);
+                            }
                         }
-                    }
-                    // remove all colors in list modif
-                    foreach (Color c in listModif)
-                    {
-                        list[x, y].Remove(c);
-                        //Debug.Log("Remove Color : " + c);
+                        // remove all colors in list modif
+                        foreach (Color c in listModif)
+                        {
+                            list[x, y].Remove(c);
+                            //Debug.Log("Remove Color : " + c);
+                        }
                     }
                 }
             }
