@@ -95,7 +95,7 @@ public class WaveFunctionCollapseTexture2D
             for (int y = 0; y < newHeight; y++)
             {
                 // set all color as posibility
-                finalMatrix[x, y] = listAllColor;
+                finalMatrix[x, y] = new List<Color>(listAllColor);
             }
         }
 
@@ -320,10 +320,11 @@ public class WaveFunctionCollapseTexture2D
         {
             for (int y = 0; y < yL; y++)
             {
+                //Debug.Log("Pixel : " + x + ", " + y + " count : " + list[x, y].Count);
                 // check id count is bellow countTarget AND is it's not already selected (=1)
                 if(list[x, y].Count < countTarget && list[x, y].Count != 1)
                 {
-                    Debug.Log("found a pixel with les entropy : " + list[x, y].Count);
+                    //Debug.Log("found a pixel with les entropy : " + list[x, y].Count);
                     countTarget = list[x, y].Count;
                     xTarget = x;
                     yTarget = y;
@@ -336,7 +337,7 @@ public class WaveFunctionCollapseTexture2D
         {
             // there is a pixel with no Color posible
             selectColor(list[xTarget, yTarget], Color.black);
-            //Debug.Log("Black");
+            Debug.Log("Black");
             return 0;
         }
 
@@ -351,6 +352,7 @@ public class WaveFunctionCollapseTexture2D
         // TODO : code wheighted random
         // select a random num
         int r = Mathf.RoundToInt(Random.Range(0, countTarget));
+        //Debug.Log("choose color : " + r);
         // select the color
         selectColor(list[xTarget, yTarget], list[xTarget, yTarget][r]);
         return 1;
