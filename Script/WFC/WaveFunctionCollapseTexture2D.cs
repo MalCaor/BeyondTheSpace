@@ -104,7 +104,7 @@ public class WaveFunctionCollapseTexture2D
         bool loop = true;
         while (loop)
         {
-            Debug.Log("### chooseColor ###");
+            //Debug.Log("### chooseColor ###");
             col = chooseColor(finalMatrix);
             if(col == 0 && !sansEchec)
             {
@@ -180,7 +180,7 @@ public class WaveFunctionCollapseTexture2D
                 {
                     if(list[x-1, y].Count==1)
                     {
-                        Debug.Log("found solution");
+                        //Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
                         Color c = list[x-1, y][0];
                         foreach (Color clink in linkNumProxyColbyCol[c].Keys)
@@ -211,7 +211,7 @@ public class WaveFunctionCollapseTexture2D
                 {
                     if(list[x+1, y].Count==1)
                     {
-                        Debug.Log("found solution");
+                        //Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
                         Color c = list[x+1, y][0];
                         foreach (Color clink in linkNumProxyColbyCol[c].Keys)
@@ -242,7 +242,7 @@ public class WaveFunctionCollapseTexture2D
                 {
                     if(list[x, y-1].Count==1)
                     {
-                        Debug.Log("found solution");
+                        //Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
                         Color c = list[x, y-1][0];
                         foreach (Color clink in linkNumProxyColbyCol[c].Keys)
@@ -273,7 +273,7 @@ public class WaveFunctionCollapseTexture2D
                 {
                     if(list[x, y+1].Count==1)
                     {
-                        Debug.Log("found solution");
+                        //Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
                         Color c = list[x, y+1][0];
                         foreach (Color clink in linkNumProxyColbyCol[c].Keys)
@@ -337,7 +337,7 @@ public class WaveFunctionCollapseTexture2D
         {
             // there is a pixel with no Color posible
             selectColor(list[xTarget, yTarget], Color.black);
-            Debug.Log("Black");
+            //Debug.Log("Black");
             return 0;
         }
 
