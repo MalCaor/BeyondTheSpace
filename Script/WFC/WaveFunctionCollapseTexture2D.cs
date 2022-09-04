@@ -12,7 +12,7 @@ public class WaveFunctionCollapseTexture2D
     // final pixel matrix
     List<Color>[,] finalMatrix;
 
-    public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec)
+    public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel)
     {
         // init
         listAllColor = new List<Color>();
@@ -96,6 +96,21 @@ public class WaveFunctionCollapseTexture2D
             {
                 // set all color as posibility
                 finalMatrix[x, y] = new List<Color>(listAllColor);
+            }
+        }
+
+        // if setBorderToFirstPixel == true set all border pixel to the 0,0 og pixel
+        if(setBorderToFirstPixel)
+        {
+            for (int x = 0; x < newWidth; x++)
+            {
+                selectColor(finalMatrix[x, 0], InputTexture.GetPixel(0,0));
+                selectColor(finalMatrix[x, newHeight-1], InputTexture.GetPixel(0,0));
+            }
+            for (int y = 0; y < newHeight; y++)
+            {
+                selectColor(finalMatrix[0, y], InputTexture.GetPixel(0,0));
+                selectColor(finalMatrix[newHeight-1, y], InputTexture.GetPixel(0,0));
             }
         }
 
