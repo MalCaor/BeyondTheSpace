@@ -18,8 +18,11 @@ public class WaveFunctionCollapseTexture2D
     int width;
     Texture2D InputTexture;
     int ogPixelFavoritismIntensity;
+    bool firstFewIterationTrueRandom;
+    int numberIterationTrueRandom;
+    int numIteration;
 
-    public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel, bool weightedRandomPixel, bool ogPixelFavoritism, int ogPixelFavoritismIntensity)
+    public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel, bool weightedRandomPixel, bool ogPixelFavoritism, int ogPixelFavoritismIntensity, bool firstFewIterationTrueRandom, int numberIterationTrueRandom)
     {
         // init
         listAllColor = new List<Color>();
@@ -30,6 +33,9 @@ public class WaveFunctionCollapseTexture2D
         this.ogPixelFavoritism = ogPixelFavoritism;
         this.InputTexture = InputTexture;
         this.ogPixelFavoritismIntensity = ogPixelFavoritismIntensity;
+        this.firstFewIterationTrueRandom = firstFewIterationTrueRandom;
+        this.numberIterationTrueRandom = numberIterationTrueRandom;
+        this.numIteration = 0;
 
         for (int x = 0; x < width; x++)
         {
@@ -341,22 +347,33 @@ public class WaveFunctionCollapseTexture2D
         int yTarget = 0;
         int countTarget = int.MaxValue;
 
-        // calculate entropy (lowest number of colors posible)
-        for (int x = 0; x < xL; x++)
+        if(firstFewIterationTrueRandom && numIteration<numberIterationTrueRandom)
         {
-            for (int y = 0; y < yL; y++)
+            xTarget = Random.Range(0, xL-1);
+            yTarget = Random.Range(0, yL-1);
+            countTarget = list[xTarget, yTarget].Count;
+        } else {
+            // calculate entropy (lowest number of colors posible)
+            for (int x = 0; x < xL; x++)
             {
-                //Debug.Log("Pixel : " + x + ", " + y + " count : " + list[x, y].Count);
-                // check id count is bellow countTarget AND is it's not already selected (=1)
-                if(list[x, y].Count < countTarget && list[x, y].Count != 1)
+                for (int y = 0; y < yL; y++)
                 {
-                    //Debug.Log("found a pixel with les entropy : " + list[x, y].Count);
-                    countTarget = list[x, y].Count;
-                    xTarget = x;
-                    yTarget = y;
+                    //Debug.Log("Pixel : " + x + ", " + y + " count : " + list[x, y].Count);
+                    // check id count is bellow countTarget AND is it's not already selected (=1)
+                    if(list[x, y].Count < countTarget && list[x, y].Count != 1)
+                    {
+                        //Debug.Log("found a pixel with les entropy : " + list[x, y].Count);
+                        countTarget = list[x, y].Count;
+                        xTarget = x;
+                        yTarget = y;
+                    }
                 }
             }
         }
+
+        
+
+        numIteration++;
         
         // test if 0
         if(countTarget == 0)
@@ -391,7 +408,7 @@ public class WaveFunctionCollapseTexture2D
                         }
                     }
                 }
-                if(xTarget != xL)
+                if(xTarget != xL-1)
                 {
                     if(list[xTarget+1, yTarget].Count == 1)
                     {
@@ -413,7 +430,7 @@ public class WaveFunctionCollapseTexture2D
                         
                     }
                 }
-                if(yTarget != yL)
+                if(yTarget != yL-1)
                 {
                     if(list[xTarget, yTarget+1].Count == 1)
                     {
@@ -454,7 +471,6 @@ public class WaveFunctionCollapseTexture2D
             {
                 // multiply by a num the pixel frequency of the og img
                 Color ogPixel = InputTexture.GetPixel(Mathf.RoundToInt((float)xTarget/(float)xL*(float)width), Mathf.RoundToInt((float)yTarget/(float)yL*(float)height));
-                Debug.Log(Mathf.RoundToInt((float)xTarget/(float)xL*(float)width) + ", " + Mathf.RoundToInt((float)yTarget/(float)yL*(float)height));
                 int numToAdd = 0;
                 foreach (Color col in listColorRandom)
                 {
