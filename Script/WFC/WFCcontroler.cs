@@ -14,11 +14,12 @@ public class WFCcontroler : MonoBehaviour
     public bool setBorderToFirstPixel;
     public bool weightedRandomPixel;
     public bool ogPixelFavoritism;
+    public int ogPixelFavoritismIntensity=1;
 
     public void Init()
     {
         WaveFunctionCollapseTexture2D WFC = new WaveFunctionCollapseTexture2D();
-        Texture2D text = WFC.run(InputTexture, newHeight, newWidth, sansEchec, setBorderToFirstPixel, weightedRandomPixel, ogPixelFavoritism);
+        Texture2D text = WFC.run(InputTexture, newHeight, newWidth, sansEchec, setBorderToFirstPixel, weightedRandomPixel, ogPixelFavoritism, ogPixelFavoritismIntensity);
         // save texture
         byte[] pngBytes = text.EncodeToPNG();
         File.WriteAllBytes(Application.dataPath + OutputTexture, pngBytes);

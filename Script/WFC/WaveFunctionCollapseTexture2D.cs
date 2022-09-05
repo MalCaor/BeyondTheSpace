@@ -17,8 +17,9 @@ public class WaveFunctionCollapseTexture2D
     int height;
     int width;
     Texture2D InputTexture;
+    int ogPixelFavoritismIntensity;
 
-    public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel, bool weightedRandomPixel, bool ogPixelFavoritism)
+    public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel, bool weightedRandomPixel, bool ogPixelFavoritism, int ogPixelFavoritismIntensity)
     {
         // init
         listAllColor = new List<Color>();
@@ -28,6 +29,7 @@ public class WaveFunctionCollapseTexture2D
         this.weightedRandomPixel = weightedRandomPixel;
         this.ogPixelFavoritism = ogPixelFavoritism;
         this.InputTexture = InputTexture;
+        this.ogPixelFavoritismIntensity = ogPixelFavoritismIntensity;
 
         for (int x = 0; x < width; x++)
         {
@@ -427,13 +429,13 @@ public class WaveFunctionCollapseTexture2D
             if(ogPixelFavoritism)
             {
                 // multiply by a num the pixel frequency of the og img
-                Color ogPixel = InputTexture.GetPixel(Mathf.RoundToInt(xTarget/xL*width), Mathf.RoundToInt(yTarget/yL*height));
+                Color ogPixel = InputTexture.GetPixel(Mathf.RoundToInt((float)xTarget/(float)xL*(float)width), Mathf.RoundToInt((float)yTarget/(float)yL*(float)height));
                 int numToAdd = 0;
                 foreach (Color col in listColorRandom)
                 {
                     if(col==ogPixel)
                     {
-                        numToAdd++;
+                        numToAdd+=ogPixelFavoritismIntensity;
                     }
                 }
                 for (int i = 0; i < numToAdd; i++)
@@ -451,13 +453,14 @@ public class WaveFunctionCollapseTexture2D
             if(ogPixelFavoritism)
             {
                 // multiply by a num the pixel frequency of the og img
-                Color ogPixel = InputTexture.GetPixel(Mathf.RoundToInt(xTarget/xL*width), Mathf.RoundToInt(yTarget/yL*height));
+                Color ogPixel = InputTexture.GetPixel(Mathf.RoundToInt((float)xTarget/(float)xL*(float)width), Mathf.RoundToInt((float)yTarget/(float)yL*(float)height));
+                Debug.Log(Mathf.RoundToInt((float)xTarget/(float)xL*(float)width) + ", " + Mathf.RoundToInt((float)yTarget/(float)yL*(float)height));
                 int numToAdd = 0;
                 foreach (Color col in listColorRandom)
                 {
                     if(col==ogPixel)
                     {
-                        numToAdd++;
+                        numToAdd+=ogPixelFavoritismIntensity;
                     }
                 }
                 for (int i = 0; i < numToAdd; i++)
