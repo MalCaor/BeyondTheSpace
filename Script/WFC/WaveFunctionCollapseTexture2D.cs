@@ -11,14 +11,17 @@ public class WaveFunctionCollapseTexture2D
     Dictionary<Color, Dictionary<Color,int>> linkNumProxyColbyCol;
     // final pixel matrix
     List<Color>[,] finalMatrix;
+    // weight
+    bool weightedRandomPixel;
 
-    public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel)
+    public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel, bool weightedRandomPixel)
     {
         // init
         listAllColor = new List<Color>();
         linkNumProxyColbyCol = new Dictionary<Color, Dictionary<Color,int>>();
         int height = InputTexture.height;
         int width = InputTexture.width;
+        this.weightedRandomPixel = weightedRandomPixel;
 
         for (int x = 0; x < width; x++)
         {
@@ -365,11 +368,68 @@ public class WaveFunctionCollapseTexture2D
 
         //Debug.Log("Normal");
         // TODO : code wheighted random
-        // select a random num
-        int r = Mathf.RoundToInt(Random.Range(0, countTarget));
-        //Debug.Log("choose color : " + r);
-        // select the color
-        selectColor(list[xTarget, yTarget], list[xTarget, yTarget][r]);
-        return 1;
+        if(weightedRandomPixel)
+        {
+            List<Color> listColorRandom = new List<Color>();
+            foreach (Color cloParcour in list[xTarget, yTarget])
+            {
+                if(xTarget != 0)
+                {
+                    if(list[xTarget-1, yTarget].Count == 1)
+                    {
+                        for (int i = 0; i < linkNumProxyColbyCol[list[xTarget-1, yTarget][0]][cloParcour]; i++)
+                        {
+                            listColorRandom.Add(cloParcour);
+                        }
+                    }
+                }
+                if(xTarget != xL)
+                {
+                    if(list[xTarget+1, yTarget].Count == 1)
+                    {
+                        for (int i = 0; i < linkNumProxyColbyCol[list[xTarget+1, yTarget][0]][cloParcour]; i++)
+                        {
+                            listColorRandom.Add(cloParcour);
+                        }
+                        
+                    }
+                }
+                if(yTarget != 0)
+                {
+                    if(list[xTarget, yTarget-1].Count == 1)
+                    {
+                        for (int i = 0; i < linkNumProxyColbyCol[list[xTarget, yTarget-1][0]][cloParcour]; i++)
+                        {
+                            listColorRandom.Add(cloParcour);
+                        }
+                        
+                    }
+                }
+                if(yTarget != yL)
+                {
+                    if(list[xTarget, yTarget+1].Count == 1)
+                    {
+                        for (int i = 0; i < linkNumProxyColbyCol[list[xTarget, yTarget+1][0]][cloParcour]; i++)
+                        {
+                            listColorRandom.Add(cloParcour);
+                        }
+                        
+                    }
+                }
+                listColorRandom.Add(cloParcour);
+            }
+            // select a random num
+            int r = Mathf.RoundToInt(Random.Range(0, listColorRandom.Count));
+            // select the color
+            selectColor(list[xTarget, yTarget], listColorRandom[r]);
+            return 1;
+        } else {
+            // select a random num
+            int r = Mathf.RoundToInt(Random.Range(0, countTarget));
+            // select the color
+            selectColor(list[xTarget, yTarget], list[xTarget, yTarget][r]);
+            return 1;
+        }
+        
     }
 }
