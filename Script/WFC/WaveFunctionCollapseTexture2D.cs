@@ -400,7 +400,7 @@ public class WaveFunctionCollapseTexture2D
             {
                 if(xTarget != 0)
                 {
-                    if(list[xTarget-1, yTarget].Count == 1)
+                    if(list[xTarget-1, yTarget].Count == 1 && list[xTarget-1, yTarget][0] != Color.black)
                     {
                         for (int i = 0; i < linkNumProxyColbyCol[list[xTarget-1, yTarget][0]][cloParcour]; i++)
                         {
@@ -410,7 +410,7 @@ public class WaveFunctionCollapseTexture2D
                 }
                 if(xTarget != xL-1)
                 {
-                    if(list[xTarget+1, yTarget].Count == 1)
+                    if(list[xTarget+1, yTarget].Count == 1 && list[xTarget+1, yTarget][0] != Color.black)
                     {
                         for (int i = 0; i < linkNumProxyColbyCol[list[xTarget+1, yTarget][0]][cloParcour]; i++)
                         {
@@ -421,7 +421,7 @@ public class WaveFunctionCollapseTexture2D
                 }
                 if(yTarget != 0)
                 {
-                    if(list[xTarget, yTarget-1].Count == 1)
+                    if(list[xTarget, yTarget-1].Count == 1 && list[xTarget, yTarget-1][0] != Color.black)
                     {
                         for (int i = 0; i < linkNumProxyColbyCol[list[xTarget, yTarget-1][0]][cloParcour]; i++)
                         {
@@ -432,7 +432,7 @@ public class WaveFunctionCollapseTexture2D
                 }
                 if(yTarget != yL-1)
                 {
-                    if(list[xTarget, yTarget+1].Count == 1)
+                    if(list[xTarget, yTarget+1].Count == 1 && list[xTarget, yTarget+1][0] != Color.black)
                     {
                         for (int i = 0; i < linkNumProxyColbyCol[list[xTarget, yTarget+1][0]][cloParcour]; i++)
                         {
