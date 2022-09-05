@@ -210,7 +210,7 @@ public class WaveFunctionCollapseTexture2D
                 // check proxy and update list
                 if(x-1>0)
                 {
-                    if(list[x-1, y].Count==1)
+                    if(list[x-1, y].Count==1 && list[x-1, y][0] != Color.black)
                     {
                         //Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
@@ -241,7 +241,7 @@ public class WaveFunctionCollapseTexture2D
                 }
                 if(x+1>xL)
                 {
-                    if(list[x+1, y].Count==1)
+                    if(list[x+1, y].Count==1 && list[x+1, y][0] != Color.black)
                     {
                         //Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
@@ -272,7 +272,7 @@ public class WaveFunctionCollapseTexture2D
                 }
                 if(y-1>0)
                 {
-                    if(list[x, y-1].Count==1)
+                    if(list[x, y-1].Count==1 && list[x, y-1][0] != Color.black)
                     {
                         //Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
@@ -303,7 +303,7 @@ public class WaveFunctionCollapseTexture2D
                 }
                 if(y+1<yL)
                 {
-                    if(list[x, y+1].Count==1)
+                    if(list[x, y+1].Count==1 && list[x, y+1][0] != Color.black)
                     {
                         //Debug.Log("found solution");
                         List<Color> colPosible = new List<Color>();
