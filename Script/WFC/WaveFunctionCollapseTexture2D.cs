@@ -197,8 +197,7 @@ public class WaveFunctionCollapseTexture2D
                 int numColor = list[x, y].Count;
                 if(numColor == 0)
                 {
-                    // unsolvable but not us to check
-                    //Debug.Log("unsolvable found");
+                    // unsolvable so add all color again
                     continue;
                 }
                 if(numColor == 1)
@@ -379,8 +378,25 @@ public class WaveFunctionCollapseTexture2D
         if(countTarget == 0)
         {
             // there is a pixel with no Color posible
+            if(xTarget!=0)
+            {
+                if(list[xTarget-1, yTarget].Count!=0)
+                {
+                    selectColor(list[xTarget, yTarget], list[xTarget-1, yTarget][0]);
+                    return 1;
+                }
+                
+            }
+            if(yTarget!=0)
+            {
+                if(list[xTarget, yTarget-1].Count!=0)
+                {
+                    selectColor(list[xTarget, yTarget], list[xTarget, yTarget-1][0]);
+                    return 1;
+                }
+                
+            }
             selectColor(list[xTarget, yTarget], Color.black);
-            //Debug.Log("Black");
             return 0;
         }
 
