@@ -208,73 +208,130 @@ public class WaveFunctionCollapseTexture2D
                     continue;
                 }
                 // check proxy and update list
-                List<Color> colPosible = new List<Color>();
                 if(x-1>0)
                 {
-                    if(list[x-1, y][0] != Color.black)
+                    if(list[x-1, y].Count==1 && list[x-1, y][0] != Color.black)
                     {
-                        foreach (Color c in list[x-1, y])
+                        //Debug.Log("found solution");
+                        List<Color> colPosible = new List<Color>();
+                        Color c = list[x-1, y][0];
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                         {
-                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
                             {
-                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
-                                {
-                                    colPosible.Add(clink);
-                                }
+                                colPosible.Add(clink);
                             }
+                        }
+                        // list modif is because you can't foreach and modify the list at the same time
+                        List<Color> listModif = new List<Color>();
+                        foreach (Color cParcour in list[x, y])
+                        {
+                            if(!colPosible.Contains(cParcour))
+                            {
+                                listModif.Add(cParcour);
+                            }
+                        }
+                        // remove all colors in list modif
+                        foreach (Color cToDelet in listModif)
+                        {
+                            list[x, y].Remove(cToDelet);
+                            //Debug.Log("Remove Color : " + c);
                         }
                     }
                 }
                 if(x+1>xL)
                 {
-                    if(list[x+1, y][0] != Color.black)
+                    if(list[x+1, y].Count==1 && list[x+1, y][0] != Color.black)
                     {
-                        foreach (Color c in list[x+1, y])
+                        //Debug.Log("found solution");
+                        List<Color> colPosible = new List<Color>();
+                        Color c = list[x+1, y][0];
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                         {
-                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
                             {
-                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
-                                {
-                                    colPosible.Add(clink);
-                                }
+                                colPosible.Add(clink);
                             }
+                        }
+                        // list modif is because you can't foreach and modify the list at the same time
+                        List<Color> listModif = new List<Color>();
+                        foreach (Color cParcour in list[x, y])
+                        {
+                            if(!colPosible.Contains(cParcour))
+                            {
+                                listModif.Add(cParcour);
+                            }
+                        }
+                        // remove all colors in list modif
+                        foreach (Color cToDelet in listModif)
+                        {
+                            list[x, y].Remove(cToDelet);
+                            //Debug.Log("Remove Color : " + c);
                         }
                     }
                 }
                 if(y-1>0)
                 {
-                    if(list[x, y-1][0] != Color.black)
+                    if(list[x, y-1].Count==1 && list[x, y-1][0] != Color.black)
                     {
-                        foreach (Color c in list[x, y-1])
+                        //Debug.Log("found solution");
+                        List<Color> colPosible = new List<Color>();
+                        Color c = list[x, y-1][0];
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                         {
-                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
                             {
-                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
-                                {
-                                    colPosible.Add(clink);
-                                }
+                                colPosible.Add(clink);
                             }
+                        }
+                        // list modif is because you can't foreach and modify the list at the same time
+                        List<Color> listModif = new List<Color>();
+                        foreach (Color cParcour in list[x, y])
+                        {
+                            if(!colPosible.Contains(cParcour))
+                            {
+                                listModif.Add(cParcour);
+                            }
+                        }
+                        // remove all colors in list modif
+                        foreach (Color cToDelet in listModif)
+                        {
+                            list[x, y].Remove(cToDelet);
+                            //Debug.Log("Remove Color : " + c);
                         }
                     }
                 }
                 if(y+1<yL)
                 {
-                    if(list[x, y+1][0] != Color.black)
+                    if(list[x, y+1].Count==1 && list[x, y+1][0] != Color.black)
                     {
-                        foreach (Color c in list[x-1, y])
+                        //Debug.Log("found solution");
+                        List<Color> colPosible = new List<Color>();
+                        Color c = list[x, y+1][0];
+                        foreach (Color clink in linkNumProxyColbyCol[c].Keys)
                         {
-                            foreach (Color clink in linkNumProxyColbyCol[c].Keys)
+                            if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
                             {
-                                if(linkNumProxyColbyCol[c][clink] > 0 && !colPosible.Contains(clink))
-                                {
-                                    colPosible.Add(clink);
-                                }
+                                colPosible.Add(clink);
                             }
+                        }
+                        // list modif is because you can't foreach and modify the list at the same time
+                        List<Color> listModif = new List<Color>();
+                        foreach (Color cParcour in list[x, y])
+                        {
+                            if(!colPosible.Contains(cParcour))
+                            {
+                                listModif.Add(cParcour);
+                            }
+                        }
+                        // remove all colors in list modif
+                        foreach (Color cToDelet in listModif)
+                        {
+                            list[x, y].Remove(cToDelet);
+                            //Debug.Log("Remove Color : " + c);
                         }
                     }
                 }
-                // set new list col posible
-                list[x, y] = new List<Color>(colPosible);
             }
         }
     }
