@@ -410,9 +410,7 @@ public class WaveFunctionCollapseTexture2D
                 }
             }
         }
-
         
-
         numIteration++;
         
         // test if 0
@@ -422,24 +420,39 @@ public class WaveFunctionCollapseTexture2D
             if(this.sansEchec)
             {
                 // try set from proxy color (even if it break the rules)
-                if(xTarget!=0)
+                int r = Random.Range(0,1);
+                if(r==1)
                 {
-                    if(list[xTarget-1, yTarget].Count!=0)
+                    if(xTarget!=0)
                     {
-                        selectColor(list[xTarget, yTarget], list[xTarget-1, yTarget][0]);
-                        return 1;
+                        if(list[xTarget-1, yTarget].Count!=0)
+                        {
+                            selectColor(list[xTarget, yTarget], list[xTarget-1, yTarget][0]);
+                            return 1;
+                        }
+                        if(list[xTarget, yTarget-1].Count!=0)
+                        {
+                            selectColor(list[xTarget, yTarget], list[xTarget, yTarget-1][0]);
+                            return 1;
+                        }
                     }
-                    
+                   
+                }else{
+                    if(yTarget!=0)
+                    {
+                        if(list[xTarget, yTarget-1].Count!=0)
+                        {
+                            selectColor(list[xTarget, yTarget], list[xTarget, yTarget-1][0]);
+                            return 1;
+                        }
+                        if(list[xTarget-1, yTarget].Count!=0)
+                        {
+                            selectColor(list[xTarget, yTarget], list[xTarget-1, yTarget][0]);
+                            return 1;
+                        }
+                    }
                 }
-                if(yTarget!=0)
-                {
-                    if(list[xTarget, yTarget-1].Count!=0)
-                    {
-                        selectColor(list[xTarget, yTarget], list[xTarget, yTarget-1][0]);
-                        return 1;
-                    }
-                    
-            }
+                
             }
             
             selectColor(list[xTarget, yTarget], Color.black);
