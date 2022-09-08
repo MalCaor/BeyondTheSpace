@@ -16,15 +16,79 @@ public class WaveFunctionCollapseTexture2D
     bool ogPixelFavoritism;
     int height;
     int width;
+    int newHeight;
+    int newWidth;
     Texture2D InputTexture;
     int ogPixelFavoritismIntensity;
     bool firstFewIterationTrueRandom;
     int numberIterationTrueRandom;
     int numIteration;
+    bool sansEchec;
 
+    /// <summary>
+    /// run the wfc algo and return a Texture2D
+    /// </summary>
     public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel, bool weightedRandomPixel, bool ogPixelFavoritism, int ogPixelFavoritismIntensity, bool firstFewIterationTrueRandom, int numberIterationTrueRandom)
     {
-        // init
+        // set vars used by the entire prog
+        setInputArg(InputTexture, newHeight, newWidth, sansEchec, setBorderToFirstPixel, weightedRandomPixel, ogPixelFavoritism, ogPixelFavoritismIntensity, firstFewIterationTrueRandom, numberIterationTrueRandom);
+
+        // get the list of proba from og image
+        fillListLinkColor();
+
+        // fill the entire matrice with all possible colors
+        fillMatWithAllColor();
+
+        // if true every border is of the 0,0 pixel (generally water for continuity)
+        if(setBorderToFirstPixel)
+        {
+            this.setBorderToFirstPixel();
+        }
+
+        // col is the return of chooseColor (0 = error, 1 = ok, 2 = finished (no more pixel to set))
+        int col = 0;
+        bool loop = true;
+        // loop until all pixel are selected
+        while (loop)
+        {
+            // spread proba
+            propagate(finalMatrix);
+            // choose a color
+            col = chooseColor(finalMatrix);
+            // interprete the col output
+            if(col == 2)
+            {
+                // finish
+                loop = false;
+            }
+        }
+        if(col == 0)
+        {
+            // finished on a Error
+            Debug.Log("Error");
+            return null;
+        } else
+        {
+            // set return texture
+            Texture2D text = new Texture2D(newWidth, newHeight);
+            for (int x = 0; x < newWidth; x++)
+            {
+                for (int y = 0; y < newHeight; y++)
+                {
+                    text.SetPixel(x, y, finalMatrix[x,y][0]);
+                }
+            }
+            Debug.Log("Finish");
+            return text;
+        }
+    }
+
+    /// <summary>
+    /// set Class vars with input args
+    /// </summary>
+    void setInputArg(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel, bool weightedRandomPixel, bool ogPixelFavoritism, int ogPixelFavoritismIntensity, bool firstFewIterationTrueRandom, int numberIterationTrueRandom)
+    {
+        // init class var with arg
         listAllColor = new List<Color>();
         linkNumProxyColbyCol = new Dictionary<Color, Dictionary<Color,int>>();
         this.height = InputTexture.height;
@@ -36,7 +100,16 @@ public class WaveFunctionCollapseTexture2D
         this.firstFewIterationTrueRandom = firstFewIterationTrueRandom;
         this.numberIterationTrueRandom = numberIterationTrueRandom;
         this.numIteration = 0;
+        this.newHeight = newHeight;
+        this.newWidth = newWidth;
+        this.sansEchec = sansEchec;
+    }
 
+    /// <summary>
+    /// fill list color posible and their proxy proba
+    /// </summary>
+    void fillListLinkColor()
+    {
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -104,7 +177,13 @@ public class WaveFunctionCollapseTexture2D
                 }
             }
         }
+    }
 
+    /// <summary>
+    /// fill final mat with all col possible
+    /// </summary>
+    void fillMatWithAllColor()
+    {
         // fill final mat with all col possible
         finalMatrix = new List<Color>[newWidth, newHeight];
         for (int x = 0; x < newWidth; x++)
@@ -115,66 +194,28 @@ public class WaveFunctionCollapseTexture2D
                 finalMatrix[x, y] = new List<Color>(listAllColor);
             }
         }
+    }
 
-        // if setBorderToFirstPixel == true set all border pixel to the 0,0 og pixel
-        if(setBorderToFirstPixel)
+    /// <summary>
+    /// set all border pixel to the 0,0 og pixel
+    /// </summary>
+    void setBorderToFirstPixel()
+    {
+        for (int x = 0; x < newWidth; x++)
         {
-            for (int x = 0; x < newWidth; x++)
-            {
-                selectColor(finalMatrix[x, 0], InputTexture.GetPixel(0,0));
-                selectColor(finalMatrix[x, newHeight-1], InputTexture.GetPixel(0,0));
-            }
-            for (int y = 0; y < newHeight; y++)
-            {
-                selectColor(finalMatrix[0, y], InputTexture.GetPixel(0,0));
-                selectColor(finalMatrix[newHeight-1, y], InputTexture.GetPixel(0,0));
-            }
+            selectColor(finalMatrix[x, 0], InputTexture.GetPixel(0,0));
+            selectColor(finalMatrix[x, newHeight-1], InputTexture.GetPixel(0,0));
         }
-
-        // just set a random col (don't mater)
-        int col = 0;
-        bool loop = true;
-        while (loop)
+        for (int y = 0; y < newHeight; y++)
         {
-            //Debug.Log("### PROPAGATE ###");
-            propagate(finalMatrix);
-            //Debug.Log("### chooseColor ###");
-            col = chooseColor(finalMatrix);
-            if(col == 0 && !sansEchec)
-            {
-                // a pixel could not be set
-                //Debug.LogError("Erreur");
-                loop = false;
-            }
-            if(col == 2)
-            {
-                // finish
-                //Debug.Log("white found");
-                loop = false;
-            }
-        }
-        if(col == 0)
-        {
-            // finished on a Error
-            Debug.Log("Error");
-            return null;
-        } else
-        {
-            // set col
-            //OutputTexture = new Texture2D(newWidth, newHeight);
-            Texture2D text = new Texture2D(newWidth, newHeight);
-            for (int x = 0; x < newWidth; x++)
-            {
-                for (int y = 0; y < newHeight; y++)
-                {
-                    text.SetPixel(x, y, finalMatrix[x,y][0]);
-                }
-            }
-            Debug.Log("Finish");
-            return text;
+            selectColor(finalMatrix[0, y], InputTexture.GetPixel(0,0));
+            selectColor(finalMatrix[newHeight-1, y], InputTexture.GetPixel(0,0));
         }
     }
 
+    /// <summary>
+    /// input list have now only int input color
+    /// </summary>
     void selectColor(List<Color> list, Color c)
     {
         // let only the selected color int the list
@@ -182,13 +223,13 @@ public class WaveFunctionCollapseTexture2D
         list.Add(c);
     }
 
+    /// <summary>
+    /// propagate the probality from proxy pixel
+    /// </summary>
     void propagate(List<Color>[,] list)
     {
         int xL = list.GetLength(0);
         int yL = list.GetLength(1);
-
-        //Debug.Log("xL : " + xL);
-        //Debug.Log("yL : " + yL);
 
         for (int x = 0; x < xL; x++)
         { 
@@ -378,24 +419,29 @@ public class WaveFunctionCollapseTexture2D
         if(countTarget == 0)
         {
             // there is a pixel with no Color posible
-            if(xTarget!=0)
+            if(this.sansEchec)
             {
-                if(list[xTarget-1, yTarget].Count!=0)
+                // try set from proxy color (even if it break the rules)
+                if(xTarget!=0)
                 {
-                    selectColor(list[xTarget, yTarget], list[xTarget-1, yTarget][0]);
-                    return 1;
+                    if(list[xTarget-1, yTarget].Count!=0)
+                    {
+                        selectColor(list[xTarget, yTarget], list[xTarget-1, yTarget][0]);
+                        return 1;
+                    }
+                    
                 }
-                
-            }
-            if(yTarget!=0)
-            {
-                if(list[xTarget, yTarget-1].Count!=0)
+                if(yTarget!=0)
                 {
-                    selectColor(list[xTarget, yTarget], list[xTarget, yTarget-1][0]);
-                    return 1;
-                }
-                
+                    if(list[xTarget, yTarget-1].Count!=0)
+                    {
+                        selectColor(list[xTarget, yTarget], list[xTarget, yTarget-1][0]);
+                        return 1;
+                    }
+                    
             }
+            }
+            
             selectColor(list[xTarget, yTarget], Color.black);
             return 0;
         }
@@ -403,12 +449,9 @@ public class WaveFunctionCollapseTexture2D
         if(countTarget == int.MaxValue)
         {
             // every color have been selected
-            //Debug.Log("finish");
             return 2;
         }
-
-        //Debug.Log("Normal");
-        // TODO : code wheighted random
+        
         if(weightedRandomPixel)
         {
             List<Color> listColorRandom = new List<Color>();
