@@ -12,26 +12,16 @@ public class WaveFunctionCollapseTexture2D
     // final pixel matrix
     List<Color>[,] finalMatrix;
     // weight
-    bool weightedRandomPixel;
-    bool ogPixelFavoritism;
-    int height;
-    int width;
-    int newHeight;
-    int newWidth;
-    Texture2D InputTexture;
-    int ogPixelFavoritismIntensity;
-    bool firstFewIterationTrueRandom;
-    int numberIterationTrueRandom;
+    WFCText2DSettings settings;
     int numIteration;
-    bool sansEchec;
 
     /// <summary>
     /// run the wfc algo and return a Texture2D
     /// </summary>
-    public Texture2D run(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel, bool weightedRandomPixel, bool ogPixelFavoritism, int ogPixelFavoritismIntensity, bool firstFewIterationTrueRandom, int numberIterationTrueRandom)
+    public Texture2D run(WFCText2DSettings settings)
     {
         // set vars used by the entire prog
-        setInputArg(InputTexture, newHeight, newWidth, sansEchec, setBorderToFirstPixel, weightedRandomPixel, ogPixelFavoritism, ogPixelFavoritismIntensity, firstFewIterationTrueRandom, numberIterationTrueRandom);
+        setInputArg(settings);
 
         // get the list of proba from og image
         fillListLinkColor();
@@ -40,7 +30,7 @@ public class WaveFunctionCollapseTexture2D
         fillMatWithAllColor();
 
         // if true every border is of the 0,0 pixel (generally water for continuity)
-        if(setBorderToFirstPixel)
+        if(settings.setBorderToFirstPixel)
         {
             this.setBorderToFirstPixel();
         }
@@ -70,10 +60,10 @@ public class WaveFunctionCollapseTexture2D
         } else
         {
             // set return texture
-            Texture2D text = new Texture2D(newWidth, newHeight);
-            for (int x = 0; x < newWidth; x++)
+            Texture2D text = new Texture2D(settings.newWidth, settings.newHeight);
+            for (int x = 0; x < settings.newWidth; x++)
             {
-                for (int y = 0; y < newHeight; y++)
+                for (int y = 0; y < settings.newHeight; y++)
                 {
                     text.SetPixel(x, y, finalMatrix[x,y][0]);
                 }
@@ -86,23 +76,13 @@ public class WaveFunctionCollapseTexture2D
     /// <summary>
     /// set Class vars with input args
     /// </summary>
-    void setInputArg(Texture2D InputTexture, int newHeight, int newWidth, bool sansEchec, bool setBorderToFirstPixel, bool weightedRandomPixel, bool ogPixelFavoritism, int ogPixelFavoritismIntensity, bool firstFewIterationTrueRandom, int numberIterationTrueRandom)
+    void setInputArg(WFCText2DSettings settings)
     {
         // init class var with arg
+        this.numIteration = 0;
         listAllColor = new List<Color>();
         linkNumProxyColbyCol = new Dictionary<Color, Dictionary<Color,int>>();
-        this.height = InputTexture.height;
-        this.width = InputTexture.width;
-        this.weightedRandomPixel = weightedRandomPixel;
-        this.ogPixelFavoritism = ogPixelFavoritism;
-        this.InputTexture = InputTexture;
-        this.ogPixelFavoritismIntensity = ogPixelFavoritismIntensity;
-        this.firstFewIterationTrueRandom = firstFewIterationTrueRandom;
-        this.numberIterationTrueRandom = numberIterationTrueRandom;
-        this.numIteration = 0;
-        this.newHeight = newHeight;
-        this.newWidth = newWidth;
-        this.sansEchec = sansEchec;
+        this.settings = settings;
     }
 
     /// <summary>
@@ -110,11 +90,11 @@ public class WaveFunctionCollapseTexture2D
     /// </summary>
     void fillListLinkColor()
     {
-        for (int x = 0; x < width; x++)
+        for (int x = 0; x < settings.InputTexture.width; x++)
         {
-            for (int y = 0; y < height; y++)
+            for (int y = 0; y < settings.InputTexture.height; y++)
             {
-                Color curPixel = InputTexture.GetPixel(x, y);
+                Color curPixel = settings.InputTexture.GetPixel(x, y);
                 // add to simple list
                 if(!listAllColor.Contains(curPixel))
                 {
@@ -129,16 +109,16 @@ public class WaveFunctionCollapseTexture2D
                 // Increment proxy
                 if(x-1>0)
                 {
-                    Color p = InputTexture.GetPixel(x-1, y);
+                    Color p = settings.InputTexture.GetPixel(x-1, y);
                     if(!linkNumProxyColbyCol[curPixel].ContainsKey(p))
                     {
                         linkNumProxyColbyCol[curPixel].Add(p, 0);
                     }
                     linkNumProxyColbyCol[curPixel][p] ++;
                 }
-                if(x+1>width)
+                if(x+1>settings.InputTexture.width)
                 {
-                    Color p = InputTexture.GetPixel(x+1, y);
+                    Color p = settings.InputTexture.GetPixel(x+1, y);
                     if(!linkNumProxyColbyCol[curPixel].ContainsKey(p))
                     {
                         linkNumProxyColbyCol[curPixel].Add(p, 0);
@@ -147,16 +127,16 @@ public class WaveFunctionCollapseTexture2D
                 }
                 if(y-1>0)
                 {
-                    Color p = InputTexture.GetPixel(x, y-1);
+                    Color p = settings.InputTexture.GetPixel(x, y-1);
                     if(!linkNumProxyColbyCol[curPixel].ContainsKey(p))
                     {
                         linkNumProxyColbyCol[curPixel].Add(p, 0);
                     }
                     linkNumProxyColbyCol[curPixel][p] ++;
                 }
-                if(y+1<height)
+                if(y+1<settings.InputTexture.height)
                 {
-                    Color p = InputTexture.GetPixel(x, y+1);
+                    Color p = settings.InputTexture.GetPixel(x, y+1);
                     if(!linkNumProxyColbyCol[curPixel].ContainsKey(p))
                     {
                         linkNumProxyColbyCol[curPixel].Add(p, 0);
@@ -185,10 +165,10 @@ public class WaveFunctionCollapseTexture2D
     void fillMatWithAllColor()
     {
         // fill final mat with all col possible
-        finalMatrix = new List<Color>[newWidth, newHeight];
-        for (int x = 0; x < newWidth; x++)
+        finalMatrix = new List<Color>[settings.newWidth, settings.newHeight];
+        for (int x = 0; x < settings.newWidth; x++)
         {
-            for (int y = 0; y < newHeight; y++)
+            for (int y = 0; y < settings.newHeight; y++)
             {
                 // set all color as posibility
                 finalMatrix[x, y] = new List<Color>(listAllColor);
@@ -201,15 +181,15 @@ public class WaveFunctionCollapseTexture2D
     /// </summary>
     void setBorderToFirstPixel()
     {
-        for (int x = 0; x < newWidth; x++)
+        for (int x = 0; x < settings.newWidth; x++)
         {
-            selectColor(finalMatrix[x, 0], InputTexture.GetPixel(0,0));
-            selectColor(finalMatrix[x, newHeight-1], InputTexture.GetPixel(0,0));
+            selectColor(finalMatrix[x, 0], settings.InputTexture.GetPixel(0,0));
+            selectColor(finalMatrix[x, settings.newHeight-1], settings.InputTexture.GetPixel(0,0));
         }
-        for (int y = 0; y < newHeight; y++)
+        for (int y = 0; y < settings.newHeight; y++)
         {
-            selectColor(finalMatrix[0, y], InputTexture.GetPixel(0,0));
-            selectColor(finalMatrix[newHeight-1, y], InputTexture.GetPixel(0,0));
+            selectColor(finalMatrix[0, y], settings.InputTexture.GetPixel(0,0));
+            selectColor(finalMatrix[settings.newHeight-1, y], settings.InputTexture.GetPixel(0,0));
         }
     }
 
@@ -387,7 +367,7 @@ public class WaveFunctionCollapseTexture2D
         int yTarget = 0;
         int countTarget = int.MaxValue;
 
-        if(firstFewIterationTrueRandom && numIteration<numberIterationTrueRandom)
+        if(settings.firstFewIterationTrueRandom && numIteration<settings.numberIterationTrueRandom)
         {
             xTarget = Random.Range(0, xL-1);
             yTarget = Random.Range(0, yL-1);
@@ -417,7 +397,7 @@ public class WaveFunctionCollapseTexture2D
         if(countTarget == 0)
         {
             // there is a pixel with no Color posible
-            if(this.sansEchec)
+            if(this.settings.sansEchec)
             {
                 // try set from proxy color (even if it break the rules)
                 int r = Random.Range(0,1);
@@ -465,7 +445,7 @@ public class WaveFunctionCollapseTexture2D
             return 2;
         }
         
-        if(weightedRandomPixel)
+        if(settings.weightedRandomPixel)
         {
             List<Color> listColorRandom = new List<Color>();
             foreach (Color cloParcour in list[xTarget, yTarget])
@@ -515,16 +495,16 @@ public class WaveFunctionCollapseTexture2D
                 }
                 listColorRandom.Add(cloParcour);
             }
-            if(ogPixelFavoritism)
+            if(settings.ogPixelFavoritism)
             {
                 // multiply by a num the pixel frequency of the og img
-                Color ogPixel = InputTexture.GetPixel(Mathf.RoundToInt((float)xTarget/(float)xL*(float)width), Mathf.RoundToInt((float)yTarget/(float)yL*(float)height));
+                Color ogPixel = settings.InputTexture.GetPixel(Mathf.RoundToInt((float)xTarget/(float)xL*(float)settings.InputTexture.width), Mathf.RoundToInt((float)yTarget/(float)yL*(float)settings.InputTexture.height));
                 int numToAdd = 0;
                 foreach (Color col in listColorRandom)
                 {
                     if(col==ogPixel)
                     {
-                        numToAdd+=ogPixelFavoritismIntensity;
+                        numToAdd+=settings.ogPixelFavoritismIntensity;
                     }
                 }
                 for (int i = 0; i < numToAdd; i++)
@@ -539,16 +519,16 @@ public class WaveFunctionCollapseTexture2D
             return 1;
         } else {
             List<Color> listColorRandom = list[xTarget, yTarget];
-            if(ogPixelFavoritism)
+            if(settings.ogPixelFavoritism)
             {
                 // multiply by a num the pixel frequency of the og img
-                Color ogPixel = InputTexture.GetPixel(Mathf.RoundToInt((float)xTarget/(float)xL*(float)width), Mathf.RoundToInt((float)yTarget/(float)yL*(float)height));
+                Color ogPixel = settings.InputTexture.GetPixel(Mathf.RoundToInt((float)xTarget/(float)xL*(float)settings.InputTexture.width), Mathf.RoundToInt((float)yTarget/(float)yL*(float)settings.InputTexture.height));
                 int numToAdd = 0;
                 foreach (Color col in listColorRandom)
                 {
                     if(col==ogPixel)
                     {
-                        numToAdd+=ogPixelFavoritismIntensity;
+                        numToAdd+=settings.ogPixelFavoritismIntensity;
                     }
                 }
                 for (int i = 0; i < numToAdd; i++)
