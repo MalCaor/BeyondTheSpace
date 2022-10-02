@@ -356,7 +356,10 @@ public class WaveFunctionCollapseTexture2D
         }
     }
 
-    // return int (1 = ok, 2 = finish, 0 = black)
+    /// <summary>
+    /// choose a random color form the pixel with the lowest entropy or random.
+    /// return int (1 = ok, 2 = finish, 0 = black)
+    /// </summary>
     int chooseColor(List<Color>[,] list)
     {
         // choose a random color form the pixel with the lowest entropy
