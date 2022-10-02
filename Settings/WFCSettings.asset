@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0ac90f12639124b90b05f27f771818, type: 3}
   m_Name: WFCSettings
   m_EditorClassIdentifier: 
-  InputTexture: {fileID: 0}
-  newHeight: 0
-  newWidth: 0
-  sansEchec: 0
-  setBorderToFirstPixel: 0
+  InputTexture: {fileID: 2800000, guid: 50446ce7baa838f82b620052b53ed9d8, type: 3}
+  newHeight: 30
+  newWidth: 30
+  sansEchec: 1
+  setBorderToFirstPixel: 1
   weightedRandomPixel: 0
   ogPixelFavoritism: 0
   ogPixelFavoritismIntensity: 0

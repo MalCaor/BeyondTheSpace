@@ -11,7 +11,7 @@ public class WFCeditor : Editor
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-
+        DrawSettingsEditor(wfc.settings);
         if (GUILayout.Button("Generate WFC"))
         {
             wfc.Init();
@@ -22,4 +22,9 @@ public class WFCeditor : Editor
 	{
         wfc = (WFCcontroler)target;
 	}
+    void DrawSettingsEditor(Object settings)
+    {
+        Editor editor = CreateEditor(settings);
+        editor.OnInspectorGUI();
+    }
 }
