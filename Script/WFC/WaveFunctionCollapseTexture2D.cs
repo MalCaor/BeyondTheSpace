@@ -376,21 +376,30 @@ public class WaveFunctionCollapseTexture2D
             yTarget = Random.Range(0, yL-1);
             countTarget = list[xTarget, yTarget].Count;
         } else {
-            // calculate entropy (lowest number of colors posible)
+            // calculate entropy (lowest number of colors posible) from random list of vector
+            List<Vector2> listPosPixel = new List<Vector2>();
             for (int x = 0; x < xL; x++)
             {
                 for (int y = 0; y < yL; y++)
                 {
-                    //Debug.Log("Pixel : " + x + ", " + y + " count : " + list[x, y].Count);
                     // check id count is bellow countTarget AND is it's not already selected (=1)
                     if(list[x, y].Count < countTarget && list[x, y].Count != 1)
                     {
-                        //Debug.Log("found a pixel with les entropy : " + list[x, y].Count);
+                        listPosPixel = new List<Vector2>();
                         countTarget = list[x, y].Count;
-                        xTarget = x;
-                        yTarget = y;
+                        listPosPixel.Add(new Vector2(x,y));
+                    } else if(list[x, y].Count == countTarget && list[x, y].Count != 1)
+                    {
+                        listPosPixel.Add(new Vector2(x,y));
                     }
                 }
+            }
+            // choose random col if list not empty
+            if(listPosPixel.Count!=0)
+            {
+                int r = Random.Range(0,listPosPixel.Count);
+                xTarget = (int)listPosPixel[r].x;
+                yTarget = (int)listPosPixel[r].y;
             }
         }
         
