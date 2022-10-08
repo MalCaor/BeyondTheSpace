@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0ac90f12639124b90b05f27f771818, type: 3}
   m_Name: WFCSettings
   m_EditorClassIdentifier: 
-  InputTexture: {fileID: 2800000, guid: 325464e7c9c1e79da8c79c055d842f5b, type: 3}
+  InputTexture: {fileID: 2800000, guid: e1a7b82155374fd92886ce810bac3359, type: 3}
   newHeight: 50
   newWidth: 50
   sansEchec: 1
