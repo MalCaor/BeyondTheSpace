@@ -1,0 +1,9 @@
+{
+    "name": "BiomTest",
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ]
+}
