@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f0ac90f12639124b90b05f27f771818, type: 3}
   m_Name: WFCSettings
   m_EditorClassIdentifier: 
-  InputTexture: {fileID: 2800000, guid: e1a7b82155374fd92886ce810bac3359, type: 3}
+  InputTexture: {fileID: 2800000, guid: cb4a56a3763a9d543a7321b3b98c21b8, type: 3}
   newHeight: 50
   newWidth: 50
   sansEchec: 1
@@ -21,4 +21,4 @@ MonoBehaviour:
   ogPixelFavoritism: 1
   ogPixelFavoritismIntensity: 4
   firstFewIterationTrueRandom: 1
-  numberIterationTrueRandom: 10
+  numberIterationTrueRandom: 50

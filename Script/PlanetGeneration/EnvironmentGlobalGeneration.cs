@@ -6,8 +6,6 @@ public class EnvironmentGlobalGeneration
 {
     public static void InitAllEnvironment()
     {
-        Environment.listEnvironmentGlobal.Add(new Environment("water"));
-        Environment.listEnvironmentGlobal.Add(new Environment("air"));
-        Environment.listEnvironmentGlobal.Add(new Environment("earth"));
+        // TODO : Init the envs
     }
 }
