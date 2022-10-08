@@ -92,5 +92,17 @@ public class TerrainPlanetGeneration : MonoBehaviour
     void InitTileTerrain(GridTile gridTile, Texture2D map)
     {
         /// TODO : GENERATE Terrain per grid from Biom Pixel
+        
+        // get color to the tile pos
+        Color col = map.GetPixel(gridTile.Npos, gridTile.Epos);
+        if(col == null) throw new System.Exception("map index null, check if the Biom map is the right size");
+
+        // get the biom
+        Biom biom = Biom.GetBiom(col);
+        if(biom == null) {
+            // couldn't find a biom so put the default one instead
+            Debug.LogError("Color not matching any biom");
+            biom = Biom.GetBiom(Color.black);
+        }
     }
 }
