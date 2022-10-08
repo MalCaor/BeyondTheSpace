@@ -29,6 +29,7 @@ public abstract class Biom
     /// <param name="name">Name of the Biom.</param>
     public Biom(Color color, string name)
     {
+        if (GetBiom(color) != null) throw new System.ArgumentException("Can not Create a Biom with the same Color");
         // set param
         this.colorID = color;
         this.nameBiom = name;
