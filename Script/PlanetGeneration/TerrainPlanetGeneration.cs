@@ -18,9 +18,21 @@ public class TerrainPlanetGeneration : MonoBehaviour
 
     /// <summary> Perlin Noize </summary>
     Noise noise;
-
     /// <summary> Planet Terrain Generation Settings </summary>
     public TerrainPlanetGenerationSetting terrainSetting;
+
+    /// <summary> Text map of Bioms Face Nord </summary>
+    Texture2D mapFaceNord;
+    /// <summary> Text map of Bioms Face Est </summary>
+    Texture2D mapFaceEst;
+    /// <summary> Text map of Bioms Face Ouest </summary>
+    Texture2D mapFaceOuest;
+    /// <summary> Text map of Bioms Face Front </summary>
+    Texture2D mapFaceFront;
+    /// <summary> Text map of Bioms Face Back </summary>
+    Texture2D mapFaceBack;
+    /// <summary> Text map of Bioms Face Sud </summary>
+    Texture2D mapFaceSud;
 
     /// <Summary> 
     /// Init the Generation.<br/>
@@ -43,36 +55,36 @@ public class TerrainPlanetGeneration : MonoBehaviour
         // Nord
         foreach (GridTile tile in grid.FaceNord)
         {
-            InitTileTerrain(tile);
+            InitTileTerrain(tile, mapFaceNord);
         }
         // Est
         foreach (GridTile tile in grid.FaceEst)
         {
-            InitTileTerrain(tile);
+            InitTileTerrain(tile, mapFaceEst);
         }
         // Ouest
         foreach (GridTile tile in grid.FaceOuest)
         {
-            InitTileTerrain(tile);
+            InitTileTerrain(tile, mapFaceOuest);
         }
         // Front
         foreach (GridTile tile in grid.FaceFront)
         {
-            InitTileTerrain(tile);
+            InitTileTerrain(tile, mapFaceFront);
         }
         // Back
         foreach (GridTile tile in grid.FaceBack)
         {
-            InitTileTerrain(tile);
+            InitTileTerrain(tile, mapFaceBack);
         }
         // Sud
         foreach (GridTile tile in grid.FaceSud)
         {
-            InitTileTerrain(tile);
+            InitTileTerrain(tile, mapFaceSud);
         }
     }
 
-    void InitTileTerrain(GridTile t)
+    void InitTileTerrain(GridTile t, Texture2D map)
     {
         /// TODO : GENERATE Terrain per grid from Biom Pixel
     }
