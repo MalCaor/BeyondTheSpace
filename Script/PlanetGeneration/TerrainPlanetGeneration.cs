@@ -84,7 +84,12 @@ public class TerrainPlanetGeneration : MonoBehaviour
         }
     }
 
-    void InitTileTerrain(GridTile t, Texture2D map)
+    /// <Summary> 
+    /// Init the Terrain (and optional building) of a tile with the biom map.<br/>
+    /// </Summary>
+    /// <param name="gridTile">gridTile to be init.</param>
+    /// <param name="map">biom map of the tile.</param>
+    void InitTileTerrain(GridTile gridTile, Texture2D map)
     {
         /// TODO : GENERATE Terrain per grid from Biom Pixel
     }

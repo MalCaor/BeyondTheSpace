@@ -9,10 +9,18 @@ using UnityEngine;
 /// </Summary>
 public abstract class Biom
 {
+    /// <summary> static list of all Bioms </summary>
+    public static List<Biom> allBioms;
+
     /// <summary> Color unique to this Biom </summary>
     Color colorID;
     /// <summary> Name of the Biom </summary>
     string nameBiom;
+
+    public static Biom GetBiom(Color color)
+    {
+        return allBioms.Find((b) => b.colorID == color);
+    }
     
     /// <summary> 
     /// Create a Biom with a Color ID
