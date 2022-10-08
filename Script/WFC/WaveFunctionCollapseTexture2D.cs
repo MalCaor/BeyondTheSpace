@@ -2,22 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <Summary> 
+/// Generate a Texture2D from an Texture2D Input </br>
+/// while try to find rules in the of Image and create a new one from it
+/// </Summary>
 public class WaveFunctionCollapseTexture2D
 {
     // vars
-    // all color in the og img
+    /// <summary>all color in the og img</summary>
     List<Color> listAllColor;
-    // all proxy of the colors
+    /// <summary>all proxy of the colors</summary>
     Dictionary<Color, Dictionary<Color,int>> linkNumProxyColbyCol;
-    // final pixel matrix
+    /// <summary>final pixel matrix</summary>
     List<Color>[,] finalMatrix;
-    // weight
+    /// <summary>WFC Settings</summary>
     WFCText2DSettings settings;
+    /// <summary>number of Iteration</summary>
     int numIteration;
 
     /// <summary>
     /// run the wfc algo and return a Texture2D
     /// </summary>
+    /// <param name="settings">Settings (params) of the generation.</param>
     public Texture2D run(WFCText2DSettings settings)
     {
         // set vars used by the entire prog
@@ -76,7 +82,8 @@ public class WaveFunctionCollapseTexture2D
     /// <summary>
     /// set Class vars with input args
     /// </summary>
-    void setInputArg(WFCText2DSettings settings)
+    /// <param name="settings">Settings (params) of the generation.</param>
+    private void setInputArg(WFCText2DSettings settings)
     {
         // init class var with arg
         this.numIteration = 0;
@@ -88,7 +95,7 @@ public class WaveFunctionCollapseTexture2D
     /// <summary>
     /// fill list color posible and their proxy proba
     /// </summary>
-    void fillListLinkColor()
+    private void fillListLinkColor()
     {
         for (int x = 0; x < settings.InputTexture.width; x++)
         {
@@ -162,7 +169,7 @@ public class WaveFunctionCollapseTexture2D
     /// <summary>
     /// fill final mat with all col possible
     /// </summary>
-    void fillMatWithAllColor()
+    private void fillMatWithAllColor()
     {
         // fill final mat with all col possible
         finalMatrix = new List<Color>[settings.newWidth, settings.newHeight];
@@ -179,7 +186,7 @@ public class WaveFunctionCollapseTexture2D
     /// <summary>
     /// set all border pixel to the 0,0 og pixel
     /// </summary>
-    void setBorderToFirstPixel()
+    private void setBorderToFirstPixel()
     {
         for (int x = 0; x < settings.newWidth; x++)
         {
@@ -196,7 +203,9 @@ public class WaveFunctionCollapseTexture2D
     /// <summary>
     /// input list have now only int input color
     /// </summary>
-    void selectColor(List<Color> list, Color c)
+    /// <param name="list">the List representing the pixel selected.</param>
+    /// <param name="c">the Color Selected.</param>
+    private void selectColor(List<Color> list, Color c)
     {
         // let only the selected color int the list
         list.Clear();
@@ -206,7 +215,8 @@ public class WaveFunctionCollapseTexture2D
     /// <summary>
     /// propagate the probality from proxy pixel
     /// </summary>
-    void propagate(List<Color>[,] list)
+    /// <param name="list">the List representing color matrix.</param>
+    private void propagate(List<Color>[,] list)
     {
         int xL = list.GetLength(0);
         int yL = list.GetLength(1);
@@ -360,7 +370,8 @@ public class WaveFunctionCollapseTexture2D
     /// choose a random color form the pixel with the lowest entropy or random.
     /// return int (1 = ok, 2 = finish, 0 = black)
     /// </summary>
-    int chooseColor(List<Color>[,] list)
+    /// <param name="list">the List representing color matrix.</param>
+    private int chooseColor(List<Color>[,] list)
     {
         // choose a random color form the pixel with the lowest entropy
         int xL = list.GetLength(0);
