@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// custom Class Using
+using WFCBeyondTheSpace;
+
 [CustomEditor(typeof(WFCcontroler))]
 public class WFCeditor : Editor
 {

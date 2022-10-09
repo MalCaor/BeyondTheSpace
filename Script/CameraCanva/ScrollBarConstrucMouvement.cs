@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ScrollBarConstrucMouvement : MonoBehaviour
+namespace CameraCanvaBeyondTheSpace
 {
-    // not used
-    void Start()
+    public class ScrollBarConstrucMouvement : MonoBehaviour
     {
-        
+        // not used
+        void Start()
+        {
+            
+        }
     }
+
 }

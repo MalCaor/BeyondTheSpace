@@ -1,0 +1,16 @@
+{
+    "name": "GridTile",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0e48f68cc3d8c9df6b02d42fbf4fe78e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

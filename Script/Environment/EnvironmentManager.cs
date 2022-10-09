@@ -2,27 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class EnvironmentManager
+namespace EnvironmentBeyondTheSpace
 {
-    public List<Environment> listEnvironment;
-
-    public EnvironmentManager()
+    [System.Serializable]
+    public class EnvironmentManager
     {
-        listEnvironment = new List<Environment>();
+        public List<Environment> listEnvironment;
+
+        public EnvironmentManager()
+        {
+            listEnvironment = new List<Environment>();
+        }
+
+        // SetColorTile for Debug puposes
+        public Color GetColorTile()
+        {
+            if(listEnvironment.Find((x) => x.name=="water") != null)
+            {
+                return Color.blue;
+            }
+            if(listEnvironment.Find((x) => x.name=="earth") != null)
+            {
+                return Color.grey;
+            }
+            return Color.black;
+        }
     }
 
-    // SetColorTile for Debug puposes
-    public Color GetColorTile()
-    {
-        if(listEnvironment.Find((x) => x.name=="water") != null)
-        {
-            return Color.blue;
-        }
-        if(listEnvironment.Find((x) => x.name=="earth") != null)
-        {
-            return Color.grey;
-        }
-        return Color.black;
-    }
 }

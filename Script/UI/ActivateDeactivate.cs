@@ -2,11 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActivateDeactivate : MonoBehaviour
+namespace UIBeyondTheSpace
 {
-    // switch visiblility
-    public void SwitchVisibility()
+    public class ActivateDeactivate : MonoBehaviour
     {
-        gameObject.SetActive(!gameObject.activeSelf);
+        // switch visiblility
+        public void SwitchVisibility()
+        {
+            gameObject.SetActive(!gameObject.activeSelf);
+        }
     }
+
 }

@@ -1,0 +1,16 @@
+{
+    "name": "WFC",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d64b5eaac7d95035cad69578cc53b40f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

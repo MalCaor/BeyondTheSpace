@@ -1,0 +1,19 @@
+{
+    "name": "CameraCanva",
+    "rootNamespace": "",
+    "references": [
+        "GUID:9775913a03165d853b8ba4ecb044bc1f",
+        "GUID:bc8dea0769cda75b2bc6dcac5b4c5625",
+        "GUID:7c3f3b038a57c05a59179f6bc7cb5089",
+        "GUID:0e48f68cc3d8c9df6b02d42fbf4fe78e"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

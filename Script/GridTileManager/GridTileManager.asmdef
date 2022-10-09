@@ -1,0 +1,17 @@
+{
+    "name": "GridTileManager",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3c3710bee5a4223d79d1f05230f418ab",
+        "GUID:3fd7aea138c409a6eb848ed85f7dbbbe"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,19 @@
+{
+    "name": "Biom",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3c3710bee5a4223d79d1f05230f418ab",
+        "GUID:3fd7aea138c409a6eb848ed85f7dbbbe",
+        "GUID:d64b5eaac7d95035cad69578cc53b40f",
+        "GUID:9775913a03165d853b8ba4ecb044bc1f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

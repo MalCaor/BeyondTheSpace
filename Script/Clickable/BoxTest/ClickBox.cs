@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+//using TMPro;
 
-public class ClickBox : MonoBehaviour
+namespace BoxTestBeyondTheSpace
 {
-    // when the mouse click the object
-    void OnMouseDown()
+    public class ClickBox : MonoBehaviour
     {
-        GameObject.Find("CameraGroundView/CanvasGroundView/PanelInspectWindow").GetComponent<InspectWindow>().InspectObject(gameObject.name);
+        // when the mouse click the object
+        void OnMouseDown()
+        {
+            //GameObject.Find("CameraGroundView/CanvasGroundView/PanelInspectWindow").GetComponent<InspectWindow>().InspectObject(gameObject.name);
+        }
     }
 }
+

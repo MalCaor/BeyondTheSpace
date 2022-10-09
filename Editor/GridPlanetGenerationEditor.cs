@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// custom Class Using
+using PlanetGenerationBeyondTheSpace;
+using SettingsBeyondTheSpace;
+
 [CustomEditor(typeof(GridPlanetGeneration))]
 public class GridPlanetGenerationEditor : Editor
 {

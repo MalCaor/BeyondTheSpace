@@ -2,21 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <Summary> 
-/// Abstract class parent of all Buildings Class.<br/>
-/// </Summary>
-[System.Serializable]
-public abstract class Building
+namespace BuildingBeyondTheSpace
 {
-    /// <summary> Name of the Buildings </summary>
-    public string name;
-
     /// <Summary> 
-    /// Create an Buildings.<br/>
+    /// Abstract class parent of all Buildings Class.<br/>
     /// </Summary>
-    /// <param name="name">name of the new Buildings.</param>
-    public Building(string name)
+    [System.Serializable]
+    public abstract class Building
     {
-        this.name = name;
+        /// <summary> Name of the Buildings </summary>
+        public string name;
+
+        /// <Summary> 
+        /// Create an Buildings.<br/>
+        /// </Summary>
+        /// <param name="name">name of the new Buildings.</param>
+        public Building(string name)
+        {
+            this.name = name;
+        }
     }
+
 }

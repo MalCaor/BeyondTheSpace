@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+// custom Class Using
+using PlanetGenerationBeyondTheSpace;
+
 [CustomEditor(typeof(TerrainPlanetGeneration))]
 public class TerrainPlanetEditor : Editor
 {

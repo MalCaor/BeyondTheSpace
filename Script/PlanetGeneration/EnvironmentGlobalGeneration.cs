@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnvironmentGlobalGeneration
+namespace PlanetGenerationBeyondTheSpace
 {
-    public static void InitAllEnvironment()
+    public class EnvironmentGlobalGeneration
     {
-        // TODO : Init the envs
+        public static void InitAllEnvironment()
+        {
+            // TODO : Init the envs
+        }
     }
 }
+

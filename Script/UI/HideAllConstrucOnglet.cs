@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HideAllConstrucOnglet : MonoBehaviour
+namespace UIBeyondTheSpace
 {
-    // hide all construc onglet
-    public void HideAll()
+    public class HideAllConstrucOnglet : MonoBehaviour
     {
-        foreach (GameObject g in GameObject.FindGameObjectsWithTag("ConstructionOnglet"))
+        // hide all construc onglet
+        public void HideAll()
         {
-            g.SetActive(false);
+            foreach (GameObject g in GameObject.FindGameObjectsWithTag("ConstructionOnglet"))
+            {
+                g.SetActive(false);
+            }
         }
     }
+
 }

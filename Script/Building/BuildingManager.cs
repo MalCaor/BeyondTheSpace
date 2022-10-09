@@ -2,20 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class BuildingManager
+namespace BuildingBeyondTheSpace
 {
-    public List<Building> listBuilding;
-
-    public BuildingManager()
+    [System.Serializable]
+    public class BuildingManager
     {
-        listBuilding = new List<Building>();
+        public List<Building> listBuilding;
+
+        public BuildingManager()
+        {
+            listBuilding = new List<Building>();
+        }
+
+        // SetColorTile for Debug puposes
+        public Color GetColorTile()
+        {
+            Color c = Color.black;
+            return c;
+        }
     }
 
-    // SetColorTile for Debug puposes
-    public Color GetColorTile()
-    {
-        Color c = Color.black;
-        return c;
-    }
 }

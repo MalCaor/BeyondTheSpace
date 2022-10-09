@@ -1,0 +1,17 @@
+{
+    "name": "BoxTest",
+    "rootNamespace": "",
+    "references": [
+        "GUID:7c3f3b038a57c05a59179f6bc7cb5089",
+        "GUID:9bbf4330dac59f966a678bc73f449971"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

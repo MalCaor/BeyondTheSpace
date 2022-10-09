@@ -2,7 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraScript : MonoBehaviour
+// custom Class Using
+using GridTileBeyondTheSpace;
+using PlanetGenerationBeyondTheSpace;
+using GridTileManagerBeyondTheSpace;
+
+namespace CameraCanvaBeyondTheSpace
+{
+    public class CameraScript : MonoBehaviour
 {
     //vars
     // speed of mouvement
@@ -110,4 +117,6 @@ public class CameraScript : MonoBehaviour
             }
         }
     }
+}
+
 }
