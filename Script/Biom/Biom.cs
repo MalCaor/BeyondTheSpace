@@ -12,7 +12,7 @@ namespace BiomBeyondTheSpace
     public abstract class Biom
     {
         /// <summary> static list of all Bioms </summary>
-        public static List<Biom> allBioms;
+        public static List<Biom> allBioms = new List<Biom>();
 
         /// <summary> Color unique to this Biom </summary>
         Color colorID;

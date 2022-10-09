@@ -11,6 +11,7 @@ public class BiomTest
     public void BiomTestSimplePasses()
     {
         // Use the Assert class to test conditions
+        BiomTestClass biom = new BiomTestClass(Color.black, "Test");
     }
 
     // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
