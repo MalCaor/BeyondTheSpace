@@ -2,6 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// custom class using
+using BuildingBeyondTheSpace;
+using SettingsBeyondTheSpace;
+using GridTileBeyondTheSpace;
+using EnvironmentBeyondTheSpace;
+
 namespace BiomBeyondTheSpace
 {
     /// <Summary> 

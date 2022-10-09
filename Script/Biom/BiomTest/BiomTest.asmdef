@@ -4,7 +4,11 @@
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",
-        "Biom"
+        "Biom",
+        "Building",
+        "Environment",
+        "GridTile",
+        "Settings"
     ],
     "includePlatforms": [
         "Editor"
