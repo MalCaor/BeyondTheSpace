@@ -41,6 +41,9 @@ namespace BiomBeyondTheSpace
             // set param
             this.colorID = color;
             this.nameBiom = name;
+
+            // add new biom to the Biom list
+            Biom.allBioms.Add(this);
         }
     }
 
