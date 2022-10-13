@@ -8,23 +8,21 @@ using BiomBeyondTheSpace;
 
 public class BiomTest
 {
-    // A Test behaves as an ordinary method
+    // Test simple Instantiation
     [Test]
     public void BiomTestSimplePasses()
     {
         // clear to be sure nothing left from previous test
         Biom.allBioms.Clear();
-        // Use the Assert class to test conditions
         Biom biom = new Biom(Color.black, "Test");
     }
 
-    // A Test behaves as an ordinary method
+    // Test no duplicated Biom (two biom with the same color)
     [Test]
     public void BiomTestNoDuplicateCheck()
     {
         // clear to be sure nothing left from previous test
         Biom.allBioms.Clear();
-        // Use the Assert class to test conditions
         Biom biom = new Biom(Color.black, "Test");
         try
         {
