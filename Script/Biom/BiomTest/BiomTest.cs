@@ -17,7 +17,7 @@ public class BiomTest
         Biom biom = new Biom(Color.black, "Test");
     }
 
-    // Test simple Instantiation
+    // Test get biom
     [Test]
     public void BiomTestGetBiom()
     {
