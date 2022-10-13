@@ -24,6 +24,8 @@ namespace BiomBeyondTheSpace
         Color colorID;
         /// <summary> Name of the Biom </summary>
         string nameBiom;
+        /// <summary> Dic of Env </summary>
+        Dictionary<float, Environment> dicEnv = new Dictionary<float, Environment>();
 
         public static Biom GetBiom(Color color)
         {
