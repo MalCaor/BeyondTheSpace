@@ -15,7 +15,7 @@ namespace BiomBeyondTheSpace
     /// Is represented by a Color Pixel.<br/>
     /// Black Pixel is the Default Error Biom.<br/>
     /// </Summary>
-    public abstract class Biom
+    public class Biom
     {
         /// <summary> static list of all Bioms </summary>
         public static List<Biom> allBioms = new List<Biom>();

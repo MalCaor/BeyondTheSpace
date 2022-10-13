@@ -4,25 +4,31 @@ using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.TestTools;
 
+using BiomBeyondTheSpace;
+
 public class BiomTest
 {
     // A Test behaves as an ordinary method
     [Test]
     public void BiomTestSimplePasses()
     {
+        // clear to be sure nothing left from previous test
+        Biom.allBioms.Clear();
         // Use the Assert class to test conditions
-        BiomTestClass biom = new BiomTestClass(Color.black, "Test");
+        Biom biom = new Biom(Color.black, "Test");
     }
 
     // A Test behaves as an ordinary method
     [Test]
     public void BiomTestNoDuplicateCheck()
     {
+        // clear to be sure nothing left from previous test
+        Biom.allBioms.Clear();
         // Use the Assert class to test conditions
-        BiomTestClass biom = new BiomTestClass(Color.black, "Test");
+        Biom biom = new Biom(Color.black, "Test");
         try
         {
-            BiomTestClass biom2 = new BiomTestClass(Color.black, "Test");
+            Biom biom2 = new Biom(Color.black, "Test");
             Assert.Fail("BiomTestNoDuplicateCheck : Duplicata possible");
         }
         catch (System.ArgumentException)
