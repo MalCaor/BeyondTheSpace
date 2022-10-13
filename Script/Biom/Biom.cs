@@ -15,7 +15,7 @@ namespace BiomBeyondTheSpace
     /// Is represented by a Color Pixel.<br/>
     /// Black Pixel is the Default Error Biom.<br/>
     /// </Summary>
-    public class Biom
+    public class Biom : BiomInterface
     {
         /// <summary> static list of all Bioms </summary>
         public static List<Biom> allBioms = new List<Biom>();
@@ -44,6 +44,17 @@ namespace BiomBeyondTheSpace
 
             // add new biom to the Biom list
             Biom.allBioms.Add(this);
+        }
+
+        // inherited interface
+        public List<Environment> GetEnvironments(GridTile gridTile, TerrainPlanetGenerationSetting terrainSetting)
+        {
+            return null;
+        }
+
+        public List<Building> GetBuildings(GridTile gridTile, TerrainPlanetGenerationSetting terrainSetting)
+        {
+            return null;
         }
     }
 
