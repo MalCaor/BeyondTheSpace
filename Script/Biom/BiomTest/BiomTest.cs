@@ -24,7 +24,7 @@ public class BiomTest
         // clear to be sure nothing left from previous test
         Biom.allBioms.Clear();
         Biom biom = new Biom(Color.black, "Test");
-        Assert(Biom.GetBiom(Color.black) == biom);
+        Assert.AreEqual(biom, Biom.GetBiom(Color.black));
     }
 
     // Test no duplicated Biom (two biom with the same color)
