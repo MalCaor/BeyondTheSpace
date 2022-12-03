@@ -28,18 +28,7 @@ namespace PlanetGenerationBeyondTheSpace
         /// <summary> Planet Terrain Generation Settings </summary>
         public TerrainPlanetGenerationSetting terrainSetting;
 
-        /// <summary> Text map of Bioms Face Nord </summary>
-        Texture2D mapFaceNord;
-        /// <summary> Text map of Bioms Face Est </summary>
-        Texture2D mapFaceEst;
-        /// <summary> Text map of Bioms Face Ouest </summary>
-        Texture2D mapFaceOuest;
-        /// <summary> Text map of Bioms Face Front </summary>
-        Texture2D mapFaceFront;
-        /// <summary> Text map of Bioms Face Back </summary>
-        Texture2D mapFaceBack;
-        /// <summary> Text map of Bioms Face Sud </summary>
-        Texture2D mapFaceSud;
+        
 
         /// <Summary> 
         /// Init the Generation.<br/>
@@ -62,32 +51,32 @@ namespace PlanetGenerationBeyondTheSpace
             // Nord
             foreach (GridTile tile in grid.FaceNord)
             {
-                InitTileTerrain(tile, mapFaceNord);
+                InitTileTerrain(tile, terrainSetting.mapFaceNord);
             }
             // Est
             foreach (GridTile tile in grid.FaceEst)
             {
-                InitTileTerrain(tile, mapFaceEst);
+                InitTileTerrain(tile, terrainSetting.mapFaceEst);
             }
             // Ouest
             foreach (GridTile tile in grid.FaceOuest)
             {
-                InitTileTerrain(tile, mapFaceOuest);
+                InitTileTerrain(tile, terrainSetting.mapFaceOuest);
             }
             // Front
             foreach (GridTile tile in grid.FaceFront)
             {
-                InitTileTerrain(tile, mapFaceFront);
+                InitTileTerrain(tile, terrainSetting.mapFaceFront);
             }
             // Back
             foreach (GridTile tile in grid.FaceBack)
             {
-                InitTileTerrain(tile, mapFaceBack);
+                InitTileTerrain(tile, terrainSetting.mapFaceBack);
             }
             // Sud
             foreach (GridTile tile in grid.FaceSud)
             {
-                InitTileTerrain(tile, mapFaceSud);
+                InitTileTerrain(tile, terrainSetting.mapFaceSud);
             }
         }
 
@@ -101,9 +90,16 @@ namespace PlanetGenerationBeyondTheSpace
             /// TODO : GENERATE Terrain per grid from Biom Pixel
             
             // get color to the tile pos
-            Color col = map.GetPixel(gridTile.Npos, gridTile.Epos);
-            if(col == null) throw new System.Exception("map index null, check if the Biom map is the right size");
-
+            Color col;
+            if(map!=null)
+            {
+                col = map.GetPixel(gridTile.Npos, gridTile.Epos);
+                if(col == null) throw new System.Exception("map index null, check if the Biom map is the right size");
+            } else 
+            {
+                col = Color.black;
+            }
+            
             // get the biom
             Biom biom = Biom.GetBiom(col);
             if(biom == null) {
