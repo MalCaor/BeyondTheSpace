@@ -1,0 +1,13 @@
+# BEYOND THE SPACE
+
+/!\\ wip /!\\
+
+## Map Generation
+
+use of the Wave Function Collapse algo (modified) to generate 2d textures of map, each pixel being a biom
+
+here the algo take the left img, find out rule about pixel position and generate the right img
+
+![Input image](./README_Ressource/img/testmap5.png)
+->
+![output image](./README_Ressource/img/testOutput.png)
