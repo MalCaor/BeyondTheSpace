@@ -105,7 +105,6 @@ namespace PlanetGenerationBeyondTheSpace
             if(biom == null) {
                 // couldn't find a biom so put the default one instead
                 Debug.LogError("Color not matching any biom");
-                biom = Biom.GetBiom(Color.black);
             }
         }
     }
