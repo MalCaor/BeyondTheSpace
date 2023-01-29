@@ -51,7 +51,8 @@ namespace BiomBeyondTheSpace
         {
             /// TODO : search and deserialize biom
             /// TODO : have the json files loc in a param or something
-            string pathJSONBiom = "";
+            // reminder! Application.dataPath : ~/Unity/Project/BeyondTheSpace/Assets
+            string pathJSONBiom = Application.dataPath + "/BeyondTheSpace/Json/Biom/";
             DirectoryInfo dirJSONBiom = new DirectoryInfo(pathJSONBiom);
             FileInfo[] allBiomJSONFile = dirJSONBiom.GetFiles("*.json");
             foreach (FileInfo biomJson in allBiomJSONFile) 
