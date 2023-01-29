@@ -27,8 +27,18 @@ namespace BiomBeyondTheSpace
         /// <summary> Dic of Env </summary>
         Dictionary<float, Environment> dicEnv = new Dictionary<float, Environment>();
 
+        /// <summary> 
+        /// return Biom corresponding to the color id
+        /// if list biom is empty search json biom (tmp)
+        /// </summary>
+        /// <param name="color">Color ID of the Biom.</param>
         public static Biom GetBiom(Color color)
         {
+            if (allBioms.Count == 0)
+            {
+                // there is no biom in the biom list
+                // search biom json
+            }
             return allBioms.Find((b) => b.colorID == color);
         }
         
