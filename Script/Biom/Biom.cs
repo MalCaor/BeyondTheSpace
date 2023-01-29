@@ -38,8 +38,18 @@ namespace BiomBeyondTheSpace
             {
                 // there is no biom in the biom list
                 // search biom json
+                fillBiomListFromJSON();
             }
             return allBioms.Find((b) => b.colorID == color);
+        }
+
+        /// <summary> 
+        /// fill allBiom with biom in json file
+        /// </summary>
+        private static Biom fillBiomListFromJSON()
+        {
+            /// TODO : search and deserialize biom
+            /// TODO : have the json files loc in a param or something
         }
         
         /// <summary> 
