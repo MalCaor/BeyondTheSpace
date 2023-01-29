@@ -11,3 +11,8 @@ here the algo take the left img, find out rule about pixel position and generate
 ![Input image](./README_Ressource/img/testmap5.png)
 ->
 ![output image](./README_Ressource/img/testOutput.png)
+
+settings can drastically alter the output from the same Input, from size to trying to match the original image
+
+![comp1](./README_Ressource/img/compare2.png)
+![comp2](./README_Ressource/img/compare3.png)
