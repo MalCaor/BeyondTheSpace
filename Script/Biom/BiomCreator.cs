@@ -5,6 +5,7 @@ using UnityEngine;
 
 // custom Class Using
 using SettingsBeyondTheSpace;
+using EnvironmentBeyondTheSpace;
 
 namespace BiomBeyondTheSpace 
 {
