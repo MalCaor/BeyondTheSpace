@@ -22,11 +22,11 @@ namespace BiomBeyondTheSpace
         public static List<Biom> allBioms = new List<Biom>();
 
         /// <summary> Color unique to this Biom </summary>
-        Color colorID;
+        public Color colorID;
         /// <summary> Name of the Biom </summary>
-        string nameBiom;
+        public string nameBiom;
         /// <summary> Dic of Env </summary>
-        Dictionary<float, Environment> dicEnv = new Dictionary<float, Environment>();
+        public Dictionary<float, Environment> dicEnv = new Dictionary<float, Environment>();
 
         /// <summary> 
         /// return Biom corresponding to the color id
@@ -69,7 +69,7 @@ namespace BiomBeyondTheSpace
         /// <param name="name">Name of the Biom.</param>
         public Biom(Color color, string name)
         {
-            if (GetBiom(color) != null) throw new System.ArgumentException("Can not Create a Biom with the same Color");
+            //if (GetBiom(color) != null) throw new System.ArgumentException("Can not Create a Biom with the same Color");
             // set param
             this.colorID = color;
             this.nameBiom = name;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 
 // custom Class Using
@@ -16,7 +17,12 @@ namespace BiomBeyondTheSpace
 
         public void CreateBiom()
         {
-            
+            Biom biom = new Biom(this.biomCreatorSettings.colorID, this.biomCreatorSettings.nameBiom);
+            string jsonBiom = JsonUtility.ToJson(biom);
+            string pathBiom = Application.dataPath + "/BeyondTheSpace/Json/Biom/" + this.biomCreatorSettings.nameBiom + ".json";
+            StreamWriter sw = File.CreateText(pathBiom);
+            sw.Write(jsonBiom);
+            sw.Close();
         }
     }
 }
