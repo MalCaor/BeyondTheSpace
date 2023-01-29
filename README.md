@@ -16,3 +16,10 @@ settings can drastically alter the output from the same Input, from size to tryi
 
 ![comp1](./README_Ressource/img/compare2.png)
 ![comp2](./README_Ressource/img/compare3.png)
+
+## Planet
+
+The planet is a cube tricked into a sphere composed of multiples smaller cube named "case"
+
+![pla1](./README_Ressource/img/planet1.png)
+![pla2](./README_Ressource/img/planet2.png)
