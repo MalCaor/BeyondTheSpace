@@ -13,5 +13,10 @@ namespace BiomBeyondTheSpace
     {
         // Setting
         public BiomCreatorSettings biomCreatorSettings;
+
+        public void CreateBiom()
+        {
+            
+        }
     }
 }

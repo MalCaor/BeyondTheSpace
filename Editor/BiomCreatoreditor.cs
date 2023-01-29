@@ -16,6 +16,11 @@ public class BiomCreatoreditor : Editor
     {
         base.OnInspectorGUI();
         DrawSettingsEditor(biomCreator.biomCreatorSettings);
+
+        if (GUILayout.Button("Generate Biom JSON"))
+        {
+            biomCreator.CreateBiom();
+        }
     }
 
     private void OnEnable()
