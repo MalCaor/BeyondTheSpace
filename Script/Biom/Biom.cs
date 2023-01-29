@@ -46,7 +46,7 @@ namespace BiomBeyondTheSpace
         /// <summary> 
         /// fill allBiom with biom in json file
         /// </summary>
-        private static Biom fillBiomListFromJSON()
+        private static void fillBiomListFromJSON()
         {
             /// TODO : search and deserialize biom
             /// TODO : have the json files loc in a param or something
