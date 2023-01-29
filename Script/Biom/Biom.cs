@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 // custom class using
@@ -50,6 +51,14 @@ namespace BiomBeyondTheSpace
         {
             /// TODO : search and deserialize biom
             /// TODO : have the json files loc in a param or something
+            string pathJSONBiom = "";
+            DirectoryInfo dirJSONBiom = new DirectoryInfo(pathJSONBiom);
+            FileInfo[] allBiomJSONFile = dirJSONBiom.GetFiles("*.json");
+            foreach (FileInfo biomJson in allBiomJSONFile) 
+            { 
+                StreamReader sr = biomJson.OpenText();
+                Biom.allBioms.Add(JsonUtility.FromJson<Biom>(sr.ReadToEnd()));
+            }
         }
         
         /// <summary> 
