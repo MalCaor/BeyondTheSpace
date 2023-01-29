@@ -19,7 +19,7 @@ settings can drastically alter the output from the same Input, from size to tryi
 
 ## Planet
 
-The planet is a cube tricked into a sphere composed of multiples smaller cube named "case"
+The planet is a cube tricked into a sphere composed of multiples smaller cube named "GridTile"
 
 ![pla1](./README_Ressource/img/planet1.png)
 ![pla2](./README_Ressource/img/planet2.png)
