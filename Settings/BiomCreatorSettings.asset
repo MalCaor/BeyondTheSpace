@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bef67ef87adf385198850becb2eadb2, type: 3}
   m_Name: BiomCreatorSettings
   m_EditorClassIdentifier: 
+  colorID: {r: 0, g: 0, b: 0, a: 0}
+  nameBiom: DEFAULT_Biom
