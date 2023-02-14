@@ -16,7 +16,10 @@ public class BiomInspectorEditor : Editor
         base.OnInspectorGUI();
         DrawSettingsEditor(biomInspector.biomInspectorSettings);
 
-        
+        if (GUILayout.Button("Search for Bioms"))
+        {
+            biomInspector.SearchBiom();
+        }
     }
 
     private void OnEnable()

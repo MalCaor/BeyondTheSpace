@@ -12,5 +12,12 @@ namespace BiomBeyondTheSpace
     {
         // Setting
         public BiomInspectorSettings biomInspectorSettings;
+
+        public List<Biom>listBiom;
+
+        public void SearchBiom()
+        {
+            
+        }
     }
 }
